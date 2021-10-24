@@ -3,17 +3,17 @@
 
 
 //constructor de material sin parametros
-Material :: Material() {
-  
-  nombre = "";
-  cantidad = 0;
+Material :: Material(){
+
 }
 
 
-//constructor de material con 2 parametros
-Material :: Material(string nombre, int cantidad){
+//setter de material
+void Material :: asignar_contenido(string nombre, int cantidad){
+  
   this -> nombre = nombre;
   this -> cantidad = cantidad;
+
 }
 
 

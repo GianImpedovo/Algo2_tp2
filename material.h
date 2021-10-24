@@ -21,10 +21,10 @@ public:
     //POST: Construye un material sin parametros
     Material();
     
-    //Consructor de material con parametros
-    //PRE: Recibe el string nombre y el entero cantidad
-    //POST: Construye un material con 2 parametros
-    Material(string nombre, int cantidad);
+    //setter de material
+    //PRE: Material debe estar instanciado
+    //POST: Asigna un nombre y una cantidad al material
+    void asignar_contenido(string nombre, int cantidad);
 
     //Obtener nombre
     //PRE: -
@@ -40,8 +40,6 @@ public:
     //
     //
     void asignar_valores(string nombre, int cantidad);
-
-
 
 };
 
