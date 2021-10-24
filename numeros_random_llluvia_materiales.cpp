@@ -75,7 +75,7 @@ int main(){
                 //y un string con el identificador del elemento. La funcion en terminos generales,
                 //recorrera el mapa y colocara en la pos indicada en algun lado el identificador
                 //de q cosa hay
-                //mapa.colocar_elemento()
+                //mapa.colocar_elemento(fila, columna, elemento_a_colocar)
     //         }
     //     }
         
