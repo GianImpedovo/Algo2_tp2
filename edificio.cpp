@@ -13,4 +13,17 @@ string Edificio::mostrar_nombre(){
     return nombre;
 }
 
+int Edificio::mostrar_cantidad_piedra(){
+    return cantidad_piedra;
+}
+int Edificio::mostrar_canitdad_madera(){
+    return canitdad_madera;
+}
+int Edificio::mostrar_cantidad_metal(){
+    return cantidad_metal;
+}
+int Edificio::mostrar_maximo_construir(){
+    return maximo_construir;
+}
+
 

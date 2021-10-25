@@ -6,6 +6,7 @@
 
 using namespace std;
 
+const string ARCHIVO_EDIFICIO = "edificios.txt";
 
 class Lista_edificio
 {
@@ -15,8 +16,9 @@ private:
 
 
 public:
-    Lista_edificio(std::string archivo);
+    Lista_edificio();
     void mostrar_edificios();
+    ~Lista_edificio();
 
 };
 

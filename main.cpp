@@ -6,7 +6,7 @@
 using namespace std;
 
 
-const string ARCHIVO_EDIFICIO = "edificios.txt";
+
 
 int main(){
 
@@ -22,7 +22,7 @@ int main(){
     }
     */
 
-    Lista_edificio l_edificios(ARCHIVO_EDIFICIO);
+    Lista_edificio l_edificios;
 
 
     l_edificios.mostrar_edificios();

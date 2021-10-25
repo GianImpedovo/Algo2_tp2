@@ -1,9 +1,9 @@
 #include "lista_edificio.h"
 
 
-Lista_edificio::Lista_edificio(string archivo){
+Lista_edificio::Lista_edificio(){
     ifstream nuevo_archivo;
-    nuevo_archivo.open(archivo);
+    nuevo_archivo.open(ARCHIVO_EDIFICIO);
 
     int cantidad_edificios = 0;
 
@@ -47,4 +47,26 @@ void Lista_edificio::mostrar_edificios(){
     for ( int i = 0; i < cantidad_edificios; i++){
         cout << edificios_posibles[i]->mostrar_nombre() << endl;
     }
+}
+
+Lista_edificio::~Lista_edificio(){
+    ofstream arch;
+    arch.open(ARCHIVO_EDIFICIO);
+
+    for ( int i = 0; i < cantidad_edificios; i++){
+        arch << edificios_posibles[i]->mostrar_nombre() << ' ' 
+        <<  edificios_posibles[i]-> mostrar_cantidad_piedra() << ' '
+        <<  edificios_posibles[i]-> mostrar_canitdad_madera() << ' '
+        <<  edificios_posibles[i]-> mostrar_cantidad_metal() << ' '
+        <<  edificios_posibles[i]-> mostrar_maximo_construir() << ' ';
+
+        delete edificios_posibles[i];
+        cantidad_edificios--;
+
+    }
+    delete [] edificios_posibles;
+    edificios_posibles = nullptr;
+
+    arch.close();
+
 }
