@@ -1,5 +1,6 @@
 #include <iostream>
 #include "menu.h"
+#include "mapa.h"
 #include "lista_edificio.h"
 #include "edificio.h"
 
@@ -22,11 +23,16 @@ int main(){
     }
     */
 
-    Lista_edificio l_edificios;
+    // Prueba de la lista de edificio:
+    //Lista_edificio l_edificios;
+    //l_edificios.mostrar_edificios();
 
+    Mapa andy;
 
-    l_edificios.mostrar_edificios();
-    
+    andy.mostrar_filas();
+    andy.mostrar_columnas();
+
+    andy.mostrar_mapa();
 
     return 0;
 }
