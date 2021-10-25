@@ -116,7 +116,7 @@ Inventario:: ~ Inventario(){
         }
 
         //delete[] lista_materiales -> materiales;
-        delete lista_materiales;
+        delete [] lista_materiales;
         lista_materiales = nullptr;
 };
 
