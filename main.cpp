@@ -1,7 +1,7 @@
 #include <iostream>
-#include "menu.h"
 #include "mapa.h"
-#include "lista_edificio.h"
+#include "caracteristicas_edificios.h"
+#include "edificios_construidos.h"
 #include "edificio.h"
 
 using namespace std;
@@ -10,7 +10,6 @@ using namespace std;
 
 
 int main(){
-
 
 
 

@@ -8,20 +8,26 @@ using namespace std;
 
 const string ARCHIVO_EDIFICIO = "edificios.txt";
 
-class Lista_edificio
+class Caracteristicas_edificio
 {
-private:
+protected:
     int cantidad_edificios;
     Edificio ** edificios_posibles;
 
 
 public:
-    Lista_edificio();
+    Caracteristicas_edificio();
+    
     void mostrar_cantidad_edificios();
+    
     void procesar_arhivo();
+
+    Edificio encontrar_edificio();
+
     void listar_todos_edificios();
+
     void guardar_datos();
-    ~Lista_edificio();
+    ~Caracteristicas_edificio();
 
 
 };

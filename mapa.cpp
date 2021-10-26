@@ -54,4 +54,5 @@ Mapa::~Mapa(){
     }
     delete [] mapa;
     this->mapa = nullptr;
+    cout << "ejecutando destructor" << endl;
 }

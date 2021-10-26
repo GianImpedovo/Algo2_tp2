@@ -1,12 +1,12 @@
-#include "lista_edificio.h"
+#include "caracteristicas_edificios.h"
 
 
-Lista_edificio::Lista_edificio(){
+Caracteristicas_edificio::Caracteristicas_edificio(){
     this->cantidad_edificios = 0;
     this->edificios_posibles = nullptr;
 }
 
-void Lista_edificio::procesar_arhivo(){
+void Caracteristicas_edificio::procesar_arhivo(){
 ifstream nuevo_archivo;
     nuevo_archivo.open(ARCHIVO_EDIFICIO);
 
@@ -45,11 +45,11 @@ ifstream nuevo_archivo;
     nuevo_archivo.close();
 }
 
-void Lista_edificio::mostrar_cantidad_edificios(){
+void Caracteristicas_edificio::mostrar_cantidad_edificios(){
     cout << cantidad_edificios << endl;
 }
 
-void Lista_edificio::listar_todos_edificios(){
+void Caracteristicas_edificio::listar_todos_edificios(){
     for ( int i = 0; i < cantidad_edificios; i++){
         cout << edificios_posibles[i]->mostrar_nombre() << " "
         << edificios_posibles[i]->mostrar_cantidad_piedra() << " "
@@ -60,7 +60,7 @@ void Lista_edificio::listar_todos_edificios(){
     }
 }
 
-void Lista_edificio::guardar_datos(){
+void Caracteristicas_edificio::guardar_datos(){
     ofstream archivo;
     archivo.open(ARCHIVO_EDIFICIO);
 
@@ -76,7 +76,7 @@ void Lista_edificio::guardar_datos(){
 
 }
 
-Lista_edificio::~Lista_edificio(){
+Caracteristicas_edificio::~Caracteristicas_edificio(){
     for ( int i = 0; i < cantidad_edificios; i++){
         delete edificios_posibles[i];
     }
