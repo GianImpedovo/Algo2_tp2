@@ -1,4 +1,4 @@
-piedra 74.5
+piedra 74
 metal 250
 madera 220
 oro 130

@@ -12,7 +12,7 @@ const string PATH_MATERIALES = "materiales.txt";
 //Constructor de inventario sin parametros
 Inventario :: Inventario(){
     
-    Material** lista_materiales;
+    lista_materiales = 0;
     //lista_materiales = new Material*;
     cantidad_de_materiales = 0;
 }
@@ -79,28 +79,29 @@ void Inventario :: agregar_material(Material* material){
 
     lista_materiales = nuevo_vector_materiales; //llama al constructor de copia???
     cantidad_de_materiales++;
+    
 }
 
 
-//copiar datos
-// void Inventario :: copiar_datos(Material** lista_nueva, int tamanio) {
-// 	for (int i = 0; i<tamanio; i++){
-// 		lista_nueva[i] = lista_materiales[i];
-// 	};
-// }
+// copiar datos
+void Inventario :: copiar_datos(Material** lista_nueva, int tamanio) {
+	for (int i = 0; i<tamanio; i++){
+		lista_nueva[i] = lista_materiales[i];
+	};
+}
 
 
-// //Constructor de copia
-// Inventario :: Inventario ( const Inventario & nuevo_inventario ) {
-// 	this -> cantidad_de_materiales = nuevo_inventario.cantidad_de_materiales;
-// 	if (cantidad_de_materiales > 0) {
-// 		*lista_materiales = new Material[ cantidad_de_materiales ];
-// 		copiar_datos (nuevo_inventario.lista_materiales, cantidad_de_materiales);
-// 		// Se copian los valores a esa nueva porcion de memoria	
-// 	}
+//Constructor de copia
+Inventario :: Inventario ( const Inventario & nuevo_inventario ) {
+	this -> cantidad_de_materiales = nuevo_inventario.cantidad_de_materiales;
+	if (cantidad_de_materiales > 0) {
+		*lista_materiales = new Material[ cantidad_de_materiales ];
+		copiar_datos (nuevo_inventario.lista_materiales, cantidad_de_materiales);
+		// Se copian los valores a esa nueva porcion de memoria	
+	}
     
-// 	else *lista_materiales = 0;
-// }
+	else lista_materiales = 0;
+}
 
 Inventario:: ~ Inventario(){
         //int cant_mat = inventario -> obtener_cantidad_de_materiales();

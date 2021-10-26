@@ -52,9 +52,6 @@ public:
     //POST: Muestra la cantiad del material
     void mostrar_cantidad();
 
-    //Constructor de copia
-    Material (const Material & nuevo_material );
-
 };
 
 

@@ -31,13 +31,6 @@ public:
     //POST: agrega el material a la lista de materiales
     void agregar_material(Material* material);
 
-
-    //copiar datos
-    void copiar_datos(Material** lista_nueva, int tamanio);
-
-    //constructor de copia
-    Inventario ( const Inventario & nuevo_inventario );
-
     //Obtener material en lista_materiales
     //PRE: Recibe la posicion del material en la lista
     //POST: Devuelve un puntero a dicho material
@@ -48,6 +41,7 @@ public:
     //POST: Devuelve un entero con la cantidad de materiales en la lista
     int obtener_cantidad_de_materiales();
 
+    //Destructor de inventario
     ~Inventario();
 
 };

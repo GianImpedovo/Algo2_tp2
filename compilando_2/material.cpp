@@ -6,16 +6,6 @@
 Material :: Material(){
 }
 
-
-//setter de material
-void Material :: asignar_contenido(string nombre, int cantidad){
-  
-  this -> nombre = nombre;
-  this -> cantidad = cantidad;
-
-}
-
-
 //Obtener nombre
 string Material :: obtener_nombre(){
   
@@ -47,12 +37,4 @@ void Material :: mostrar_nombre(){
 void Material :: mostrar_cantidad(){
   
   cout << cantidad;
-}
-
-
-//Constructor de copia
-Material :: Material ( const Material & nuevo_material ) {
-  cout <<"constructor de copia de material";
-  this -> nombre = nombre;
-  this -> cantidad = cantidad;
 }
