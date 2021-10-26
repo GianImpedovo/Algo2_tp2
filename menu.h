@@ -1,6 +1,7 @@
 #ifndef MENU_H
 #define MENU_H
 
+#include "lista_edificio.h"
 #include <iostream>
 
 using namespace std;
@@ -29,7 +30,7 @@ public:
     void elegir_opcion();
     void mostrar_menu();
     bool opcion_valida();
-    void procesar_opcion();
+    void procesar_opcion(Lista_edificio l_edificios);
 
 };
 

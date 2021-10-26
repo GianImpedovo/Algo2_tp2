@@ -2,15 +2,20 @@
 
 
 Lista_edificio::Lista_edificio(){
-    ifstream nuevo_archivo;
+    this->cantidad_edificios = 0;
+    this->edificios_posibles = nullptr;
+}
+
+void Lista_edificio::procesar_arhivo(){
+ifstream nuevo_archivo;
     nuevo_archivo.open(ARCHIVO_EDIFICIO);
 
     int cantidad_edificios = 0;
 
     string nombre_edificio;
-    float cantidad_piedra;
-    float cantidad_madera;
-    float cantidad_metal;
+    int cantidad_piedra;
+    int cantidad_madera;
+    int cantidad_metal;
     int maximo;
 
     while (nuevo_archivo >> nombre_edificio){
@@ -33,7 +38,7 @@ Lista_edificio::Lista_edificio(){
                 vector_edificio[i] = edificios_posibles[i];
             }
             vector_edificio[ cantidad_edificios ] = nuevo_edificio;
-            delete [] edificios_posibles;
+            delete [] this->edificios_posibles;
             this->edificios_posibles = vector_edificio;
         }
         cantidad_edificios++;
@@ -43,30 +48,14 @@ Lista_edificio::Lista_edificio(){
     nuevo_archivo.close();
 }
 
-void Lista_edificio::mostrar_edificios(){
+void Lista_edificio::listar_todos_edificios(){
     for ( int i = 0; i < cantidad_edificios; i++){
-        cout << edificios_posibles[i]->mostrar_nombre() << endl;
+        cout << edificios_posibles[i]->mostrar_nombre() << " "
+        << edificios_posibles[i]->mostrar_cantidad_piedra() << " "
+        << edificios_posibles[i]->mostrar_canitdad_madera() << " "
+        << edificios_posibles[i]->mostrar_cantidad_metal() << " "
+        << edificios_posibles[i]->mostrar_maximo_construir() << " " << endl;
+
     }
 }
 
-Lista_edificio::~Lista_edificio(){
-    ofstream arch;
-    arch.open(ARCHIVO_EDIFICIO);
-
-    for ( int i = 0; i < cantidad_edificios; i++){
-        arch << edificios_posibles[i]->mostrar_nombre() << ' ' 
-        <<  edificios_posibles[i]-> mostrar_cantidad_piedra() << ' '
-        <<  edificios_posibles[i]-> mostrar_canitdad_madera() << ' '
-        <<  edificios_posibles[i]-> mostrar_cantidad_metal() << ' '
-        <<  edificios_posibles[i]-> mostrar_maximo_construir() << ' ';
-
-        delete edificios_posibles[i];
-        cantidad_edificios--;
-
-    }
-    delete [] edificios_posibles;
-    edificios_posibles = nullptr;
-
-    arch.close();
-
-}

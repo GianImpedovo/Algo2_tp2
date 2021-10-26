@@ -47,10 +47,10 @@ void Menu::elegir_opcion(){
     }
 
     this->opcion = opcion;
-    procesar_opcion();
+
 }
 
-void Menu::procesar_opcion(){
+void Menu::procesar_opcion(Lista_edificio l_edificios){
     int edificio_elegido;
     string nombre_edificio;
 
@@ -65,7 +65,8 @@ void Menu::procesar_opcion(){
         break;
 
     case LISTAR_TODOS_EDIFICIOS:
-        cout << "3" << endl;
+        // 3)
+        l_edificios.listar_todos_edificios();
         break;
 
     case DEMOLER_EDIFICIO_COORDENADA:

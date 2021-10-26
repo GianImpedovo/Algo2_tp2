@@ -17,8 +17,9 @@ private:
 
 public:
     Lista_edificio();
-    void mostrar_edificios();
-    ~Lista_edificio();
+    void procesar_arhivo();
+    void listar_todos_edificios();
+
 
 };
 
