@@ -16,15 +16,10 @@ private:
 
 public:
 
-    //Consructor de material sin parametros
+    //Constructor de material sin parametros
     //PRE:-
     //POST: Construye un material sin parametros
     Material();
-    
-    //setter de material
-    //PRE: Material debe estar instanciado
-    //POST: Asigna un nombre y una cantidad al material
-    void asignar_contenido(string nombre, int cantidad);
 
     //Obtener nombre
     //PRE: -
@@ -35,10 +30,20 @@ public:
     //PRE: -
     //POST: Devuelve un enetro con la cantidad disponible del material 
     int obtener_cantidad_disponible();
+    
+    //Restar material
+    //PRE: Recibe un entero con la cantidad de material que es necesario restar
+    //POST: Actualiza la cantiad de material disponible con el valor luego de la resta
+    void restar_material(int cantidad_material_nec);
 
-    //cargar material
-    //
-    //
+    //Sumar material
+    //PRE: Recibe la cantidad de material necesario parala construccion
+    //POST: Suma en la lista de materiales la mitad de los necesarios para la construccion
+    void sumar_material(int cantidad_material_nec);
+
+    //Asignar valores al material
+    //PRE: Recibe el string "nombre" con el nombre del material y el entero "cantidad" con la cantidad de dicho material
+    //POST: Asigna los valores anteriores a nombre y cantidad respectivamente
     void asignar_valores(string nombre, int cantidad);
 
     //Mostrar nombre material
@@ -46,7 +51,6 @@ public:
     //POST: Muestra el nombre del material
     void mostrar_nombre();
 
-    
     //Mostrar cantidad material
     //PRE:-
     //POST: Muestra la cantiad del material

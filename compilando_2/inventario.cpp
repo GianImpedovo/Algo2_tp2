@@ -18,6 +18,7 @@ Inventario :: Inventario(){
 
 //Obtener material de lista_materiales
 Material *Inventario :: obtener_material_de_lista_materiales(int pos){
+
     return lista_materiales[pos];
 }
 
@@ -42,7 +43,6 @@ void Inventario :: cargar_materiales(){
             archivo_materiales >> cantidad;
                         
             material = new Material;
-            cout<<"Pedi memoria "<< material;
             
             material -> asignar_valores(nombre, stoi(cantidad));
 
@@ -100,11 +100,3 @@ Inventario:: ~ Inventario(){
         delete [] lista_materiales;
         lista_materiales = nullptr;
 };
-
-
-//Restar material
-void Inventario :: restar_material(int cantidad_material_nec){
-    
-    cantidad_de_materiales =  cantidad_de_materiales - cantidad_material_nec;
-    
-}
