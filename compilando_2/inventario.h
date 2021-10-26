@@ -20,6 +20,12 @@ public:
     //POST: Construye un inventario
     Inventario();
 
+    //Destructor de inventario
+    //PRE:-
+    //POST: Liberar la memoria que se uso en la creacion del inventario y escribe el 
+    //archivo materiales.txt con la info actulizada
+    ~Inventario();
+
     //cargar materiales
     //PRE: El archivo materiales.txt debe existoir
     //POST: Abre el archivo materiales.txt y carga la lista de materiales del iventario 
@@ -33,16 +39,18 @@ public:
 
     //Obtener material en lista_materiales
     //PRE: Recibe la posicion del material en la lista
-    //POST: Devuelve un puntero a dicho material
-    Material* obtener_lista_materiales(int pos);
+    //POST: Devuelve un puntero al material que se encuentra en pos dicho material
+    Material* obtener_material_de_lista_materiales(int pos);
 
     //Obtener cantidad_de_materiales
     //PRE:-
     //POST: Devuelve un entero con la cantidad de materiales en la lista
     int obtener_cantidad_de_materiales();
 
-    //Destructor de inventario
-    ~Inventario();
+    //Restar material
+    //PRE: Recibe un entero con la cantidad de material que es necesario restar
+    //POST: Actualiza la cantiad de material disponible con el valor luego de la resta
+    void restar_material(int cantidad_material_nec);
 
 };
 

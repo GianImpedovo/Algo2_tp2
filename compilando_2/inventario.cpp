@@ -13,21 +13,20 @@ const string PATH_MATERIALES = "materiales.txt";
 Inventario :: Inventario(){
     
     lista_materiales = 0;
-    //lista_materiales = new Material*;
     cantidad_de_materiales = 0;
 }
 
-//Obtener material en lista_materiales
-//PRE: Recibe la posicion del material en la lista
-//POST: Devuelve un puntero a dicho material
-Material *Inventario :: obtener_lista_materiales(int pos){
+//Obtener material de lista_materiales
+Material *Inventario :: obtener_material_de_lista_materiales(int pos){
     return lista_materiales[pos];
 }
 
+//Obtener cantidad de materiales en lista_materiales
 int Inventario :: obtener_cantidad_de_materiales(){
     return cantidad_de_materiales;
 }
 
+//cargar materiales
 void Inventario :: cargar_materiales(){
     
     fstream archivo_materiales(PATH_MATERIALES, ios::in);
@@ -43,6 +42,7 @@ void Inventario :: cargar_materiales(){
             archivo_materiales >> cantidad;
                         
             material = new Material;
+            cout<<"Pedi memoria "<< material;
             
             material -> asignar_valores(nombre, stoi(cantidad));
 
@@ -50,9 +50,6 @@ void Inventario :: cargar_materiales(){
         }
 
         archivo_materiales.close();
-
-        delete material;
-        material = nullptr;
     }
     else{
         cantidad_de_materiales = ERROR; 
@@ -82,9 +79,18 @@ void Inventario :: agregar_material(Material* material){
 }
 
 
+//Destructor de inventario
 Inventario:: ~ Inventario(){
         
-        for(int i = 0; i < cantidad_de_materiales; i++){
+        ofstream archivo_materiales(PATH_MATERIALES);
+
+        int cantidad_total = cantidad_de_materiales;
+
+        for(int i = 0; i < cantidad_total; i++){
+            
+            archivo_materiales << lista_materiales[i]->obtener_nombre()<< ' '
+            << lista_materiales[i] -> obtener_cantidad_disponible()<< '\n';
+            
 
             delete lista_materiales[i];
             
@@ -94,3 +100,11 @@ Inventario:: ~ Inventario(){
         delete [] lista_materiales;
         lista_materiales = nullptr;
 };
+
+
+//Restar material
+void Inventario :: restar_material(int cantidad_material_nec){
+    
+    cantidad_de_materiales =  cantidad_de_materiales - cantidad_material_nec;
+    
+}
