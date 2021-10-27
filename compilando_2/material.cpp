@@ -2,14 +2,14 @@
 #include <iostream>
 
 
-//Constructor de material sin parametros
+//Constructor de material con 2 parametros
 Material :: Material(string nombre, int cantidad){
-  this -> nombre = nombre;
-  this -> cantidad = cantidad;
+  this-> nombre = nombre;
+  this-> cantidad = cantidad;
 }
 
 //Obtener nombre
-string Material :: obtener_nombre(){
+string Material :: obtener_nombre(){ 
   
   return nombre;
 }
@@ -53,4 +53,9 @@ void Material :: mostrar_nombre(){
 void Material :: mostrar_cantidad(){
   
   cout << cantidad;
+}
+
+void Material :: saludar(){
+  cout << "Hola soy un "<< nombre << "y estoy en un casillero transitable"<<endl;
+
 }

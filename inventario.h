@@ -1,8 +1,10 @@
 #ifndef INVENTARIO_H_INCLUDED
 #define INVENTARIO_H_INCLUDED
 
+#include "material.h"
 #include <iostream>
 #include <string>
+
 
 using namespace std;
 

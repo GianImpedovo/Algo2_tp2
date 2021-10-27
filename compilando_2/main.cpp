@@ -14,9 +14,13 @@ int main (){
     
     inventario -> obtener_material_de_lista_materiales(0) -> restar_material(100);
     inventario -> obtener_material_de_lista_materiales(1) -> sumar_material(900);
+    
+    // Material cosa("holis ",1) ;
+    // Material cosa_2("hola ",2);
 
+    //cosa.saludar();
 
-    delete inventario;
+    //delete inventario;
 
     return 0;
 }

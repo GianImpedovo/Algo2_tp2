@@ -56,8 +56,9 @@ public:
     //PRE:-
     //POST: Muestra la cantiad del material
     void mostrar_cantidad();
-
+    
     virtual void saludar();
+
 };
 
 

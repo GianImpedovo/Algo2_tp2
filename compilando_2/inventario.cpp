@@ -1,6 +1,6 @@
-#include "inventario.h"
 #include <iostream>
 #include <fstream>
+#include "inventario.h"
 
 const int ERROR = -1;
 
@@ -39,9 +39,11 @@ void Inventario :: cargar_materiales(){
 
         Material *material;
 
+        
+
         while(archivo_materiales >> nombre){
             archivo_materiales >> cantidad;
-                        
+            
             material = new Material(nombre, stoi(cantidad));
             
             //material -> asignar_valores(nombre, stoi(cantidad));

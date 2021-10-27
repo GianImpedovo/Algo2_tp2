@@ -4,8 +4,8 @@
 
 //Constructor de material con 2 parametros
 Material :: Material(string nombre, int cantidad){
-  nombre = nombre;
-  cantidad = cantidad;
+  this-> nombre = nombre;
+  this-> cantidad = cantidad;
 }
 
 //Obtener nombre
@@ -56,5 +56,6 @@ void Material :: mostrar_cantidad(){
 }
 
 void Material :: saludar(){
+  cout << "Hola soy un "<< nombre << "y estoy en un casillero transitable"<<endl;
 
 }
