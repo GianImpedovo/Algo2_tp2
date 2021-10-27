@@ -18,13 +18,11 @@ protected:
 public:
     Caracteristicas_edificio();
     
-    void mostrar_cantidad_edificios();
-    
     void procesar_arhivo();
 
-    Edificio encontrar_edificio();
-
     void listar_todos_edificios();
+
+    Edificio * buscar_edificio(string nombre);
 
     void guardar_datos();
     ~Caracteristicas_edificio();

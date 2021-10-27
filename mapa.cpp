@@ -40,6 +40,30 @@ void Mapa::generar_matriz(){
 
 }
 
+void Mapa::procesar_archivo_ubicaciones(Caracteristicas_edificio * lista_edificio){
+
+    ifstream archivo;
+    archivo.open(ARCHIVO_UBICACIONES);
+
+    string nombre;
+    string barra;
+    string fila;
+    string columna;
+
+    while( archivo >> nombre ){
+        getline(archivo, barra, '(');
+        getline(archivo, fila, ',');
+        getline(archivo, barra, ' ');
+        getline(archivo, columna, ')');
+
+        //lista_edificio->listar_todos_edificios();
+        //mapa[stoi(fila)][stoi(columna)];
+
+    }
+
+    archivo.close();
+
+}
 
 void Mapa::mostrar_filas(){
     cout << cantidad_filas << endl;

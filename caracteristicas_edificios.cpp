@@ -45,10 +45,6 @@ ifstream nuevo_archivo;
     nuevo_archivo.close();
 }
 
-void Caracteristicas_edificio::mostrar_cantidad_edificios(){
-    cout << cantidad_edificios << endl;
-}
-
 void Caracteristicas_edificio::listar_todos_edificios(){
     for ( int i = 0; i < cantidad_edificios; i++){
         cout << edificios_posibles[i]->mostrar_nombre() << " "
@@ -60,6 +56,17 @@ void Caracteristicas_edificio::listar_todos_edificios(){
     }
 }
 
+Edificio * Caracteristicas_edificio::buscar_edificio(string nombre){
+    Edificio * edificio_encontrado;
+    for (int i = 0; i < cantidad_edificios ; i++){
+        if ( edificios_posibles[i]->mostrar_nombre() == nombre ){
+            edificio_encontrado = edificios_posibles[i];
+        }
+    }
+    return edificio_encontrado;
+}
+
+// destructor
 void Caracteristicas_edificio::guardar_datos(){
     ofstream archivo;
     archivo.open(ARCHIVO_EDIFICIO);

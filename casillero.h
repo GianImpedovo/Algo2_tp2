@@ -2,6 +2,7 @@
 #define CASILLERO_H
 
 #include <iostream>
+#include "caracteristicas_edificios.h"
 
 using namespace std;
 
