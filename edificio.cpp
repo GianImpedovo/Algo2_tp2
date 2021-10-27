@@ -7,6 +7,8 @@ Edificio::Edificio(std::string nombre , int cantidad_piedra, int cantidad_madera
     this-> canitdad_madera = cantidad_madera;
     this-> cantidad_metal = cantidad_metal;
     this-> maximo_construir = maximo_construir;
+    this->fila = 0;
+    this->columna = 0;
 }
 
 string Edificio::mostrar_nombre(){
@@ -24,6 +26,11 @@ int Edificio::mostrar_cantidad_metal(){
 }
 int Edificio::mostrar_maximo_construir(){
     return maximo_construir;
+}
+
+void Edificio::cambiar_fila_columna(int i , int j){
+    fila = i;
+    columna = j;
 }
 
 

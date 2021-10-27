@@ -6,12 +6,6 @@ Casillero::Casillero(){
     this->nombre = "A";
 }
 
-void Casillero::establecer_valores(string nombre, int fila, int columna){
-    this->nombre = nombre;
-    this->fila = fila;
-    this->columna = columna;
-}
-
 Casillero::Casillero(int fila, int columna , string nombre){
     this->fila = fila;
     this->columna = columna;

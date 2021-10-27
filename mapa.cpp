@@ -8,14 +8,24 @@ Mapa::Mapa(){
         arch >> cantidad_filas; 
         arch >> cantidad_columnas;
     }
+    string nombre;
 
     generar_matriz();
 
-    string nombre;
     for ( int i = 0; i < cantidad_filas; i++){
         for (int j = 0; j < cantidad_columnas; j++){
             arch >> nombre ;
-            mapa[i][j].establecer_valores(nombre,i,j);
+
+            if ( nombre == "T") {
+                mapa[i][j] = new Casillero_construible(i, j);
+            } 
+            if (nombre == "C") {
+                mapa[i][j] = new Casillero_transitable(i,j);
+            }
+            if (nombre == "L") {
+                mapa[i][j] = new Casillero_inaccesible(i,j);
+            }
+
         }
     }
 
@@ -23,9 +33,9 @@ Mapa::Mapa(){
 }
 
 void Mapa::generar_matriz(){
-    this->mapa = new Casillero * [ cantidad_filas ];
+    this->mapa = new Casillero ** [ cantidad_filas ];
     for ( int i = 0; i < cantidad_filas; i++){
-        mapa[i] = new Casillero [cantidad_columnas];
+        mapa[i] = new Casillero * [cantidad_columnas];
     }
 
 }
@@ -42,10 +52,14 @@ void Mapa::mostrar_columnas(){
 void Mapa::mostrar_mapa(){
     for (int i = 0 ; i < cantidad_filas; i++){
         for (int j = 0; j < cantidad_columnas; j++){
-            cout << mapa[i][j].mostrar_nombre() << " ";
+            cout << mapa[i][j]->mostrar_nombre() << " ";
         }
         cout << "\n";
     }
+}
+
+void Mapa::buscar_coordenada(int fila, int columna){
+    mapa[fila][columna]->mostrar_casillero() ;
 }
 
 Mapa::~Mapa(){

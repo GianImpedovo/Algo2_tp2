@@ -3,7 +3,11 @@
 
 #include <iostream>
 #include <fstream>
+
 #include "casillero.h"
+#include "casillero_construible.h"
+#include "casillero_transitable.h"
+#include "casillero_inaccesible.h"
 
 using namespace std;
 
@@ -14,11 +18,12 @@ class Mapa
 private:
     int cantidad_filas;
     int cantidad_columnas;
-    Casillero ** mapa;
+    Casillero *** mapa;
 
 public:
     Mapa();
     ~Mapa();
+    void buscar_coordenada(int fila, int columna);
     void generar_matriz();
     void mostrar_filas();
     void mostrar_columnas();

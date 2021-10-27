@@ -7,15 +7,16 @@ using namespace std;
 
 class Casillero
 {
-private:
+protected:
     int fila;
     int columna;
     string nombre;
+
 public:
     Casillero(int fila, int columna , string nombre);
     Casillero();
+    virtual void mostrar_casillero() = 0;
     string mostrar_nombre();
-    void establecer_valores(string nombre, int i , int j);
     int mostrar_fila();
     int mostrar_columna();
 
