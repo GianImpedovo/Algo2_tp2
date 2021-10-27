@@ -3,7 +3,9 @@
 
 
 //Constructor de material sin parametros
-Material :: Material(){
+Material :: Material(string nombre, int cantidad){
+  this -> nombre = nombre;
+  this -> cantidad = cantidad;
 }
 
 //Obtener nombre

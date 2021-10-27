@@ -42,9 +42,9 @@ void Inventario :: cargar_materiales(){
         while(archivo_materiales >> nombre){
             archivo_materiales >> cantidad;
                         
-            material = new Material;
+            material = new Material(nombre, stoi(cantidad));
             
-            material -> asignar_valores(nombre, stoi(cantidad));
+            //material -> asignar_valores(nombre, stoi(cantidad));
 
             agregar_material(material);
         }

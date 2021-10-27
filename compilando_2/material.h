@@ -19,7 +19,7 @@ public:
     //Constructor de material sin parametros
     //PRE:-
     //POST: Construye un material sin parametros
-    Material();
+    Material(string nombre, int cantidad);
 
     //Obtener nombre
     //PRE: -

@@ -4,6 +4,7 @@
 #include<iostream>
 #include<string>
 
+
 using namespace std;
 
 
@@ -16,10 +17,10 @@ private:
 
 public:
 
-    //Constructor de material sin parametros
+    //Constructor de material con 2 parametros
     //PRE:-
     //POST: Construye un material sin parametros
-    Material();
+    Material(string nombre, int cantidad);
 
     //Obtener nombre
     //PRE: -
@@ -56,6 +57,7 @@ public:
     //POST: Muestra la cantiad del material
     void mostrar_cantidad();
 
+    virtual void saludar();
 };
 
 
