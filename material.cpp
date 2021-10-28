@@ -8,6 +8,10 @@ Material :: Material(string nombre, int cantidad){
   this-> cantidad = cantidad;
 }
 
+Material :: ~Material(){
+       // cout << "Material (padre) Destructor called\n";
+    }
+
 //Obtener nombre
 string Material :: obtener_nombre(){ 
   

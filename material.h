@@ -22,6 +22,8 @@ public:
     //POST: Construye un material sin parametros
     Material(string nombre, int cantidad);
 
+    virtual ~Material();
+
     //Obtener nombre
     //PRE: -
     //POST: Devuelve un string con el nombre del material

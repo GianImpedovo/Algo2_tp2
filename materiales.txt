@@ -1,4 +1,4 @@
-piedra 7200
-metal 7000
-madera 800
+piedra 7000
+metal 5800
+madera 100
 oro 130
