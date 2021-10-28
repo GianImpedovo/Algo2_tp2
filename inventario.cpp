@@ -39,7 +39,6 @@ void Inventario :: cargar_materiales(){
 
         Material *material;
 
-        
 
         while(archivo_materiales >> nombre){
             archivo_materiales >> cantidad;
@@ -102,3 +101,53 @@ Inventario:: ~ Inventario(){
         delete [] lista_materiales;
         lista_materiales = nullptr;
 };
+
+
+//chequar si alcanza material en cuestion
+void Inventario :: chequear_material(int cantidad_disponible, int cantidad_material_nec, bool &alcanza){
+    if (cantidad_disponible < cantidad_material_nec){
+                alcanza = false;
+    }
+}
+
+
+//Chequear si alcanzan materiales
+bool Inventario :: alcanzan_materiales(int cantidad_piedra_nec, int cantidad_madera_nec, int cantidad_metal_nec){
+
+    bool alcanza = true;
+    int i = 0;
+    while (alcanza && i < cantidad_de_materiales){
+        
+        string material_a_chequear = lista_materiales[i]->obtener_nombre();
+
+        int cantidad_disponible = lista_materiales[i]->obtener_cantidad_disponible();
+        
+        if (material_a_chequear == "piedra"){
+            chequear_material(cantidad_disponible, cantidad_piedra_nec, alcanza);
+        }
+        if (material_a_chequear == "madera"){
+            chequear_material(cantidad_disponible, cantidad_madera_nec, alcanza);
+        } 
+        if (material_a_chequear == "metal"){
+            chequear_material(cantidad_disponible, cantidad_metal_nec, alcanza);
+        }
+        i++;
+    }
+    return alcanza;
+}
+
+
+//Mostrar inventario
+void Inventario :: mostrar_inventario(){
+    
+    cout << setfill(' ') << setw(64)<<"MATERIALES DE CONSTRUCCION"<<"\n\n"
+    << setfill(' ') << setw(45) <<"MATERIAL"<< setfill(' ')<<setw(21)<<"CANTIDAD DISPONIBLE"<<endl
+    << setfill(' ') << setw(72)<<"__________________________________________" <<endl<<endl;
+    
+    for(int i = 0; i < cantidad_de_materiales; i++){
+        cout<<setfill(' ') << setw(45) << lista_materiales[i] -> obtener_nombre()
+        <<setfill(' ') << setw(12) << lista_materiales[i] -> obtener_cantidad_disponible() <<endl;
+        }
+    
+    cout<<endl;   
+}; 
