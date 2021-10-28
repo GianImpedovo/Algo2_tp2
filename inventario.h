@@ -50,6 +50,11 @@ public:
     //POST: Devuelve un entero con la cantidad de materiales en lista_materiales.
     int obtener_cantidad_de_materiales();
 
+    //Mostrar inventario
+    //PRE: -
+    //POST: Muestra por pantalla el inventario de materiales
+    void mostrar_inventario();
+
     //Chequear si alcanzan materiales
     //PRE: Recibe tres enteros con las cantidades de piedra madera y metal necesarios para construir un 
     //edificio
@@ -64,11 +69,33 @@ public:
     //dicho material y false en caso contrario
     void chequear_material(int cantidad_disponible, int cantidad_material_nec, bool &alcanza);
 
-    //Mostrar inventario
-    //PRE: -
-    //POST: Muestra por pantalla el inventario de materiales
-    void mostrar_inventario();
+    //Utilizar materiales
+    //PRE: Recibe el struct 3 eneteros con las cantidades de piedra, madera y metal necesarias
+    //para la construccion de un edificio
+    // POST: Modifica la cantidad disponible de piedra, madera y metal restandole las que 
+    //son necesarias para necesarias para la construccion de un edificio a traves del metodo
+    //restar_material() del objeto material
+    void utilizar_materiales(int cantidad_piedra_nec, int cantidad_madera_nec, int cantidad_metal_nec);
 
+
+    //Devolver materiales
+    //PRE: Recibe 3 enteros con las cantidades de piedra, madera y metal necesarias para la construccion
+    //de un edificio.
+    //POST: Modifica la cantidad disponible de piedra, madera y metal sumandole la mitad 
+    //de las que son necesarias para necesarias para la construccion de un edificio.
+    void devolver_materiales(int cantidad_piedra_nec, int cantidad_madera_nec, int cantidad_metal_nec);
+    
+    //Recolectar materiales
+    //PRE: Recibe 3 enteros con las cantidades de piedra, madera y metal que han sido recolectados
+    //POST: Modifica la cantidad disponible de piedra, madera y metal sumandole las cantidades
+    //de dichos enteros
+    void recolectar_materiales(int cantidad_piedra_rec, int cantidad_madera_rec, int cantidad_metal_rec);
+
+
+    //Obtener posicion material
+    //PRE: Recibe el string "material_a_buscar" con el nombre del material a buscar
+    //POST: Devuelve el entero "posicion" con la posicion del edificio
+    int obtener_posicion_material(string material_a_buscar);
 
 };
 

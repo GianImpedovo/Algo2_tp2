@@ -16,11 +16,6 @@ Inventario :: Inventario(){
     cantidad_de_materiales = 0;
 }
 
-//Obtener material de lista_materiales
-Material *Inventario :: obtener_material_de_lista_materiales(int pos){
-
-    return lista_materiales[pos];
-}
 
 //Obtener cantidad de materiales en lista_materiales
 int Inventario :: obtener_cantidad_de_materiales(){
@@ -82,17 +77,15 @@ void Inventario :: agregar_material(Material* material){
 
 //Destructor de inventario
 Inventario:: ~ Inventario(){
-        
         ofstream archivo_materiales(PATH_MATERIALES);
 
         int cantidad_total = cantidad_de_materiales;
-
+        
         for(int i = 0; i < cantidad_total; i++){
-            
+
             archivo_materiales << lista_materiales[i]->obtener_nombre()<< ' '
             << lista_materiales[i] -> obtener_cantidad_disponible()<< '\n';
             
-
             delete lista_materiales[i];
             
             cantidad_de_materiales--;
@@ -101,6 +94,21 @@ Inventario:: ~ Inventario(){
         delete [] lista_materiales;
         lista_materiales = nullptr;
 };
+
+
+//Mostrar inventario
+void Inventario :: mostrar_inventario(){
+    cout << setfill(' ') << setw(64)<<"MATERIALES DE CONSTRUCCION"<<"\n\n"
+    << setfill(' ') << setw(45) <<"MATERIAL"<< setfill(' ')<<setw(21)<<"CANTIDAD DISPONIBLE"<<endl
+    << setfill(' ') << setw(72)<<"__________________________________________" <<endl<<endl;
+    
+    for(int i = 0; i < cantidad_de_materiales; i++){
+        cout<<setfill(' ') << setw(45) << lista_materiales[i] -> obtener_nombre()
+        <<setfill(' ') << setw(12) << lista_materiales[i] -> obtener_cantidad_disponible() <<endl;
+        }
+    
+    cout<<endl;   
+}; 
 
 
 //chequar si alcanza material en cuestion
@@ -112,7 +120,8 @@ void Inventario :: chequear_material(int cantidad_disponible, int cantidad_mater
 
 
 //Chequear si alcanzan materiales
-bool Inventario :: alcanzan_materiales(int cantidad_piedra_nec, int cantidad_madera_nec, int cantidad_metal_nec){
+bool Inventario :: alcanzan_materiales(int cantidad_piedra_nec, int cantidad_madera_nec, int 
+cantidad_metal_nec){
 
     bool alcanza = true;
     int i = 0;
@@ -137,17 +146,92 @@ bool Inventario :: alcanzan_materiales(int cantidad_piedra_nec, int cantidad_mad
 }
 
 
-//Mostrar inventario
-void Inventario :: mostrar_inventario(){
+//Utilizar materiales
+void Inventario:: utilizar_materiales(int cantidad_piedra_nec, int cantidad_madera_nec, int 
+cantidad_metal_nec){
     
-    cout << setfill(' ') << setw(64)<<"MATERIALES DE CONSTRUCCION"<<"\n\n"
-    << setfill(' ') << setw(45) <<"MATERIAL"<< setfill(' ')<<setw(21)<<"CANTIDAD DISPONIBLE"<<endl
-    << setfill(' ') << setw(72)<<"__________________________________________" <<endl<<endl;
+    int i = 0;
     
-    for(int i = 0; i < cantidad_de_materiales; i++){
-        cout<<setfill(' ') << setw(45) << lista_materiales[i] -> obtener_nombre()
-        <<setfill(' ') << setw(12) << lista_materiales[i] -> obtener_cantidad_disponible() <<endl;
+    while (i < cantidad_de_materiales){
+    
+        string material_a_chequear = lista_materiales[i] -> obtener_nombre();
+
+        if (material_a_chequear == "piedra"){
+            lista_materiales[i] -> restar_material(cantidad_piedra_nec);
         }
+        if (material_a_chequear == "madera"){
+            lista_materiales[i] -> restar_material(cantidad_madera_nec);
+        } 
+        if (material_a_chequear == "metal"){
+            lista_materiales[i] -> restar_material(cantidad_metal_nec);
+        }
+        i++;
+    }
+}
+
+
+
+//Devolver materiales
+void Inventario :: devolver_materiales(int cantidad_piedra_nec, int cantidad_madera_nec, int 
+cantidad_metal_nec){
     
-    cout<<endl;   
-}; 
+    int i = 0;
+
+    while (i < cantidad_de_materiales){
+    
+        string material_a_chequear = lista_materiales[i] -> obtener_nombre();
+        
+        if (material_a_chequear == "piedra"){
+            lista_materiales[i] -> sumar_mitad_material(cantidad_piedra_nec);
+        }
+        if (material_a_chequear == "madera"){
+            lista_materiales[i] -> sumar_mitad_material(cantidad_madera_nec);        
+        } 
+        if (material_a_chequear == "metal"){
+            lista_materiales[i] -> sumar_mitad_material(cantidad_metal_nec);
+        }
+        i++;
+    }
+
+};
+
+
+//Recolectar materiales
+void Inventario :: recolectar_materiales(int cantidad_piedra_rec, int cantidad_madera_rec, 
+int cantidad_metal_rec){
+    
+    int i = 0;
+
+    while (i < cantidad_de_materiales){
+    
+        string material_a_chequear = lista_materiales[i] -> obtener_nombre();
+        
+        if (material_a_chequear == "piedra"){
+            lista_materiales[i] -> sumar_material(cantidad_piedra_rec);
+        }
+        if (material_a_chequear == "madera"){
+            lista_materiales[i] -> sumar_material(cantidad_madera_rec);        
+        } 
+        if (material_a_chequear == "metal"){
+            lista_materiales[i] -> sumar_material(cantidad_metal_rec);
+        }
+        i++;
+    }
+
+}
+
+
+//Obtener posicion material
+int Inventario :: obtener_posicion_material(string material_a_buscar){
+    bool encontrado = false;
+    int posicion = ERROR;
+    int i = 0;
+    while (!encontrado && i< cantidad_de_materiales){
+        if (lista_materiales[i]->obtener_nombre() == material_a_buscar){
+            encontrado = true;
+            posicion = i;
+        }
+        i++;
+    }
+    return posicion;
+}
