@@ -46,25 +46,17 @@ ifstream nuevo_archivo;
 }
 
 void Caracteristicas_edificio::listar_todos_edificios(){
+    cout << "\n";
     for ( int i = 0; i < cantidad_edificios; i++){
         cout << edificios_posibles[i]->mostrar_nombre() << " "
         << edificios_posibles[i]->mostrar_cantidad_piedra() << " "
         << edificios_posibles[i]->mostrar_canitdad_madera() << " "
         << edificios_posibles[i]->mostrar_cantidad_metal() << " "
         << edificios_posibles[i]->mostrar_maximo_construir() << " " << endl;
-
     }
+    cout << "\n";
 }
 
-Edificio * Caracteristicas_edificio::buscar_edificio(string nombre){
-    Edificio * edificio_encontrado;
-    for (int i = 0; i < cantidad_edificios ; i++){
-        if ( edificios_posibles[i]->mostrar_nombre() == nombre ){
-            edificio_encontrado = edificios_posibles[i];
-        }
-    }
-    return edificio_encontrado;
-}
 
 // destructor
 void Caracteristicas_edificio::guardar_datos(){

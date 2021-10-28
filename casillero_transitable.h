@@ -9,6 +9,7 @@ private:
     // PUNTERO A MATERIAL;
 public:
     Casillero_transitable(int fila, int columna);
+
     void mostrar_casillero();
     string mostrar_nombre();
 

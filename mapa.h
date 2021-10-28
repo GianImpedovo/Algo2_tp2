@@ -26,9 +26,9 @@ public:
     Mapa();
     void generar_matriz();
 
-    void buscar_coordenada(int fila, int columna);
+    void buscar_coordenada();
 
-    void procesar_archivo_ubicaciones(Caracteristicas_edificio  * lista_edificio);
+    void procesar_archivo_ubicaciones();
     
     void mostrar_filas();
     

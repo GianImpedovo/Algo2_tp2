@@ -40,7 +40,7 @@ void Mapa::generar_matriz(){
 
 }
 
-void Mapa::procesar_archivo_ubicaciones(Caracteristicas_edificio * lista_edificio){
+void Mapa::procesar_archivo_ubicaciones(){
 
     ifstream archivo;
     archivo.open(ARCHIVO_UBICACIONES);
@@ -51,13 +51,11 @@ void Mapa::procesar_archivo_ubicaciones(Caracteristicas_edificio * lista_edifici
     string columna;
 
     while( archivo >> nombre ){
+        getline(archivo, barra, ' ');
         getline(archivo, barra, '(');
         getline(archivo, fila, ',');
         getline(archivo, barra, ' ');
         getline(archivo, columna, ')');
-
-        //lista_edificio->listar_todos_edificios();
-        //mapa[stoi(fila)][stoi(columna)];
 
     }
 
@@ -74,16 +72,27 @@ void Mapa::mostrar_columnas(){
 }
 
 void Mapa::mostrar_mapa(){
+    cout << "\n";
     for (int i = 0 ; i < cantidad_filas; i++){
         for (int j = 0; j < cantidad_columnas; j++){
             cout << mapa[i][j]->mostrar_nombre() << " ";
         }
         cout << "\n";
     }
+    cout << "\n";
 }
 
-void Mapa::buscar_coordenada(int fila, int columna){
+void Mapa::buscar_coordenada(){
+    int fila = 0;
+    int columna = 0;
+
+    cout << "\nIngrese la fila -> ";
+    cin >> fila;
+    cout << "Ingrese la columna -> ";
+    cin >> columna;
+    cout << "\n";
     mapa[fila][columna]->mostrar_casillero() ;
+    cout << "\n";
 }
 
 Mapa::~Mapa(){

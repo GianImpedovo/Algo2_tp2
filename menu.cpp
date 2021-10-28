@@ -1,0 +1,79 @@
+#include "menu.h"
+
+void mostrar_menu(){
+cout << "1.Construir edificio por nombre." << endl;
+cout << "2.Listar los edificios construidos." << endl;
+cout << "3.Listar todos los edificios." << endl;
+cout << "4.Demoler un edificio por coordenada." << endl;
+cout << "5.Mostrar mapa." << endl;
+cout << "6.Consultar coordenada." << endl;
+cout << "7.Mostrar inventario." << endl;
+cout << "8.Recolectar recursos producidos." << endl;
+cout << "9.Lluvia de recursos." << endl;
+cout << "10.Guardar y salir." << endl;
+
+}
+
+bool opcion_valida(int opcion){
+    if ( opcion <= 0 || opcion > GUARDAR_SALIR){
+        return false;
+    }else {
+        return true;
+    }
+}
+
+int elegir_opcion(){
+    // validar la opcion elegida por el usuario: 
+    int opcion;
+
+    cout << " -> ";
+    cin >> opcion;
+
+    while (!opcion_valida(opcion)){
+        cout << "Ingrese una opcion valida : ";
+        cin >> opcion;
+    }
+
+    return opcion;
+}
+
+void procesar_opcion(int opcion, Mapa * mapa, Caracteristicas_edificio * caracteristicas){
+
+    switch (opcion)
+    {
+    case CONSTRUIR_EDIFICIO:
+        break;
+
+    case LISTAR_EDIFICIOS_CONSTRUIDOS:
+
+        break;
+
+    case LISTAR_TODOS_EDIFICIOS:
+            caracteristicas->listar_todos_edificios();
+        break;
+
+    case DEMOLER_EDIFICIO:
+
+        break;
+
+    case MOSTRAR_MAPA:
+            mapa->mostrar_mapa();
+        break;
+
+    case CONSULTAR_COORDENADA:
+            mapa->buscar_coordenada();
+        break;
+
+    case MOSTRAR_INVENTARIO:
+
+        break;
+
+    case RECOLECTAR_RECURSOS:
+
+        break;
+
+    case LLUVIA_RECURSOS:
+
+        break;
+    }
+}

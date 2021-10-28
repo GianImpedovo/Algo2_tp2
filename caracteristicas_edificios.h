@@ -22,8 +22,6 @@ public:
 
     void listar_todos_edificios();
 
-    Edificio * buscar_edificio(string nombre);
-
     void guardar_datos();
     ~Caracteristicas_edificio();
 

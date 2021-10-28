@@ -15,7 +15,7 @@ Edificio::Edificio(std::string nombre , int cantidad_piedra, int cantidad_madera
     this-> cantidad_metal = cantidad_metal;
     this-> maximo_construir = maximo_construir;
 
-}
+} 
 
 string Edificio::mostrar_nombre(){
     return nombre;

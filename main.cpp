@@ -1,4 +1,5 @@
 #include <iostream>
+#include "menu.h"
 #include "caracteristicas_edificios.h"
 #include "mapa.h"
 #include "edificio.h"
@@ -6,16 +7,24 @@
 using namespace std;
 
 
-
-
 int main(){
 
-    Mapa mapa;
-    Caracteristicas_edificio * lista_edificios = new Caracteristicas_edificio;
+    Mapa * mapa = new Mapa;
+    Caracteristicas_edificio * caracteristicas = new Caracteristicas_edificio;
+    caracteristicas->procesar_arhivo();
 
-    lista_edificios->procesar_arhivo();
+    mostrar_menu();
+    int opcion = elegir_opcion();
 
-    mapa.procesar_archivo_ubicaciones(lista_edificios);
+    while ( opcion != GUARDAR_SALIR ){
+
+        procesar_opcion(opcion, mapa, caracteristicas);
+        mostrar_menu();
+        opcion = elegir_opcion();
+    }
+
+    delete mapa;
+    delete caracteristicas;
 
 
     return 0;

@@ -15,11 +15,17 @@ protected:
 
 public:
     Casillero(int fila, int columna , string nombre);
+
     Casillero();
+
     virtual void mostrar_casillero() = 0;
+
     string mostrar_nombre();
+
     int mostrar_fila();
+
     int mostrar_columna();
+
 
 };
 
