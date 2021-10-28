@@ -29,7 +29,13 @@ int main (){
         cout<<" no alcanzaron xd ";
         };
 
+    inventario ->devolver_materiales(100,100,100);
+    inventario ->recolectar_materiales(10,10,10);
+    
     inventario -> mostrar_inventario();
+    
+    
+    
     //cout <<"aaaaaaaaaaaaaaaaaa";
 
     
