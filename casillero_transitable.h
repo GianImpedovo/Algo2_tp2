@@ -12,6 +12,8 @@ public:
 
     void mostrar_casillero();
 
+    void agregar_edificio();
+
     string mostrar_nombre();
 
 };

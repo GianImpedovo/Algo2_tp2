@@ -18,6 +18,8 @@ public:
 
     Casillero();
 
+    virtual void agregar_edificio() = 0;
+
     virtual void mostrar_casillero() = 0;
 
     virtual string mostrar_nombre() = 0;

@@ -1,6 +1,10 @@
 #include "mapa.h"
 
 Mapa::Mapa(){
+
+    this->lista_edificios = new Caracteristicas_edificio;
+    lista_edificios->procesar_arhivo();
+
     ifstream arch;
     arch.open(ARCHIVO_MAPA);
 
@@ -40,6 +44,10 @@ void Mapa::generar_matriz(){
 
 }
 
+void Mapa::mostrar_mapa(){
+    lista_edificios->listar_todos_edificios();
+}
+
 void Mapa::procesar_archivo_ubicaciones(){
 
     ifstream archivo;
@@ -57,6 +65,11 @@ void Mapa::procesar_archivo_ubicaciones(){
         getline(archivo, barra, ' ');
         getline(archivo, columna, ')');
 
+        // mapa[stoi(fila)][stoi(columna)]
+        if ( mapa[stoi(fila)][stoi(columna)]->mostrar_nombre() == "T"){
+            mapa[stoi(fila)][stoi(columna)]->agregar_edificio();
+        }
+
 
     }
 
@@ -70,17 +83,6 @@ void Mapa::mostrar_filas(){
 
 void Mapa::mostrar_columnas(){
     cout << cantidad_columnas << endl;
-}
-
-void Mapa::mostrar_mapa(){
-    cout << "\n";
-    for (int i = 0 ; i < cantidad_filas; i++){
-        for (int j = 0; j < cantidad_columnas; j++){
-            cout << mapa[i][j]->mostrar_nombre() << " ";
-        }
-        cout << "\n";
-    }
-    cout << "\n";
 }
 
 void Mapa::buscar_coordenada(){

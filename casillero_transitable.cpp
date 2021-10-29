@@ -12,5 +12,9 @@ string Casillero_transitable::mostrar_nombre(){
 }
 
 void Casillero_transitable::mostrar_casillero(){
-    cout << "Este es un casillero transitable" << endl;
+    cout << "Soy un casillero transitable y me encuentro vacio" << endl;
+}
+
+void Casillero_transitable::agregar_edificio(){
+    cout << "no hace nada" << endl;
 }

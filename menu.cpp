@@ -37,7 +37,7 @@ int elegir_opcion(){
     return opcion;
 }
 
-void procesar_opcion(int opcion, Mapa * mapa, Caracteristicas_edificio * caracteristicas){
+void procesar_opcion(int opcion, Mapa * mapa){
 
     switch (opcion)
     {
@@ -49,7 +49,7 @@ void procesar_opcion(int opcion, Mapa * mapa, Caracteristicas_edificio * caracte
         break;
 
     case LISTAR_TODOS_EDIFICIOS:
-            caracteristicas->listar_todos_edificios();
+        
         break;
 
     case DEMOLER_EDIFICIO:

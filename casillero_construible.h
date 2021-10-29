@@ -15,6 +15,8 @@ public:
 
     void agregar_edificio();
 
+    void eliminar_edificio();
+
     void es_casillero_construible();
 
     void mostrar_casillero();

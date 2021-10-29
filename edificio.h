@@ -20,13 +20,19 @@ public:
     Edificio(std::string nombre , int cantidad_piedra, int cantidad_madera, int cantidad_metal, int maximo_construir);
     string mostrar_nombre();
 
-    int mostrar_cantidad_piedra();
+    int obtener_cantidad_piedra();
 
-    int mostrar_canitdad_madera();
+    int obtener_canitdad_madera();
 
-    int mostrar_cantidad_metal();
+    int obtener_cantidad_metal();
 
-    int mostrar_maximo_construir();
+    int obtener_maximo_construir();
+
+    int obtener_mitad_piedra();
+
+    int obtener_mitad_madera();
+
+    int obtener_mitad_metal();
 
 };
 

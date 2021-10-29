@@ -22,9 +22,13 @@ private:
     int cantidad_columnas;
     Casillero *** mapa;
 
+    Caracteristicas_edificio * lista_edificios;
+
 public:
     Mapa();
     void generar_matriz();
+
+    void mostrar_mapa();
 
     void buscar_coordenada();
 
@@ -33,8 +37,6 @@ public:
     void mostrar_filas();
     
     void mostrar_columnas();
-    
-    void mostrar_mapa();
     
     ~Mapa();
 };

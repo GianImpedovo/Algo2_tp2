@@ -21,17 +21,28 @@ string Edificio::mostrar_nombre(){
     return nombre;
 }
 
-int Edificio::mostrar_cantidad_piedra(){
+int Edificio::obtener_cantidad_piedra(){
     return cantidad_piedra;
 }
-int Edificio::mostrar_canitdad_madera(){
+int Edificio::obtener_canitdad_madera(){
     return canitdad_madera;
 }
-int Edificio::mostrar_cantidad_metal(){
+int Edificio::obtener_cantidad_metal(){
     return cantidad_metal;
 }
-int Edificio::mostrar_maximo_construir(){
+int Edificio::obtener_maximo_construir(){
     return maximo_construir;
 }
 
+int Edificio::obtener_mitad_madera(){
+    return canitdad_madera/2;
+}
+
+int Edificio::obtener_mitad_piedra(){
+    return cantidad_piedra/2;
+}
+
+int Edificio::obtener_mitad_metal(){
+    return cantidad_metal/2;
+}
 

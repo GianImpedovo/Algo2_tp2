@@ -14,3 +14,7 @@ string Casillero_inaccesible::mostrar_nombre(){
 void Casillero_inaccesible::mostrar_casillero(){
     cout << "Este es un casillero inaccesible" << endl;
 }
+
+void Casillero_inaccesible::agregar_edificio(){
+    cout << "no hace nada" << endl;
+}

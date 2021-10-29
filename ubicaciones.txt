@@ -1,4 +1,4 @@
-oblisco (0, 3)
+obelisco (0, 3)
 escuela (0, 4)
 escuela (0, 7)
 yacimiento (2, 4)

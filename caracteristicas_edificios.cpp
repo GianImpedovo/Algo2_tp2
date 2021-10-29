@@ -49,10 +49,10 @@ void Caracteristicas_edificio::listar_todos_edificios(){
     cout << "\n";
     for ( int i = 0; i < cantidad_edificios; i++){
         cout << edificios_posibles[i]->mostrar_nombre() << " "
-        << edificios_posibles[i]->mostrar_cantidad_piedra() << " "
-        << edificios_posibles[i]->mostrar_canitdad_madera() << " "
-        << edificios_posibles[i]->mostrar_cantidad_metal() << " "
-        << edificios_posibles[i]->mostrar_maximo_construir() << " " << endl;
+        << edificios_posibles[i]->obtener_cantidad_piedra() << " "
+        << edificios_posibles[i]->obtener_canitdad_madera() << " "
+        << edificios_posibles[i]->obtener_cantidad_metal() << " "
+        << edificios_posibles[i]->obtener_maximo_construir() << " " << endl;
     }
     cout << "\n";
 }
@@ -65,10 +65,10 @@ void Caracteristicas_edificio::guardar_datos(){
 
     for (int i = 0; i < cantidad_edificios; i++){
         archivo << edificios_posibles[i] ->mostrar_nombre() << ' '
-                << edificios_posibles[i] ->mostrar_cantidad_piedra() << ' '
-                << edificios_posibles[i] ->mostrar_canitdad_madera() << ' '
-                << edificios_posibles[i] ->mostrar_cantidad_metal() << ' '
-                << edificios_posibles[i] ->mostrar_maximo_construir() << '\n';
+                << edificios_posibles[i] ->obtener_cantidad_piedra() << ' '
+                << edificios_posibles[i] ->obtener_canitdad_madera() << ' '
+                << edificios_posibles[i] ->obtener_cantidad_metal() << ' '
+                << edificios_posibles[i] ->obtener_maximo_construir() << '\n';
     }
 
     archivo.close();
