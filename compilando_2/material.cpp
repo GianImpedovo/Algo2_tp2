@@ -25,13 +25,6 @@ int Material :: obtener_cantidad_disponible(){
   return cantidad;
 }
 
-// //Asignar valores al material
-// void Material :: asignar_valores(string nombre, int cantidad){
-  
-//   this -> nombre = nombre;
-//   this -> cantidad = cantidad;
-
-// }
 
 //Restar material
 void Material :: restar_material(int cantidad_material_nec){
@@ -67,6 +60,6 @@ void Material :: mostrar_cantidad(){
 }
 
 void Material :: saludar(){
-  cout << "Hola soy un "<< nombre << "y estoy en un casillero transitable"<<endl;
-
+  cout<<"Hola, me llamaron? ";
+  cout << "Soy un/a "<< nombre << " de clase base material y estoy en un casillero transitable" <<endl;
 }

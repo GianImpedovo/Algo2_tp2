@@ -1,5 +1,5 @@
-#ifndef MATERIAL_H_INCLUDED
-#define MATERAIL_H_INCLUDED
+#ifndef MATERIAL_H
+#define MATERIAL_H
 
 #include<iostream>
 #include<string>

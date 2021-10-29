@@ -22,18 +22,23 @@ int main (){
     //mostrar inventario
     //inventario -> mostrar_inventario();
     
-    if (inventario ->alcanzan_materiales(100, 200,300)){
-        cout<<" alcazaron ";
-        inventario ->utilizar_materiales(100,200,300);
-    }else{
-        cout<<" no alcanzaron xd ";
-        };
+    // if (inventario ->alcanzan_materiales(100, 200,300)){
+    //     cout<<" alcazaron ";
+    //     inventario ->utilizar_materiales(100,200,300);
+    // }else{
+    //     cout<<" no alcanzaron xd " <<endl;
+    //     };
 
-    inventario ->devolver_materiales(100,100,100);
-    inventario ->recolectar_materiales(10,10,10);
+    // inventario ->devolver_materiales(100,100,100);
+    // inventario ->recolectar_materiales(10,10,10);
     
-    inventario -> mostrar_inventario();
+    //inventario -> mostrar_inventario();
     
+    for (int i = 0; i < inventario-> obtener_cantidad_de_materiales(); i++){
+
+        inventario -> obtener_material_de_lista_materiales(i) -> saludar();
+
+    }
     
     
     //cout <<"aaaaaaaaaaaaaaaaaa";
@@ -46,6 +51,8 @@ int main (){
     // Material cosa_2("hola ",2);
 
     //cosa.saludar();
+
+    
 
     delete inventario;
 
