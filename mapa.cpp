@@ -57,6 +57,7 @@ void Mapa::procesar_archivo_ubicaciones(){
         getline(archivo, barra, ' ');
         getline(archivo, columna, ')');
 
+
     }
 
     archivo.close();

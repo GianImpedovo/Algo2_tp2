@@ -7,8 +7,15 @@
 
 class Casillero_construible : public Casillero {
 
+private:
+    Edificio * edificio_construido;
+
 public:
     Casillero_construible(int fila, int columna);
+
+    void agregar_edificio();
+
+    void es_casillero_construible();
 
     void mostrar_casillero();
 

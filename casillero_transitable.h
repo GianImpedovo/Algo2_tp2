@@ -6,11 +6,12 @@
 
 class Casillero_transitable : public Casillero {
 private:
-    // PUNTERO A MATERIAL;
+    //Material * material;
 public:
     Casillero_transitable(int fila, int columna);
 
     void mostrar_casillero();
+
     string mostrar_nombre();
 
 };

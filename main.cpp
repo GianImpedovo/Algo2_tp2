@@ -13,19 +13,20 @@ int main(){
     Caracteristicas_edificio * caracteristicas = new Caracteristicas_edificio;
     caracteristicas->procesar_arhivo();
 
-    mostrar_menu();
-    int opcion = elegir_opcion();
+    mapa->procesar_archivo_ubicaciones();
 
-    while ( opcion != GUARDAR_SALIR ){
-
-        procesar_opcion(opcion, mapa, caracteristicas);
-        mostrar_menu();
-        opcion = elegir_opcion();
-    }
-
+    //mostrar_menu();
+    //int opcion = elegir_opcion();
+//
+    //while ( opcion != GUARDAR_SALIR ){
+//
+    //    procesar_opcion(opcion, mapa, caracteristicas);
+    //    mostrar_menu();
+    //    opcion = elegir_opcion();
+    //}
+//
     delete mapa;
-    delete caracteristicas;
-
-
+    //delete caracteristicas;
+//
     return 0;
 }

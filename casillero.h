@@ -20,7 +20,7 @@ public:
 
     virtual void mostrar_casillero() = 0;
 
-    string mostrar_nombre();
+    virtual string mostrar_nombre() = 0;
 
     int mostrar_fila();
 
