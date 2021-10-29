@@ -2,6 +2,11 @@
 #include <fstream>
 #include "inventario.h"
 
+//#include "material.h"
+#include "madera.h"
+#include "piedra.h"
+#include "metal.h"
+
 const int ERROR = -1;
 
 using namespace std;
@@ -22,6 +27,13 @@ int Inventario :: obtener_cantidad_de_materiales(){
     return cantidad_de_materiales;
 }
 
+//Obtener material de lista materiales 
+Material* Inventario :: obtener_material_de_lista_materiales(int posicion){
+    
+    return lista_materiales[posicion];
+}
+
+
 //cargar materiales
 void Inventario :: cargar_materiales(){
     
@@ -33,14 +45,22 @@ void Inventario :: cargar_materiales(){
         string cantidad;
 
         Material *material;
-
-
+        
         while(archivo_materiales >> nombre){
             archivo_materiales >> cantidad;
-            
-            material = new Material(nombre, stoi(cantidad));
-            
-            //material -> asignar_valores(nombre, stoi(cantidad));
+
+            if (nombre == "piedra"){
+                material = new Piedra(nombre, stoi(cantidad) );            
+            } 
+            else if (nombre == "madera"){
+                material = new Madera(nombre, stoi(cantidad));            
+            }
+            else if (nombre == "metal"){
+                material = new Metal(nombre, stoi(cantidad) );
+            }
+            else{
+                material = new Material(nombre, stoi(cantidad) );    
+            }
 
             agregar_material(material);
         }

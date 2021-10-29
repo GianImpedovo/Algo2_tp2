@@ -1,11 +1,12 @@
-#ifndef INVENTARIO_H_INCLUDED
-#define INVENTARIO_H_INCLUDED
+#ifndef INVENTARIO_H
+#define INVENTARIO_H
 
-#include "material.h"
 #include <iostream>
 #include <string>
 #include <iomanip>
 
+//class Material;
+#include "material.h"
 
 using namespace std;
 
@@ -40,15 +41,14 @@ public:
     //POST: agrega el material a la lista de materiales
     void agregar_material(Material* material);
 
-    //Obtener material en lista_materiales
-    //PRE: Recibe el entero "pos" con la posicion del material en lista_materiales
-    //POST: Devuelve un puntero al material que se encuentra la posicion "pos".
-    Material* obtener_material_de_lista_materiales(int pos);
-
     //Obtener cantidad_de_materiales
     //PRE:-
     //POST: Devuelve un entero con la cantidad de materiales en lista_materiales.
     int obtener_cantidad_de_materiales();
+
+    //PRE: Recibe el entero "posicion" con la posicion dentro del vector lista_materiales
+    //POST: Devuelve un puntero al material que se encuentra dicha posicion
+    Material* obtener_material_de_lista_materiales(int posicion);
 
     //Mostrar inventario
     //PRE: -
@@ -99,4 +99,4 @@ public:
 
 };
 
-#endif // INVENTARIO_H_INCLUDED
+#endif // INVENTARIO_H

@@ -10,5 +10,5 @@ Metal :: Metal(string nombre, int cantidad) : Material(nombre, cantidad){
 
 //metal saluda
 void Metal :: saludar(){
-        cout << "Soy un metal y me encuentro en el casillero consultado";
+        cout << "Soy un metal y me encuentro en el casillero consultado" <<endl;
 }

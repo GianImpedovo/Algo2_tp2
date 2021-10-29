@@ -1,5 +1,5 @@
-#ifndef MADERA_H_INCLUDED
-#define MADERA_H_INCLUDED
+#ifndef MADERA_H
+#define MADERA_H
 
 #include <iostream>
 #include <string>

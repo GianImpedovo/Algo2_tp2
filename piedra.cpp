@@ -10,5 +10,5 @@ Piedra :: Piedra(string nombre, int cantidad) : Material(nombre, cantidad){
 
 //Piedra saluda
 void Piedra :: saludar(){
-        cout << "Soy una piedra y me encuentro en el casillero consultado";
+        cout << "Soy una piedra y me encuentro en el casillero consultado"<<endl;
 }

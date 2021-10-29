@@ -1,9 +1,10 @@
-#ifndef PIEDRA_H_INCLUDED
-#define PIEDRA_H_INCLUDED
+#ifndef PIEDRA_H
+#define PIEDRA_H
 
 #include <iostream>
 #include <string>
 #include "material.h"
+//class Material;
 
 using namespace std;
 

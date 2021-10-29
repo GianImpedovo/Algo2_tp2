@@ -1,5 +1,5 @@
-#ifndef METAL_H_INCLUDED
-#define METAL_H_INCLUDED
+#ifndef METAL_H
+#define METAL_H
 
 #include <iostream>
 #include <string>
@@ -26,4 +26,4 @@ public:
 };
 
 
-#endif // METAL_H_INCLUDED
+#endif // METAL_H

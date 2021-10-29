@@ -9,5 +9,5 @@ Madera :: Madera(string nombre, int cantidad) : Material(nombre, cantidad){
 
 //Piedra saluda
 void Madera :: saludar(){
-        cout << "Soy una piedra y me encuentro en el casillero consultado";
+        cout << "Soy una madera y me encuentro en el casillero consultado" <<endl;
 }
