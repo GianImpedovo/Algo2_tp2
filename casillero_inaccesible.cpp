@@ -15,6 +15,6 @@ void Casillero_inaccesible::mostrar_casillero(){
     cout << "Este es un casillero inaccesible" << endl;
 }
 
-void Casillero_inaccesible::agregar_edificio(){
+void Casillero_inaccesible::agregar_edificio(string nombre, int piedra, int madera, int metal, int maximo){
     cout << "no hace nada" << endl;
 }

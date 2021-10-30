@@ -6,6 +6,14 @@ Caracteristicas_edificio::Caracteristicas_edificio(){
     this->edificios_posibles = nullptr;
 }
 
+int Caracteristicas_edificio::obtener_cantidad_edificios(){
+    return cantidad_edificios;
+}
+
+Edificio * Caracteristicas_edificio::obtener_edificio(int posicion){
+    return edificios_posibles[posicion];
+}
+
 void Caracteristicas_edificio::procesar_arhivo(){
 ifstream nuevo_archivo;
     nuevo_archivo.open(ARCHIVO_EDIFICIO);
@@ -48,9 +56,9 @@ ifstream nuevo_archivo;
 void Caracteristicas_edificio::listar_todos_edificios(){
     cout << "\n";
     for ( int i = 0; i < cantidad_edificios; i++){
-        cout << edificios_posibles[i]->mostrar_nombre() << " "
+        cout << edificios_posibles[i]->obtener_nombre() << " "
         << edificios_posibles[i]->obtener_cantidad_piedra() << " "
-        << edificios_posibles[i]->obtener_canitdad_madera() << " "
+        << edificios_posibles[i]->obtener_cantidad_madera() << " "
         << edificios_posibles[i]->obtener_cantidad_metal() << " "
         << edificios_posibles[i]->obtener_maximo_construir() << " " << endl;
     }
@@ -64,9 +72,9 @@ void Caracteristicas_edificio::guardar_datos(){
     archivo.open(ARCHIVO_EDIFICIO);
 
     for (int i = 0; i < cantidad_edificios; i++){
-        archivo << edificios_posibles[i] ->mostrar_nombre() << ' '
+        archivo << edificios_posibles[i] ->obtener_nombre() << ' '
                 << edificios_posibles[i] ->obtener_cantidad_piedra() << ' '
-                << edificios_posibles[i] ->obtener_canitdad_madera() << ' '
+                << edificios_posibles[i] ->obtener_cantidad_madera() << ' '
                 << edificios_posibles[i] ->obtener_cantidad_metal() << ' '
                 << edificios_posibles[i] ->obtener_maximo_construir() << '\n';
     }

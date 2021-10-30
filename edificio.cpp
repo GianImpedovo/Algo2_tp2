@@ -5,6 +5,7 @@ Edificio::Edificio(){
     this->cantidad_piedra = 0;
     this->canitdad_madera = 0;
     this->cantidad_metal = 0;
+    this->cantidad_edificios = 0;
     this->maximo_construir = 0;
 }
 
@@ -13,18 +14,19 @@ Edificio::Edificio(std::string nombre , int cantidad_piedra, int cantidad_madera
     this-> cantidad_piedra = cantidad_piedra;
     this-> canitdad_madera = cantidad_madera;
     this-> cantidad_metal = cantidad_metal;
+    this->cantidad_edificios = 0;
     this-> maximo_construir = maximo_construir;
 
 } 
 
-string Edificio::mostrar_nombre(){
+string Edificio::obtener_nombre(){
     return nombre;
 }
 
 int Edificio::obtener_cantidad_piedra(){
     return cantidad_piedra;
 }
-int Edificio::obtener_canitdad_madera(){
+int Edificio::obtener_cantidad_madera(){
     return canitdad_madera;
 }
 int Edificio::obtener_cantidad_metal(){
@@ -46,3 +48,6 @@ int Edificio::obtener_mitad_metal(){
     return cantidad_metal/2;
 }
 
+void Edificio::sumar_cantidad(){
+    cantidad_edificios++ ;
+}

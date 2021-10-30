@@ -11,7 +11,7 @@ public:
 
     void mostrar_casillero();
 
-    void agregar_edificio();
+    void agregar_edificio(string nombre, int piedra, int madera, int metal, int maximo);
     string mostrar_nombre();
 
 };

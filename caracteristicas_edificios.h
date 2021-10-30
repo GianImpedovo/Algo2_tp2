@@ -17,12 +17,17 @@ protected:
 
 public:
     Caracteristicas_edificio();
-    
+
+    int obtener_cantidad_edificios();
+
+    Edificio * obtener_edificio(int posicion);
+
     void procesar_arhivo();
 
     void listar_todos_edificios();
 
     void guardar_datos();
+
     ~Caracteristicas_edificio();
 
 

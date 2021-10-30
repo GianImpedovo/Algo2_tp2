@@ -13,7 +13,7 @@ private:
 public:
     Casillero_construible(int fila, int columna);
 
-    void agregar_edificio();
+    void agregar_edificio(string nombre, int piedra, int madera, int metal, int maximo);
 
     void eliminar_edificio();
 

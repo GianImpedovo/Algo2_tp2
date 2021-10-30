@@ -16,12 +16,12 @@ void Casillero_construible::mostrar_casillero(){
     }
     else{
         cout << "Soy un casillero construible y no me encuentro vacio" << endl;
-        cout << edificio_construido->mostrar_nombre() << endl;
+        cout << edificio_construido->obtener_nombre() << endl;
     }
 }
 
-void Casillero_construible::agregar_edificio(){
-    this->edificio_construido = new Edificio;
+void Casillero_construible::agregar_edificio(string nombre, int piedra, int madera, int metal, int maximo){
+    this->edificio_construido = new Edificio(nombre, piedra, madera, metal, maximo);
 }
 
 void Casillero_construible::eliminar_edificio(){

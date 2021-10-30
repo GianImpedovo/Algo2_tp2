@@ -65,10 +65,28 @@ void Mapa::procesar_archivo_ubicaciones(){
         getline(archivo, barra, ' ');
         getline(archivo, columna, ')');
 
-        // mapa[stoi(fila)][stoi(columna)]
-        if ( mapa[stoi(fila)][stoi(columna)]->mostrar_nombre() == "T"){
-            mapa[stoi(fila)][stoi(columna)]->agregar_edificio();
+        int madera;
+        int piedra; 
+        int metal;
+        int maximo;
+
+        for ( int i = 0; i < lista_edificios->obtener_cantidad_edificios(); i++){
+            if ( lista_edificios->obtener_edificio(i)->obtener_nombre() == nombre){
+                piedra = lista_edificios->obtener_edificio(i)-> obtener_cantidad_piedra();
+                madera = lista_edificios->obtener_edificio(i)->obtener_cantidad_madera();
+                metal = lista_edificios->obtener_edificio(i)->obtener_cantidad_metal();
+                maximo = lista_edificios->obtener_edificio(i)->obtener_maximo_construir();
+
+                mapa[stoi(fila)][stoi(columna)]->agregar_edificio(nombre, piedra, madera, metal, maximo);
+
+                cout << lista_edificios->obtener_edificio(i)->obtener_nombre() << endl;
+            }
         }
+
+        // mapa[stoi(fila)][stoi(columna)]
+        //if ( mapa[stoi(fila)][stoi(columna)]->mostrar_nombre() == "T"){
+        //    mapa[stoi(fila)][stoi(columna)]->agregar_edificio();
+        //}
 
 
     }

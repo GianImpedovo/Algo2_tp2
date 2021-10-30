@@ -18,7 +18,7 @@ public:
 
     Casillero();
 
-    virtual void agregar_edificio() = 0;
+    virtual void agregar_edificio(string nombre, int piedra, int madera, int metal, int maximo) = 0;
 
     virtual void mostrar_casillero() = 0;
 
