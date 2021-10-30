@@ -45,11 +45,11 @@ void procesar_opcion(int opcion, Mapa * mapa){
         break;
 
     case LISTAR_EDIFICIOS_CONSTRUIDOS:
-
+            mapa->listar_edificios_construidos();
         break;
 
     case LISTAR_TODOS_EDIFICIOS:
-        
+            mapa->mostrar_todos_edificios();
         break;
 
     case DEMOLER_EDIFICIO:

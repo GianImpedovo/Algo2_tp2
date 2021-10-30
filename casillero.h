@@ -22,11 +22,14 @@ public:
 
     virtual void mostrar_casillero() = 0;
 
-    virtual string mostrar_nombre() = 0;
+    virtual string obtener_nombre() = 0;
 
     int mostrar_fila();
 
     int mostrar_columna();
+
+    virtual void mostrar_coordenadas_edificio(string nombre) = 0;
+    
 
 
 };

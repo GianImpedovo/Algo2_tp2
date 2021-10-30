@@ -26,9 +26,14 @@ private:
 
 public:
     Mapa();
+
     void generar_matriz();
 
-    void mostrar_mapa();
+    void listar_edificios_construidos();
+
+    void mostrar_coordenadas(string nombre);
+
+    void mostrar_todos_edificios();
 
     void buscar_coordenada();
 
@@ -37,6 +42,8 @@ public:
     void mostrar_filas();
     
     void mostrar_columnas();
+
+    void mostrar_mapa();
     
     ~Mapa();
 };

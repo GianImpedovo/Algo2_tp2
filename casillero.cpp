@@ -12,7 +12,7 @@ Casillero::Casillero(int fila, int columna , string nombre){
     this->nombre = nombre;
 }
 
-string Casillero::mostrar_nombre(){
+string Casillero::obtener_nombre(){
     return nombre;
 }
 

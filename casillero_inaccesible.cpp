@@ -7,7 +7,7 @@ Casillero_inaccesible::Casillero_inaccesible(int fila, int columna): Casillero( 
     this->columna = columna;
 }
 
-string Casillero_inaccesible::mostrar_nombre(){
+string Casillero_inaccesible::obtener_nombre(){
     return nombre;
 }
 
@@ -16,5 +16,9 @@ void Casillero_inaccesible::mostrar_casillero(){
 }
 
 void Casillero_inaccesible::agregar_edificio(string nombre, int piedra, int madera, int metal, int maximo){
-    cout << "no hace nada" << endl;
+    cout << "\nEste es un casillero inaccesible , no se podran construir edificios en el. \n" << endl;
+}
+
+void Casillero_inaccesible::mostrar_coordenadas_edificio(string nombre){
+    cout << "\nNo existe edificio construido\n" << endl;
 }

@@ -28,6 +28,8 @@ public:
 
     int obtener_cantidad_metal();
 
+    int obtener_cantidad_construidos();
+
     int obtener_maximo_construir();
 
     int obtener_mitad_piedra();
@@ -37,6 +39,8 @@ public:
     int obtener_mitad_metal();
 
     void sumar_cantidad();
+
+    void restar_cantidad();
 
 };
 

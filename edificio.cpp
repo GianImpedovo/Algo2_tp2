@@ -32,6 +32,11 @@ int Edificio::obtener_cantidad_madera(){
 int Edificio::obtener_cantidad_metal(){
     return cantidad_metal;
 }
+
+int Edificio::obtener_cantidad_construidos(){
+    return cantidad_edificios;
+}
+
 int Edificio::obtener_maximo_construir(){
     return maximo_construir;
 }
@@ -50,4 +55,8 @@ int Edificio::obtener_mitad_metal(){
 
 void Edificio::sumar_cantidad(){
     cantidad_edificios++ ;
+}
+
+void Edificio::restar_cantidad(){
+    cantidad_edificios-- ;
 }

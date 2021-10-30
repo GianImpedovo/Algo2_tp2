@@ -6,7 +6,7 @@ Casillero_construible::Casillero_construible(int fila, int columna): Casillero( 
     this->nombre = "T";
 }
 
-string Casillero_construible::mostrar_nombre(){
+string Casillero_construible::obtener_nombre(){
     return nombre;
 }
 
@@ -28,3 +28,17 @@ void Casillero_construible::eliminar_edificio(){
     delete edificio_construido;
     edificio_construido = nullptr;
 }
+
+void Casillero_construible::mostrar_coordenadas_edificio(string nombre){
+
+    if ( edificio_construido ){
+
+        if ( nombre == edificio_construido->obtener_nombre()){
+
+            cout << " (" << fila << " , " << columna << ") " << endl;
+
+        }
+
+    }
+}
+

@@ -21,7 +21,10 @@ public:
 
     void mostrar_casillero();
 
-    string mostrar_nombre();
+    string obtener_nombre();
+
+    void mostrar_coordenadas_edificio(string nombre);
+
 
 };
 
