@@ -22,3 +22,12 @@ void Casillero_transitable::agregar_edificio(string nombre, int piedra, int made
 void Casillero_transitable::mostrar_coordenadas_edificio(string nombre){
     cout << "\nNo existe edificio construido\n" << endl;
 }
+
+void Casillero_transitable::eliminar_edificio(){
+    cout << "\nNo existe edificio en este casillero\n" << endl;
+}
+
+string Casillero_transitable::obtener_nombre_edificio(){
+    return "";
+}
+

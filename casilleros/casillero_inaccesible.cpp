@@ -22,3 +22,12 @@ void Casillero_inaccesible::agregar_edificio(string nombre, int piedra, int made
 void Casillero_inaccesible::mostrar_coordenadas_edificio(string nombre){
     cout << "\nNo existe edificio construido\n" << endl;
 }
+
+void Casillero_inaccesible::eliminar_edificio(){
+    cout << "\nNo existe edificio en este casillero\n" << endl;
+}
+
+string Casillero_inaccesible::obtener_nombre_edificio(){
+    return "";
+}
+

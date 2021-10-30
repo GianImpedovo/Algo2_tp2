@@ -53,7 +53,7 @@ void procesar_opcion(int opcion, Mapa * mapa){
         break;
 
     case DEMOLER_EDIFICIO:
-
+            mapa->demoler_edificio();
         break;
 
     case MOSTRAR_MAPA:

@@ -35,6 +35,8 @@ public:
 
     void mostrar_todos_edificios();
 
+    void demoler_edificio();
+
     void buscar_coordenada();
 
     void procesar_archivo_ubicaciones();

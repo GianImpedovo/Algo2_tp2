@@ -21,7 +21,26 @@ void Casillero_construible::mostrar_casillero(){
 }
 
 void Casillero_construible::agregar_edificio(string nombre, int piedra, int madera, int metal, int maximo){
-    this->edificio_construido = new Edificio(nombre, piedra, madera, metal, maximo);
+    if (nombre == "aserradero"){
+
+        this->edificio_construido = new Aserradero(piedra, madera, metal, maximo);
+
+    }else{
+
+        this->edificio_construido = new Edificio(nombre, piedra, madera, metal, maximo);
+
+    }
+
+}
+
+string Casillero_construible::obtener_nombre_edificio(){
+
+    string nombre_edificio = "";
+    if ( edificio_construido ){
+        nombre_edificio = edificio_construido->obtener_diminutivo();
+    }
+    return nombre_edificio;
+
 }
 
 void Casillero_construible::eliminar_edificio(){

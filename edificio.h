@@ -9,6 +9,7 @@ class Edificio
 {
 protected:
     string nombre;
+    string diminutivo;
     int cantidad_piedra;
     int canitdad_madera;
     int cantidad_metal;
@@ -21,6 +22,8 @@ public:
     Edificio(std::string nombre , int cantidad_piedra, int cantidad_madera, int cantidad_metal, int maximo_construir);
 
     string obtener_nombre();
+
+    string obtener_diminutivo();
 
     int obtener_cantidad_piedra();
 

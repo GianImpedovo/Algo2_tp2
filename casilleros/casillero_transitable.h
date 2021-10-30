@@ -14,6 +14,10 @@ public:
 
     void agregar_edificio(string nombre, int piedra, int madera, int metal, int maximo);
 
+    string obtener_nombre_edificio();
+
+    void eliminar_edificio();
+
     string obtener_nombre();
 
     void mostrar_coordenadas_edificio(string nombre);
