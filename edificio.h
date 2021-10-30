@@ -8,6 +8,7 @@ using namespace std;
 class Edificio
 {
 protected:
+
     string nombre;
     string diminutivo;
     int cantidad_piedra;
