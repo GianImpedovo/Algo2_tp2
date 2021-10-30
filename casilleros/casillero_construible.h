@@ -1,7 +1,7 @@
 #ifndef CASILLERO_CONSTRUIBLE_H
 #define CASILLERO_CONSTRUIBLE_H
 
-#include "edificio.h"
+#include "../edificio.h"
 #include "casillero.h"
 
 

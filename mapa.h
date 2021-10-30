@@ -4,11 +4,11 @@
 #include <iostream>
 #include <fstream>
 
-#include "casillero.h"
 #include "caracteristicas_edificios.h"
-#include "casillero_construible.h"
-#include "casillero_transitable.h"
-#include "casillero_inaccesible.h"
+#include "casilleros/casillero.h"
+#include "casilleros/casillero_construible.h"
+#include "casilleros/casillero_transitable.h"
+#include "casilleros/casillero_inaccesible.h"
 
 using namespace std;
 
