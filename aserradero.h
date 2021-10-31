@@ -14,6 +14,8 @@ public:
 
     int obtener_material_brinda();
 
+    void mostrar_mensaje();
+
 };
 
 

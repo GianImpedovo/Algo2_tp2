@@ -52,21 +52,30 @@ void Mapa::generar_matriz(){
 }
 
 void Mapa::listar_edificios_construidos(){
+    cout << "\n";
+    cout << "\t\t###   Listado de los edificio construidos :   ### " << endl;
+    cout << "\nOrden de los elemenots : " << endl;
+    cout << " -> nombre : cantidad construidos " << endl;
+    cout << " - coordenede \n - coordenada\n ..." << endl;
+    cout << "\n" ;
+    cout << "___________________________________________________" << endl;
+    cout << "\n" ;
     for (int i = 0; i < lista_edificios->obtener_cantidad_edificios(); i++){
 
         int cantidad_constuidos = lista_edificios->obtener_edificio(i)->obtener_cantidad_construidos();
         string nombre_edificio = lista_edificios->obtener_edificio(i)->obtener_nombre();
 
         if ( cantidad_constuidos > 0 ){
-            cout << nombre_edificio << " " << cantidad_constuidos << " " << endl;
-            cout << "coordenadas en donde se encuentran : " << endl;
 
+            cout << " -> "<< nombre_edificio << " : " << cantidad_constuidos << endl;
             mostrar_coordenadas(nombre_edificio);
 
         }
 
-        cout << "\n";
     }
+    cout << "\n" ;
+    cout << "___________________________________________________" << endl;
+    cout << "\n" ;
 }
 
 void Mapa::mostrar_coordenadas(string nombre){
@@ -86,36 +95,61 @@ void Mapa::mostrar_todos_edificios(){
 }
 
 void Mapa::demoler_edificio(){
+
+    cout << "\n\t\t ###   En esta seccion podra demoler un EDIFICIO :   ###" << endl;
+    
+    cout << "\n";
     int fila, columna;
-    cout << "Ingrese las coordenadas del edificio a demoler ; " << endl;
-    cout << "fila -> ";
+    cout << " Ingrese las coordenadas del edificio a demoler : \n" << endl;
+    cout << " fila -> ";
     cin >> fila;
-    cout << "columna -> ";
+    cout << " columna -> ";
     cin >> columna;
+
+    while ( fila > cantidad_filas || columna > cantidad_columnas ){
+        cout << "\n Ingrese una vez mas los datos ya que estos superan los limites permitidos : " << endl;
+        cout << "\n fila -> ";
+        cin >> fila;
+        cout << " columna -> ";
+        cin >> columna;
+    }
 
     int mitad_piedra, mitad_madera, mitad_metal;
 
     string nombre_edificio = mapa[fila][columna]->obtener_nombre_edificio();
 
-    for (int i = 0; i < lista_edificios->obtener_cantidad_edificios(); i++){
+    if ( nombre_edificio != ""){
+        for (int i = 0; i < lista_edificios->obtener_cantidad_edificios(); i++){
 
-        string edificio_en_lista = lista_edificios->obtener_edificio(i)->obtener_nombre();
+            string edificio_en_lista = lista_edificios->obtener_edificio(i)->obtener_nombre();
 
-        if (edificio_en_lista == nombre_edificio){
-            lista_edificios->obtener_edificio(i)->restar_cantidad();
+            if (edificio_en_lista == nombre_edificio){
+                lista_edificios->obtener_edificio(i)->restar_cantidad();
 
-            mitad_piedra = lista_edificios->obtener_edificio(i)->obtener_mitad_piedra();
-            mitad_madera = lista_edificios->obtener_edificio(i)->obtener_mitad_madera();
-            mitad_metal = lista_edificios->obtener_edificio(i)->obtener_mitad_metal();
-            cout << mitad_piedra << " " << mitad_madera << " " << mitad_metal << endl;
+                mitad_piedra = lista_edificios->obtener_edificio(i)->obtener_mitad_piedra();
+                mitad_madera = lista_edificios->obtener_edificio(i)->obtener_mitad_madera();
+                mitad_metal = lista_edificios->obtener_edificio(i)->obtener_mitad_metal();
+
+            }
 
         }
+        cout << "\n------------------------------\n" << endl;
+        cout << "\nMateriales obtenidos \n" << endl;
+        cout << "Piedra : " << mitad_piedra << endl;
+        cout << "Madera : " << mitad_madera << endl;
+        cout << "Metal : " << mitad_metal << endl;
+        cout << "\n------------------------------\n" << endl;
 
+        usuario_inventario->devolver_materiales(mitad_piedra, mitad_madera, mitad_metal);
+
+        mapa[fila][columna]->eliminar_edificio();
+
+        cout << "\n\t\t ###   El edificio : " << nombre_edificio << ", ha sido DEMOLIDO exitosamente !   ###\n" << endl;
+
+    } else {
+        cout << "\n En la coordenada ingresada no existe ningun edificio ...\n" << endl;
     }
 
-    usuario_inventario->devolver_materiales(mitad_piedra, mitad_madera, mitad_metal);
-
-    mapa[fila][columna]->eliminar_edificio();
 
 }
 

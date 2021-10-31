@@ -59,10 +59,19 @@ int Edificio::obtener_mitad_metal(){
     return cantidad_metal/2;
 }
 
+int Edificio::obtener_cuantos_puedo_construir(){
+    int restantes = maximo_construir - cantidad_edificios ;
+    return restantes;
+}
+
 void Edificio::sumar_cantidad(){
     cantidad_edificios++ ;
 }
 
 void Edificio::restar_cantidad(){
     cantidad_edificios-- ;
+}
+
+void Edificio::mostrar_mensaje(){
+    cout << "Soy " << nombre << " y me encuentro en el casillero consultado." << endl;
 }

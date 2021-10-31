@@ -42,9 +42,13 @@ public:
 
     int obtener_mitad_metal();
 
+    int obtener_cuantos_puedo_construir();
+
     void sumar_cantidad();
 
     void restar_cantidad();
+
+    void mostrar_mensaje();
 
 };
 

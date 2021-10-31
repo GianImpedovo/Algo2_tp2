@@ -16,7 +16,7 @@ void Casillero_construible::mostrar_casillero(){
     }
     else{
         cout << "Soy un casillero construible y no me encuentro vacio" << endl;
-        cout << edificio_construido->obtener_nombre() << endl;
+        edificio_construido->mostrar_mensaje();
     }
 }
 
@@ -37,7 +37,7 @@ string Casillero_construible::obtener_nombre_edificio(){
 
     string nombre_edificio = "";
     if ( edificio_construido ){
-        nombre_edificio = edificio_construido->obtener_nombre();
+        nombre_edificio = edificio_construido->obtener_diminutivo();
     }
     return nombre_edificio;
 
@@ -46,6 +46,7 @@ string Casillero_construible::obtener_nombre_edificio(){
 void Casillero_construible::eliminar_edificio(){
     delete edificio_construido;
     edificio_construido = nullptr;
+
 }
 
 void Casillero_construible::mostrar_coordenadas_edificio(string nombre){
@@ -54,7 +55,7 @@ void Casillero_construible::mostrar_coordenadas_edificio(string nombre){
 
         if ( nombre == edificio_construido->obtener_nombre()){
 
-            cout << " (" << fila << " , " << columna << ") " << endl;
+            cout << " - (" << fila << "," << columna << ") " << endl;
 
         }
 
