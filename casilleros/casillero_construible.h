@@ -2,7 +2,7 @@
 #define CASILLERO_CONSTRUIBLE_H
 
 #include "../edificio.h"
-#include "../aserradero.h"
+#include "../edificios/aserradero.h"
 #include "casillero.h"
 
 

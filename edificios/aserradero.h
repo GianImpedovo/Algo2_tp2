@@ -1,7 +1,7 @@
 #ifndef ASERRADERO_H
 #define ASERRADERO_H
 
-#include "edificio.h"
+#include "../edificio.h"
 
 class Aserradero: public Edificio {
 
