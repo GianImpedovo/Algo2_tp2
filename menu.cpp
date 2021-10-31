@@ -65,7 +65,7 @@ void procesar_opcion(int opcion, Mapa * mapa){
         break;
 
     case MOSTRAR_INVENTARIO:
-
+            mapa->mostrar_inv();
         break;
 
     case RECOLECTAR_RECURSOS:

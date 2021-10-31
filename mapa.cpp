@@ -2,6 +2,9 @@
 
 Mapa::Mapa(){
 
+    this->usuario_inventario = new Inventario;
+    usuario_inventario->cargar_materiales();
+
     this->lista_edificios = new Caracteristicas_edificio;
     lista_edificios->procesar_arhivo();
 
@@ -34,6 +37,10 @@ Mapa::Mapa(){
     }
 
     arch.close();
+}
+
+void Mapa::mostrar_inv(){
+    usuario_inventario->mostrar_inventario();
 }
 
 void Mapa::generar_matriz(){
@@ -86,6 +93,8 @@ void Mapa::demoler_edificio(){
     cout << "columna -> ";
     cin >> columna;
 
+    int mitad_piedra, mitad_madera, mitad_metal;
+
     string nombre_edificio = mapa[fila][columna]->obtener_nombre_edificio();
 
     for (int i = 0; i < lista_edificios->obtener_cantidad_edificios(); i++){
@@ -95,12 +104,18 @@ void Mapa::demoler_edificio(){
         if (edificio_en_lista == nombre_edificio){
             lista_edificios->obtener_edificio(i)->restar_cantidad();
 
+            mitad_piedra = lista_edificios->obtener_edificio(i)->obtener_mitad_piedra();
+            mitad_madera = lista_edificios->obtener_edificio(i)->obtener_mitad_madera();
+            mitad_metal = lista_edificios->obtener_edificio(i)->obtener_mitad_metal();
+            cout << mitad_piedra << " " << mitad_madera << " " << mitad_metal << endl;
+
         }
 
     }
 
-    mapa[fila][columna]->eliminar_edificio();
+    usuario_inventario->devolver_materiales(mitad_piedra, mitad_madera, mitad_metal);
 
+    mapa[fila][columna]->eliminar_edificio();
 
 }
 

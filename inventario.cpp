@@ -202,13 +202,13 @@ cantidad_metal_nec){
         string material_a_chequear = lista_materiales[i] -> obtener_nombre();
         
         if (material_a_chequear == "piedra"){
-            lista_materiales[i] -> sumar_mitad_material(cantidad_piedra_nec);
+            lista_materiales[i] -> sumar_material(cantidad_piedra_nec);
         }
         if (material_a_chequear == "madera"){
-            lista_materiales[i] -> sumar_mitad_material(cantidad_madera_nec);        
+            lista_materiales[i] -> sumar_material(cantidad_madera_nec);        
         } 
         if (material_a_chequear == "metal"){
-            lista_materiales[i] -> sumar_mitad_material(cantidad_metal_nec);
+            lista_materiales[i] -> sumar_material(cantidad_metal_nec);
         }
         i++;
     }

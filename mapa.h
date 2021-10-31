@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 
+#include "inventario.h"
 #include "caracteristicas_edificios.h"
 #include "casilleros/casillero.h"
 #include "casilleros/casillero_construible.h"
@@ -22,10 +23,13 @@ private:
     int cantidad_columnas;
     Casillero *** mapa;
 
+    Inventario * usuario_inventario;
     Caracteristicas_edificio * lista_edificios;
 
 public:
     Mapa();
+
+    void mostrar_inv();
 
     void generar_matriz();
 

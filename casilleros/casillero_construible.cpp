@@ -37,7 +37,7 @@ string Casillero_construible::obtener_nombre_edificio(){
 
     string nombre_edificio = "";
     if ( edificio_construido ){
-        nombre_edificio = edificio_construido->obtener_diminutivo();
+        nombre_edificio = edificio_construido->obtener_nombre();
     }
     return nombre_edificio;
 
