@@ -93,6 +93,10 @@ public:
     //PRE:
     //POS:
     ~Mapa();
+
+    //destructor de inventario y escritor de archivo
+    void escribir_archivo_materiales();
+
 };
 
 

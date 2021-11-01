@@ -297,3 +297,8 @@ Mapa::~Mapa(){
     this->mapa = nullptr;
 
 }
+
+void Mapa::escribir_archivo_materiales(){
+    usuario_inventario ->~Inventario();
+    cout << "Ejecuto el destructor del Inventario en mapa . " << endl;
+}
