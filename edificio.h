@@ -50,6 +50,8 @@ public:
 
     virtual void mostrar_mensaje() = 0;
 
+    virtual int obtener_cantidad_brindada() = 0;
+
     virtual ~Edificio();
 
 

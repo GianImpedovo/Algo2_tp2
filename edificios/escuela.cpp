@@ -6,10 +6,10 @@ Escuela::Escuela(int piedra, int madera, int metal, int maximo) : Edificio(nombr
     this->brinda = 0;
 }
 
-int Escuela::obtener_material_brinda(){
+int Escuela::obtener_cantidad_brindada(){
     return brinda;
 }
 
 void Escuela::mostrar_mensaje(){
-    cout << "Soy una " << nombre << "no brindo materiales y me encuentro en el casillero consultado . " << endl;
+    cout << " Soy una " << nombre << "no brindo materiales y me encuentro en el casillero consultado . " << endl;
 }

@@ -12,7 +12,7 @@ public:
 
     Obelisco(int piedra, int madera, int metal, int maximo);
 
-    int obtener_material_brinda();
+    int obtener_cantidad_brindada();
 
     void mostrar_mensaje();
 

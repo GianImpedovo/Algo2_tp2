@@ -69,7 +69,7 @@ void procesar_opcion(int opcion, Mapa * mapa){
         break;
 
     case RECOLECTAR_RECURSOS:
-
+            mapa->recolectar_recursos_producidos();
         break;
 
     case LLUVIA_RECURSOS:

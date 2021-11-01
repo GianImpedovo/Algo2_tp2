@@ -114,25 +114,15 @@ void Caracteristicas_edificio::listar_todos_edificios(){
 
 // Destructor 
 Caracteristicas_edificio::~Caracteristicas_edificio(){
-    ofstream archivo;
-    archivo.open(ARCHIVO_EDIFICIO);
+
     int total = cantidad_edificios;
     for ( int i = 0; i < total; i++){
-        
-        archivo << edificios_posibles[i]->obtener_nombre()
-            << " " << edificios_posibles[i]->obtener_cantidad_piedra()
-            << " " << edificios_posibles[i]->obtener_cantidad_madera()
-            << " " << edificios_posibles[i]->obtener_cantidad_metal()
-            << " " << edificios_posibles[i]->obtener_maximo_construir() << endl;
-
 
         delete edificios_posibles[i];
         cantidad_edificios--;
     }
     delete [] edificios_posibles;
     edificios_posibles = nullptr;
-
-    archivo.close();
 
     cout << "Ejecuto el destructor de caracteristicas_edificio ." << endl;
 

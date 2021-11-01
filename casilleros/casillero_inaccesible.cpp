@@ -12,7 +12,7 @@ string Casillero_inaccesible::obtener_nombre(){
 }
 
 void Casillero_inaccesible::mostrar_casillero(){
-    cout << "Este es un casillero inaccesible" << endl;
+    cout << " Este es un lago y es un casillero inaccesible. " << endl;
 }
 
 void Casillero_inaccesible::agregar_edificio(string nombre, int piedra, int madera, int metal, int maximo){

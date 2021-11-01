@@ -67,10 +67,7 @@ void Mapa::procesar_archivo_ubicaciones(){
     ifstream archivo;
     archivo.open(ARCHIVO_UBICACIONES);
 
-    string nombre;
-    string barra;
-    string fila;
-    string columna;
+    string nombre, barra, fila, columna;
 
     while( archivo >> nombre ){
         getline(archivo, barra, ' ');
@@ -79,10 +76,7 @@ void Mapa::procesar_archivo_ubicaciones(){
         getline(archivo, barra, ' ');
         getline(archivo, columna, ')');
 
-        int madera;
-        int piedra; 
-        int metal;
-        int maximo;
+        int madera, piedra, metal, maximo;
 
         for ( int i = 0; i < lista_edificios->obtener_cantidad_edificios(); i++){
             if ( lista_edificios->obtener_edificio(i)->obtener_nombre() == nombre){
@@ -91,11 +85,10 @@ void Mapa::procesar_archivo_ubicaciones(){
                 metal = lista_edificios->obtener_edificio(i)->obtener_cantidad_metal();
                 maximo = lista_edificios->obtener_edificio(i)->obtener_maximo_construir();
 
-                mapa[stoi(fila)][stoi(columna)]->agregar_edificio(nombre, piedra, madera, metal, maximo);
+                mapa[stoi(fila) - 1][stoi(columna) - 1]->agregar_edificio(nombre, piedra, madera, metal, maximo);
 
                 lista_edificios->obtener_edificio(i) ->sumar_cantidad();
 
-                //cout << lista_edificios->obtener_edificio(i)->obtener_nombre() << endl;
             }
         }
 
@@ -240,21 +233,59 @@ void Mapa::mostrar_mapa(){
 
 // 6)
 void Mapa::consultar_coordenada(){
-    int fila = 0;
-    int columna = 0;
+    int fila , columna;
 
     cout << "\nIngrese la fila -> ";
     cin >> fila;
     cout << "Ingrese la columna -> ";
     cin >> columna;
     cout << "\n";
-    mapa[fila][columna]->mostrar_casillero() ;
+    mapa[fila - 1][columna - 1]->mostrar_casillero() ;
     cout << "\n";
 }
 
 // 7)
 void Mapa::mostrar_inv(){
     usuario_inventario->mostrar_inventario();
+}
+
+// 8) 
+void Mapa::recolectar_recursos_producidos(){
+    int piedra = 0;
+    int madera = 0;
+    int metal = 0;
+    int cantidad_edificios, total_brindado , cantidad_construidos, cantidad_a_brindar;
+    string nombre_edificio;
+
+    cantidad_edificios = lista_edificios->obtener_cantidad_edificios();
+
+    cout << "estoy en recolectar recursos" << endl;
+
+    for ( int i = 0; i < cantidad_edificios; i++){
+
+        Edificio * edificio_solicitado = lista_edificios->obtener_edificio(i); 
+
+        nombre_edificio = edificio_solicitado->obtener_nombre();
+        cantidad_construidos = edificio_solicitado->obtener_cantidad_construidos();
+        cantidad_a_brindar = edificio_solicitado->obtener_cantidad_brindada();
+
+        total_brindado = cantidad_construidos * cantidad_a_brindar;
+
+        if ( nombre_edificio == "mina"){
+
+            piedra += total_brindado;
+
+        } else if ( nombre_edificio == "aserradero"){
+            
+            madera += total_brindado;
+
+        } else if ( nombre_edificio == "fabrica"){
+
+            metal += total_brindado;
+        }
+    }
+
+    devolver_materiales(piedra, madera, metal);
 }
 
 // Destructor

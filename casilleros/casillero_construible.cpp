@@ -12,10 +12,10 @@ string Casillero_construible::obtener_nombre(){
 
 void Casillero_construible::mostrar_casillero(){
     if ( ! edificio_construido ){
-        cout << "Soy un casillero construible y me encuentro vacio" << endl;
+        cout << " Soy un casillero construible y me encuentro vacio" << endl;
     }
     else{
-        cout << "Soy un casillero construible y no me encuentro vacio" << endl;
+        cout << " Soy un casillero construible y no me encuentro vacio" << endl;
         edificio_construido->mostrar_mensaje();
     }
 }
@@ -84,7 +84,7 @@ void Casillero_construible::mostrar_coordenadas_edificio(string nombre){
 
         if ( nombre == edificio_construido->obtener_nombre()){
 
-            cout << " - (" << fila << "," << columna << ") " << endl;
+            cout << " - (" << fila + 1 << "," << columna + 1 << ") " << endl;
 
         }
 

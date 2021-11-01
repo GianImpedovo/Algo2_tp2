@@ -85,6 +85,10 @@ public:
     //POS:
     void mostrar_inv();
 
+    //PRE:
+    //POS:
+    void recolectar_recursos_producidos();
+
     // Detructor
     //PRE:
     //POS:
