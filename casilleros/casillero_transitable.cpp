@@ -31,3 +31,7 @@ string Casillero_transitable::obtener_nombre_edificio(){
     return "";
 }
 
+string Casillero_transitable::obtener_diminutivo_edificio(){
+    return "";
+}
+

@@ -1,20 +1,13 @@
 #include "caracteristicas_edificios.h"
 
-
+// Constructor
 Caracteristicas_edificio::Caracteristicas_edificio(){
     this->cantidad_edificios = 0;
     this->edificios_posibles = nullptr;
 }
 
-int Caracteristicas_edificio::obtener_cantidad_edificios(){
-    return cantidad_edificios;
-}
-
-Edificio * Caracteristicas_edificio::obtener_edificio(int posicion){
-    return edificios_posibles[posicion];
-}
-
-void Caracteristicas_edificio::procesar_arhivo(){
+// Guardo las caracteristicas de los edificios al procesar el archivo
+void Caracteristicas_edificio::cargar_edificios(){
 ifstream nuevo_archivo;
     nuevo_archivo.open(ARCHIVO_EDIFICIO);
 
@@ -62,26 +55,44 @@ ifstream nuevo_archivo;
             nuevo_edificio = new Planta_electrica( cantidad_piedra, cantidad_madera, cantidad_metal, maximo);
 
         }
+        agregar_edificio(nuevo_edificio);
 
-
-        int cantidad_vieja = cantidad_edificios;
-        Edificio ** vector_edificio = new Edificio * [ cantidad_vieja + 1]; 
-
-        for ( int i = 0; i < cantidad_edificios; i++){
-            vector_edificio[i] = edificios_posibles[i];
-        }
-        vector_edificio[ cantidad_vieja ] = nuevo_edificio;
-
-        if ( cantidad_edificios != 0){
-            delete [] edificios_posibles; 
-        }
-        edificios_posibles = vector_edificio;
-        cantidad_edificios++;
     }
 
     nuevo_archivo.close();
 }
 
+// Agrego el edificio nuevo a la lista de edificios
+void Caracteristicas_edificio::agregar_edificio(Edificio * nuevo_edificio){
+    int cantidad_vieja = cantidad_edificios;
+
+    Edificio ** vector_edificio = new Edificio * [ cantidad_vieja + 1];     
+
+    for ( int i = 0; i < cantidad_edificios; i++){
+        vector_edificio[i] = edificios_posibles[i];
+    }
+
+    vector_edificio[ cantidad_vieja ] = nuevo_edificio;
+
+    if ( cantidad_edificios != 0){
+        delete [] edificios_posibles; 
+    }
+
+    edificios_posibles = vector_edificio;
+    cantidad_edificios++;
+}
+
+// Obtengo la cantidad de edificios;
+int Caracteristicas_edificio::obtener_cantidad_edificios(){
+    return cantidad_edificios;
+}
+
+// Obtengo el edificio requerido  
+Edificio * Caracteristicas_edificio::obtener_edificio(int posicion){
+    return edificios_posibles[posicion];
+}
+
+// Lista todos los edificios
 void Caracteristicas_edificio::listar_todos_edificios(){
     cout << "\n";
     cout << "\t\t###   Listado de todos los edificios :   ###" << endl;
@@ -101,32 +112,28 @@ void Caracteristicas_edificio::listar_todos_edificios(){
     cout << "\n";
 }
 
-
-// destructor
-void Caracteristicas_edificio::guardar_datos(){
+// Destructor 
+Caracteristicas_edificio::~Caracteristicas_edificio(){
     ofstream archivo;
     archivo.open(ARCHIVO_EDIFICIO);
-
-    for (int i = 0; i < cantidad_edificios; i++){
-        archivo << edificios_posibles[i] ->obtener_nombre() << ' '
-                << edificios_posibles[i] ->obtener_cantidad_piedra() << ' '
-                << edificios_posibles[i] ->obtener_cantidad_madera() << ' '
-                << edificios_posibles[i] ->obtener_cantidad_metal() << ' '
-                << edificios_posibles[i] ->obtener_maximo_construir() << '\n';
-    }
-
-    archivo.close();
-
-}
-
-Caracteristicas_edificio::~Caracteristicas_edificio(){
     int total = cantidad_edificios;
     for ( int i = 0; i < total; i++){
+        
+        archivo << edificios_posibles[i]->obtener_nombre()
+            << " " << edificios_posibles[i]->obtener_cantidad_piedra()
+            << " " << edificios_posibles[i]->obtener_cantidad_madera()
+            << " " << edificios_posibles[i]->obtener_cantidad_metal()
+            << " " << edificios_posibles[i]->obtener_maximo_construir() << endl;
+
+
         delete edificios_posibles[i];
         cantidad_edificios--;
     }
     delete [] edificios_posibles;
     edificios_posibles = nullptr;
-    cout << "Ejecutando destructor" << endl;
+
+    archivo.close();
+
+    cout << "Ejecuto el destructor de caracteristicas_edificio ." << endl;
 
 }

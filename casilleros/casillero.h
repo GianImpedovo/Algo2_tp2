@@ -25,6 +25,8 @@ public:
 
     virtual string obtener_nombre_edificio() = 0;
 
+    virtual string obtener_diminutivo_edificio() = 0;
+
     virtual void eliminar_edificio() = 0;
 
     int mostrar_fila();

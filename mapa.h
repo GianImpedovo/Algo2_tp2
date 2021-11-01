@@ -27,30 +27,67 @@ private:
     Caracteristicas_edificio * lista_edificios;
 
 public:
+
+    // Constructor
+    //PRE:
+    //POS:
     Mapa();
 
-    void mostrar_inv();
+    //PRE:
+    //POS:
+    void ingreso_datos_mapa();
 
+    //PRE:
+    //POS:
+    void procesar_archivo_mapa();
+
+    //PRE:
+    //POS:
+    void procesar_archivo_ubicaciones();
+
+    //PRE:
+    //POS:
     void generar_matriz();
 
+    //PRE:
+    //POS:
     void listar_edificios_construidos();
 
+    //PRE:
+    //POS:
     void mostrar_coordenadas(string nombre);
 
+    //PRE:
+    //POS:
     void mostrar_todos_edificios();
 
+    //PRE:
+    //POS:
     void demoler_edificio();
 
-    void buscar_coordenada();
+    //PRE:
+    //POS:
+    void obtengo_materiales_elimino_edificio(string nombre_edificio, int fila, int columna);
 
-    void procesar_archivo_ubicaciones();
-    
-    void mostrar_filas();
-    
-    void mostrar_columnas();
+    //PRE:
+    //POS:
+    void devolver_materiales(int piedra, int madera, int metal);
 
+    //PRE:
+    //POS:
     void mostrar_mapa();
-    
+
+    //PRE:
+    //POS:
+    void consultar_coordenada();
+
+    //PRE:
+    //POS:
+    void mostrar_inv();
+
+    // Detructor
+    //PRE:
+    //POS:
     ~Mapa();
 };
 

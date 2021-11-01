@@ -61,7 +61,7 @@ void procesar_opcion(int opcion, Mapa * mapa){
         break;
 
     case CONSULTAR_COORDENADA:
-            mapa->buscar_coordenada();
+            mapa->consultar_coordenada();
         break;
 
     case MOSTRAR_INVENTARIO:

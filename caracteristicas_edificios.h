@@ -22,18 +22,35 @@ protected:
 
 
 public:
+
+    // Constructor
+    //PRE:
+    //POS:
     Caracteristicas_edificio();
 
+    //PRE:
+    //POS:
+    void cargar_edificios();
+
+    //PRE:
+    //POS:
+    void agregar_edificio(Edificio * nuevo_edificio);
+
+    //PRE:
+    //POS:
     int obtener_cantidad_edificios();
 
+    //PRE:
+    //POS:
     Edificio * obtener_edificio(int posicion);
 
-    void procesar_arhivo();
-
+    //PRE:
+    //POS:
     void listar_todos_edificios();
 
-    void guardar_datos();
-
+    // Destructor
+    //PRE:
+    //POS:
     ~Caracteristicas_edificio();
 
 

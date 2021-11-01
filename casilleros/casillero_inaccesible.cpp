@@ -31,3 +31,7 @@ string Casillero_inaccesible::obtener_nombre_edificio(){
     return "";
 }
 
+string Casillero_inaccesible::obtener_diminutivo_edificio(){
+    return "";
+}
+
