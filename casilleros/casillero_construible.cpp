@@ -21,36 +21,41 @@ void Casillero_construible::mostrar_casillero(){
 }
 
 void Casillero_construible::agregar_edificio(string nombre, int piedra, int madera, int metal, int maximo){
-    if (nombre == "aserradero"){
+    if ( ! edificio_construido ){
+        if (nombre == "aserradero"){
 
-        this->edificio_construido = new Aserradero(piedra, madera, metal, maximo);
+            this->edificio_construido = new Aserradero(piedra, madera, metal, maximo);
 
+        }
+        else if ( nombre == "escuela"){ 
+
+            this->edificio_construido = new Escuela( piedra, madera, metal, maximo);
+
+        }
+        else if ( nombre == "fabrica"){
+
+            this->edificio_construido = new Fabrica( piedra, madera, metal, maximo);
+
+        }
+        else if ( nombre == "mina"){
+
+            this->edificio_construido = new Mina( piedra, madera, metal, maximo);
+
+        }
+        else if ( nombre == "obelisco"){
+
+            this->edificio_construido = new Obelisco( piedra, madera, metal, maximo);
+
+        }
+        else if ( nombre == "planta electrica"){
+
+            this->edificio_construido = new Planta_electrica( piedra, madera, metal, maximo);
+
+        }
+    } else {
+        cout << "\n El casillero ya esta ocupado. \n" << endl;
     }
-    else if ( nombre == "escuela"){
 
-        this->edificio_construido = new Escuela( piedra, madera, metal, maximo);
-
-    }
-    else if ( nombre == "fabrica"){
-
-        this->edificio_construido = new Fabrica( piedra, madera, metal, maximo);
-
-    }
-    else if ( nombre == "mina"){
-
-        this->edificio_construido = new Mina( piedra, madera, metal, maximo);
-
-    }
-    else if ( nombre == "obelisco"){
-
-        this->edificio_construido = new Obelisco( piedra, madera, metal, maximo);
-
-    }
-    else if ( nombre == "planta electrica"){
-
-        this->edificio_construido = new Planta_electrica( piedra, madera, metal, maximo);
-
-    }
 }
 
 string Casillero_construible::obtener_nombre_edificio(){
@@ -91,3 +96,9 @@ void Casillero_construible::mostrar_coordenadas_edificio(string nombre){
     }
 }
 
+Casillero_construible::~Casillero_construible(){
+    if ( edificio_construido ){
+        delete edificio_construido;
+    }
+    edificio_construido = nullptr;
+}

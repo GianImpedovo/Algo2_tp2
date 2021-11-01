@@ -87,6 +87,15 @@ int Caracteristicas_edificio::obtener_cantidad_edificios(){
     return cantidad_edificios;
 }
 
+int Caracteristicas_edificio::obtener_posicion_edificio(string nombre){
+    int pos;
+    for ( int i = 0; i < cantidad_edificios ; i++){
+        if ( nombre == edificios_posibles[i]->obtener_nombre()){
+            pos = i;
+        }
+    }return pos;
+}
+
 // Obtengo el edificio requerido  
 Edificio * Caracteristicas_edificio::obtener_edificio(int posicion){
     return edificios_posibles[posicion];

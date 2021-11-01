@@ -104,7 +104,6 @@ void Mapa::procesar_archivo_ubicaciones(){
 // 1)
 void Mapa::construir_edificio_nombre(){
     // tener la cantidad de materiales necesarios []
-    // no supere el maximo []
     string nombre_nuevo;
     cout << "\n -> Ingrese el nombre del nuevo edificio que desea construir : ";
     cin >> nombre_nuevo;
@@ -113,17 +112,48 @@ void Mapa::construir_edificio_nombre(){
     bool supera_max = lista_edificios->supera_maximo(nombre_nuevo);
 
     if ( existe_edificio ){
+
+        int pos_edificio = lista_edificios->obtener_posicion_edificio(nombre_nuevo);
+        int piedra_necesaria, madera_necesaria, metal_necesario, maximo;
+
+        piedra_necesaria = lista_edificios->obtener_edificio(pos_edificio)->obtener_cantidad_piedra();
+        madera_necesaria = lista_edificios->obtener_edificio(pos_edificio)->obtener_cantidad_madera();
+        metal_necesario = lista_edificios->obtener_edificio(pos_edificio)->obtener_cantidad_metal();
+        maximo = lista_edificios->obtener_edificio(pos_edificio)->obtener_maximo_construir();
+
         if ( ! supera_max ){
 
-            cout << "Falta chequear los materiales ." << endl;
+            bool alcanzan_materiales = usuario_inventario->alcanzan_materiales(piedra_necesaria, madera_necesaria, metal_necesario);
 
-        }else {
+            if ( alcanzan_materiales ){
+
+                construir_edificio(nombre_nuevo, piedra_necesaria, madera_necesaria, metal_necesario, maximo);
+                lista_edificios->obtener_edificio(pos_edificio)->sumar_cantidad();
+
+            } else {
+                cout << "\n No alcanzan los materiales necesarios para la construccion . " << endl;
+            }
+
+        } else {
             cout << "\n No se pueden construir mas " << nombre_nuevo << " ya que supera el maximo permitido. \n" << endl; 
         }
 
     } else {
         cout << "\n El edificio buscado NO existe . \n" << endl;
     }
+}
+
+void Mapa::construir_edificio(string nombre_nuevo, int piedra, int madera , int metal, int maximo){
+    int fila , columna;
+    cout << "\n Construccion del edificio \n" << endl;
+    cout << " fila -> ";
+    cin >> fila;
+    cout << " columna -> ";
+    cin >> columna;
+
+    // No me agrega el edificio , error con memoria dinamica 
+    mapa[fila - 1][columna - 1]->agregar_edificio(nombre_nuevo, piedra, madera, metal, maximo);
+
 }
 
 // 2)

@@ -35,6 +35,8 @@ public:
 
     void mostrar_coordenadas_edificio(string nombre);
 
+    ~Casillero_construible();
+
 };
 
 

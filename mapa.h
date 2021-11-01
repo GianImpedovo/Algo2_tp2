@@ -53,6 +53,8 @@ public:
     //POS:
     void construir_edificio_nombre();
 
+    void construir_edificio( string nombre_nuevo, int piedra, int madera , int metal, int maximo);
+
 
     //PRE:
     //POS:

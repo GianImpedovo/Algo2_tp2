@@ -40,6 +40,8 @@ public:
     //POS:
     int obtener_cantidad_edificios();
 
+    int obtener_posicion_edificio(string nombre);
+
     //PRE:
     //POS:
     Edificio * obtener_edificio(int posicion);
