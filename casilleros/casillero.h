@@ -34,6 +34,8 @@ public:
     int mostrar_columna();
 
     virtual void mostrar_coordenadas_edificio(string nombre) = 0;
+
+    virtual ~Casillero();
     
 
 

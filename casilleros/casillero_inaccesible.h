@@ -19,12 +19,9 @@ public:
 
     void eliminar_edificio();
 
-
     string obtener_nombre();
 
     void mostrar_coordenadas_edificio(string nombre);
-    
-    
 
 };
 

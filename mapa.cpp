@@ -347,9 +347,16 @@ void Mapa::recolectar_recursos_producidos(){
 // Destructor
 Mapa::~Mapa(){
     for ( int i = 0; i < cantidad_filas; i++){
-        delete [] mapa[i];
+        for ( int j = 0; j < cantidad_columnas ; j++){
+            mapa[i][j]->~Casillero();
+            delete mapa[i][j];
+        }
+        delete mapa[i];
     }
     delete [] mapa;
     this->mapa = nullptr;
+
+    this->lista_edificios->~Caracteristicas_edificio();
+    this->usuario_inventario->~Inventario();
 
 }

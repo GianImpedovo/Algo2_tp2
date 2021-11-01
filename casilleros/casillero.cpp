@@ -23,3 +23,5 @@ int Casillero::mostrar_fila(){
 int Casillero::mostrar_columna(){
     return columna;
 }
+
+Casillero::~Casillero(){}
