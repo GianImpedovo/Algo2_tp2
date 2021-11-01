@@ -51,6 +51,11 @@ public:
 
     //PRE:
     //POS:
+    void construir_edificio_nombre();
+
+
+    //PRE:
+    //POS:
     void listar_edificios_construidos();
 
     //PRE:

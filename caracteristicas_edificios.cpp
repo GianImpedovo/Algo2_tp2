@@ -112,6 +112,18 @@ void Caracteristicas_edificio::listar_todos_edificios(){
     cout << "\n";
 }
 
+bool Caracteristicas_edificio::existe_el_edificio(string nombre){
+    bool existe = false;
+    for (int i = 0; i < cantidad_edificios; i++){
+        string nombre_buscado = edificios_posibles[i]->obtener_nombre();
+        if ( nombre_buscado == nombre ){
+            existe = true;
+        }
+    }
+
+    return existe;
+}
+
 // Destructor 
 Caracteristicas_edificio::~Caracteristicas_edificio(){
 

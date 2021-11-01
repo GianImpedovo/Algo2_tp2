@@ -100,6 +100,24 @@ void Mapa::procesar_archivo_ubicaciones(){
 }
 
 // ---------------------------------------------
+
+// 1)
+void Mapa::construir_edificio_nombre(){
+    // tener la cantidad de materiales necesarios []
+    // no supere el maximo []
+    string nombre_nuevo;
+    cout << "\n -> Ingrese el nombre del nuevo edificio que desea construir : ";
+    cin >> nombre_nuevo;
+    
+    bool existe_edificio = lista_edificios->existe_el_edificio(nombre_nuevo);
+
+    if ( existe_edificio ){
+
+    } else {
+        cout << "\n El edificio buscado NO existe . \n" << endl;
+    }
+}
+
 // 2)
 void Mapa::listar_edificios_construidos(){
     cout << "\n";

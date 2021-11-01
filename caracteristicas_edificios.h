@@ -48,6 +48,8 @@ public:
     //POS:
     void listar_todos_edificios();
 
+    bool existe_el_edificio(string nombre);
+
     // Destructor
     //PRE:
     //POS:
