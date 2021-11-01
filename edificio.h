@@ -48,9 +48,9 @@ public:
 
     void restar_cantidad();
 
-    virtual void mostrar_mensaje();
+    virtual void mostrar_mensaje() = 0;
 
-    ~Edificio();
+    virtual ~Edificio();
 
 
 };

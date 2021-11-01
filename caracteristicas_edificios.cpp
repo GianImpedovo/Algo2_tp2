@@ -120,7 +120,8 @@ void Caracteristicas_edificio::guardar_datos(){
 }
 
 Caracteristicas_edificio::~Caracteristicas_edificio(){
-    for ( int i = 0; i < cantidad_edificios; i++){
+    int total = cantidad_edificios;
+    for ( int i = 0; i < total; i++){
         delete edificios_posibles[i];
         cantidad_edificios--;
     }
