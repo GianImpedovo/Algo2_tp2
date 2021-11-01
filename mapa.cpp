@@ -110,8 +110,16 @@ void Mapa::construir_edificio_nombre(){
     cin >> nombre_nuevo;
     
     bool existe_edificio = lista_edificios->existe_el_edificio(nombre_nuevo);
+    bool supera_max = lista_edificios->supera_maximo(nombre_nuevo);
 
     if ( existe_edificio ){
+        if ( ! supera_max ){
+
+            cout << "Falta chequear los materiales ." << endl;
+
+        }else {
+            cout << "\n No se pueden construir mas " << nombre_nuevo << " ya que supera el maximo permitido. \n" << endl; 
+        }
 
     } else {
         cout << "\n El edificio buscado NO existe . \n" << endl;

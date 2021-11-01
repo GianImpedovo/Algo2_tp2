@@ -124,6 +124,31 @@ bool Caracteristicas_edificio::existe_el_edificio(string nombre){
     return existe;
 }
 
+bool Caracteristicas_edificio::supera_maximo(string nombre){
+    bool supera_max = true;
+    int maximo , construidos, restantes;
+    for ( int i = 0; i < cantidad_edificios ; i++){
+
+        Edificio * edificio_buscado = obtener_edificio(i);
+        string nombre_edificio = edificio_buscado->obtener_nombre();
+
+        if ( nombre_edificio == nombre ){
+
+            maximo = edificio_buscado->obtener_maximo_construir();
+            construidos = edificio_buscado->obtener_cantidad_construidos();
+
+            restantes = maximo - construidos;
+
+            if ( restantes > 0 ){
+                supera_max = false;
+            } 
+        }
+        
+    }
+
+    return supera_max;
+}
+
 // Destructor 
 Caracteristicas_edificio::~Caracteristicas_edificio(){
 

@@ -42,6 +42,7 @@ void procesar_opcion(int opcion, Mapa * mapa){
     switch (opcion)
     {
     case CONSTRUIR_EDIFICIO:
+            mapa->construir_edificio_nombre();
         break;
 
     case LISTAR_EDIFICIOS_CONSTRUIDOS:

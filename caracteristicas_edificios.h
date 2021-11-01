@@ -50,6 +50,8 @@ public:
 
     bool existe_el_edificio(string nombre);
 
+    bool supera_maximo(string nombre);
+
     // Destructor
     //PRE:
     //POS:
