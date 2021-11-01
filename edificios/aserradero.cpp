@@ -9,3 +9,7 @@ Aserradero::Aserradero(int piedra, int madera, int metal, int maximo) : Edificio
 int Aserradero::obtener_material_brinda(){
     return brinda;
 }
+
+void Aserradero::mostrar_mensaje(){
+    cout << "Soy un " << nombre << " brindo : " << brinda << " de madera y me encuentro en el casillero consultado . " << endl;
+}

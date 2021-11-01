@@ -24,15 +24,44 @@ ifstream nuevo_archivo;
     int cantidad_metal;
     int maximo;
 
+    Edificio * nuevo_edificio;
+
     while (nuevo_archivo >> nombre_edificio){
         nuevo_archivo >> cantidad_piedra;
         nuevo_archivo >> cantidad_madera;
         nuevo_archivo >> cantidad_metal;
         nuevo_archivo >> maximo;
 
-        Edificio * nuevo_edificio;
+        if (nombre_edificio == "aserradero"){
 
-        nuevo_edificio = new Edificio(nombre_edificio, cantidad_piedra, cantidad_madera, cantidad_metal, maximo);
+            nuevo_edificio = new Aserradero(cantidad_piedra, cantidad_madera, cantidad_metal, maximo);
+
+        }
+        else if ( nombre_edificio == "escuela"){
+
+            nuevo_edificio = new Escuela( cantidad_piedra, cantidad_madera, cantidad_metal, maximo);
+
+        }
+        else if ( nombre_edificio == "fabrica"){
+
+            nuevo_edificio = new Fabrica( cantidad_piedra, cantidad_madera, cantidad_metal, maximo);
+
+        }
+        else if ( nombre_edificio == "mina"){
+
+            nuevo_edificio = new Mina( cantidad_piedra, cantidad_madera, cantidad_metal, maximo);
+
+        }
+        else if ( nombre_edificio == "obelisco"){
+
+            nuevo_edificio = new Obelisco( cantidad_piedra, cantidad_madera, cantidad_metal, maximo);
+
+        }
+        else if ( nombre_edificio == "planta electrica"){
+
+            nuevo_edificio = new Planta_electrica( cantidad_piedra, cantidad_madera, cantidad_metal, maximo);
+
+        }
 
 
         int cantidad_vieja = cantidad_edificios;
@@ -93,9 +122,10 @@ void Caracteristicas_edificio::guardar_datos(){
 Caracteristicas_edificio::~Caracteristicas_edificio(){
     for ( int i = 0; i < cantidad_edificios; i++){
         delete edificios_posibles[i];
+        cantidad_edificios--;
     }
     delete [] edificios_posibles;
-    cantidad_edificios = 0;
+    edificios_posibles = nullptr;
     cout << "Ejecutando destructor" << endl;
 
 }

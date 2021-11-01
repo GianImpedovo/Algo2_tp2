@@ -2,6 +2,12 @@
 #define LISTA_EDIFICIO_H
 
 #include "edificio.h"
+#include "edificios/aserradero.h"
+#include "edificios/escuela.h"
+#include "edificios/fabrica.h"
+#include "edificios/mina.h"
+#include "edificios/obelisco.h"
+#include "edificios/planta_electrica.h"
 #include <fstream>
 
 using namespace std;

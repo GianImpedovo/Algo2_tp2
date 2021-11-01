@@ -72,6 +72,5 @@ void Edificio::restar_cantidad(){
     cantidad_edificios-- ;
 }
 
-void Edificio::mostrar_mensaje(){
-    cout << "Soy " << nombre << " y me encuentro en el casillero consultado." << endl;
-}
+Edificio::~Edificio(){}
+

@@ -48,7 +48,10 @@ public:
 
     void restar_cantidad();
 
-    void mostrar_mensaje();
+    virtual void mostrar_mensaje();
+
+    ~Edificio();
+
 
 };
 
