@@ -1,10 +1,7 @@
 #include "casillero_transitable.h"
 
-
-Casillero_transitable::Casillero_transitable(int fila, int columna): Casillero( fila, columna , nombre){
+Casillero_transitable::Casillero_transitable(int fila, int columna): Casillero(fila, columna){
     this->nombre = "C";
-    this->fila = fila;
-    this->columna = columna;
 }
 
 string Casillero_transitable::obtener_nombre(){

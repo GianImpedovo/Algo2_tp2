@@ -15,12 +15,13 @@ protected:
     int canitdad_madera;
     int cantidad_metal;
     int cantidad_edificios;
+    int brinda;
     int maximo_construir;
 
 public:
     Edificio();
 
-    Edificio(std::string nombre , int cantidad_piedra, int cantidad_madera, int cantidad_metal, int maximo_construir);
+    Edificio( int cantidad_piedra, int cantidad_madera, int cantidad_metal, int maximo_construir);
 
     string obtener_nombre();
 

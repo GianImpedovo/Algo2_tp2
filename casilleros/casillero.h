@@ -13,7 +13,7 @@ protected:
     string nombre;
 
 public:
-    Casillero(int fila, int columna , string nombre);
+    Casillero(int fila, int columna);
 
     Casillero();
 

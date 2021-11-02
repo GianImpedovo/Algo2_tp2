@@ -1,6 +1,6 @@
 #include "escuela.h"
 
-Escuela::Escuela(int piedra, int madera, int metal, int maximo) : Edificio(nombre, piedra, madera, metal, maximo){
+Escuela::Escuela(int piedra, int madera, int metal, int maximo) : Edificio(piedra, madera, metal, maximo){
     this->nombre = "escuela";
     this->diminutivo = "E";
     this->brinda = 0;

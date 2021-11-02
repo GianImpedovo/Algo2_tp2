@@ -1,9 +1,8 @@
 #include "casillero_construible.h"
 
-
-Casillero_construible::Casillero_construible(int fila, int columna): Casillero( fila, columna , nombre){
-    this->edificio_construido = nullptr;
+Casillero_construible::Casillero_construible(int fila, int columna): Casillero(fila, columna){
     this->nombre = "T";
+    this->edificio_construido = 0;
 }
 
 string Casillero_construible::obtener_nombre(){
@@ -79,7 +78,7 @@ string Casillero_construible::obtener_diminutivo_edificio(){
 
 void Casillero_construible::eliminar_edificio(){
     delete edificio_construido;
-    edificio_construido = nullptr;
+    edificio_construido = 0;
 
 }
 
@@ -99,6 +98,7 @@ void Casillero_construible::mostrar_coordenadas_edificio(string nombre){
 Casillero_construible::~Casillero_construible(){
     if ( edificio_construido ){
         delete edificio_construido;
+        cout << "corriendo destructor de casillero construible" << endl;
     }
-    edificio_construido = nullptr;
+    edificio_construido = 0;
 }

@@ -8,6 +8,7 @@ class Casillero_transitable : public Casillero {
 private:
     //Material * material;
 public:
+
     Casillero_transitable(int fila, int columna);
 
     void mostrar_casillero();

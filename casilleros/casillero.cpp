@@ -6,10 +6,10 @@ Casillero::Casillero(){
     this->nombre = "A";
 }
 
-Casillero::Casillero(int fila, int columna , string nombre){
+Casillero::Casillero(int fila, int columna){
     this->fila = fila;
     this->columna = columna;
-    this->nombre = nombre;
+    this->nombre = "";
 }
 
 string Casillero::obtener_nombre(){

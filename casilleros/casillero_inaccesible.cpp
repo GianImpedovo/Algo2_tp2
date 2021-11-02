@@ -1,10 +1,8 @@
 #include "casillero_inaccesible.h"
 
 
-Casillero_inaccesible::Casillero_inaccesible(int fila, int columna): Casillero( fila, columna , nombre){
+Casillero_inaccesible::Casillero_inaccesible(int fila, int columna): Casillero(fila, columna){
     this->nombre = "L";
-    this->fila = fila;
-    this->columna = columna;
 }
 
 string Casillero_inaccesible::obtener_nombre(){

@@ -7,7 +7,9 @@ class Casillero_inaccesible : public Casillero {
 
 
 public:
+
     Casillero_inaccesible(int fila, int columna);
+
 
     void mostrar_casillero();
 

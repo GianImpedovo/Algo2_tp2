@@ -3,7 +3,7 @@
 // Constructor
 Caracteristicas_edificio::Caracteristicas_edificio(){
     this->cantidad_edificios = 0;
-    this->edificios_posibles = nullptr;
+    this->edificios_posibles = 0;
 }
 
 // Guardo las caracteristicas de los edificios al procesar el archivo
@@ -12,10 +12,12 @@ ifstream nuevo_archivo;
     nuevo_archivo.open(ARCHIVO_EDIFICIO);
 
     string nombre_edificio;
-    int cantidad_piedra;
-    int cantidad_madera;
-    int cantidad_metal;
-    int maximo;
+    string cantidad_piedra;
+    string cantidad_madera;
+    string cantidad_metal;
+    string maximo;
+
+    int piedra, madera, metal, maximo_construir;
 
     Edificio * nuevo_edificio;
 
@@ -25,34 +27,39 @@ ifstream nuevo_archivo;
         nuevo_archivo >> cantidad_metal;
         nuevo_archivo >> maximo;
 
+        piedra = stoi(cantidad_piedra);
+        madera = stoi(cantidad_madera);
+        metal = stoi(cantidad_metal);
+        maximo_construir = stoi(maximo);
+
         if (nombre_edificio == "aserradero"){
 
-            nuevo_edificio = new Aserradero(cantidad_piedra, cantidad_madera, cantidad_metal, maximo);
+            nuevo_edificio = new Aserradero(piedra, madera, metal, maximo_construir);
 
         }
         else if ( nombre_edificio == "escuela"){
 
-            nuevo_edificio = new Escuela( cantidad_piedra, cantidad_madera, cantidad_metal, maximo);
+            nuevo_edificio = new Escuela( piedra, madera, metal, maximo_construir);
 
         }
         else if ( nombre_edificio == "fabrica"){
 
-            nuevo_edificio = new Fabrica( cantidad_piedra, cantidad_madera, cantidad_metal, maximo);
+            nuevo_edificio = new Fabrica( piedra, madera, metal, maximo_construir);
 
         }
         else if ( nombre_edificio == "mina"){
 
-            nuevo_edificio = new Mina( cantidad_piedra, cantidad_madera, cantidad_metal, maximo);
+            nuevo_edificio = new Mina( piedra, madera, metal, maximo_construir);
 
         }
         else if ( nombre_edificio == "obelisco"){
 
-            nuevo_edificio = new Obelisco( cantidad_piedra, cantidad_madera, cantidad_metal, maximo);
+            nuevo_edificio = new Obelisco( piedra, madera, metal, maximo_construir);
 
         }
         else if ( nombre_edificio == "planta electrica"){
 
-            nuevo_edificio = new Planta_electrica( cantidad_piedra, cantidad_madera, cantidad_metal, maximo);
+            nuevo_edificio = new Planta_electrica( piedra, madera, metal, maximo_construir);
 
         }
         agregar_edificio(nuevo_edificio);
