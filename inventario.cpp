@@ -3,9 +3,9 @@
 #include "inventario.h"
 
 //#include "material.h"
-#include "madera.h"
-#include "piedra.h"
-#include "metal.h"
+// #include "madera.h"
+// #include "piedra.h"
+// #include "metal.h"
 
 const int ERROR = -1;
 
@@ -49,18 +49,20 @@ void Inventario :: cargar_materiales(){
         while(archivo_materiales >> nombre){
             archivo_materiales >> cantidad;
 
-            if (nombre == "piedra"){
-                material = new Piedra(nombre, stoi(cantidad) );            
-            } 
-            else if (nombre == "madera"){
-                material = new Madera(nombre, stoi(cantidad));            
-            }
-            else if (nombre == "metal"){
-                material = new Metal(nombre, stoi(cantidad) );
-            }
-            else{
-                material = new Material(nombre, stoi(cantidad) );    
-            }
+            // if (nombre == "piedra"){
+            //     material = new Piedra(nombre, stoi(cantidad) );            
+            // } 
+            // else if (nombre == "madera"){
+            //     material = new Madera(nombre, stoi(cantidad));            
+            // }
+            // else if (nombre == "metal"){
+            //     material = new Metal(nombre, stoi(cantidad) );
+            // }
+            // else{
+            //     material = new Material(nombre, stoi(cantidad) );    
+            // }
+
+            material = new Material(nombre, stoi(cantidad) );
 
             agregar_material(material);
         }
