@@ -23,7 +23,7 @@ void Mapa::ingreso_datos_mapa(){
     lista_edificios->cargar_edificios();
 
     procesar_archivo_mapa();
-    //procesar_archivo_ubicaciones();
+    procesar_archivo_ubicaciones();
 }
 
 void Mapa::procesar_archivo_mapa(){
