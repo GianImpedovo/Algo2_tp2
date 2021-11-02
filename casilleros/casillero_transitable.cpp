@@ -2,6 +2,7 @@
 
 Casillero_transitable::Casillero_transitable(int fila, int columna): Casillero(fila, columna){
     this->nombre = "C";
+    this->material = 0;
 }
 
 string Casillero_transitable::obtener_nombre(){
@@ -14,6 +15,13 @@ void Casillero_transitable::mostrar_casillero(){
 
 void Casillero_transitable::agregar_edificio(string nombre, int piedra, int madera, int metal, int maximo){
     cout << "\nEste es un casillero transitable no se podran construir edificios en el. \n" << endl;
+}
+
+void Casillero_transitable:: agregar_material(string nombre, int cantidad){
+    cout <<" intancie un material: ";
+    this->material = new Material(nombre, cantidad);
+    cout << material->obtener_nombre()<<" ";
+    cout << material->obtener_cantidad_disponible();
 }
 
 void Casillero_transitable::mostrar_coordenadas_edificio(string nombre){
@@ -43,4 +51,12 @@ bool Casillero_transitable::existe_material(){
     }
     cout<<"transitable"<<endl;
     return existe;
+}
+
+Casillero_transitable::~Casillero_transitable(){
+    if ( material ){
+        delete material;
+        cout << "corriendo destructor de casillero transitable" << endl;
+    }
+    material = 0;
 }

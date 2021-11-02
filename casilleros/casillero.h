@@ -19,6 +19,8 @@ public:
 
     virtual void agregar_edificio(string nombre, int piedra, int madera, int metal, int maximo) = 0;
 
+    virtual void agregar_material(string nombre, int cantidad) = 0;
+
     virtual void mostrar_casillero() = 0;
 
     virtual string obtener_nombre() = 0;

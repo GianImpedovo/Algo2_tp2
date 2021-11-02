@@ -16,6 +16,8 @@ public:
 
     void agregar_edificio(string nombre, int piedra, int madera, int metal, int maximo);
 
+    void agregar_material(string nombre, int cantidad);
+
     string obtener_nombre_edificio();
 
     string obtener_diminutivo_edificio();
@@ -26,11 +28,11 @@ public:
 
     bool existe_material();
 
-
     string obtener_nombre();
 
     void mostrar_coordenadas_edificio(string nombre);
 
+    ~Casillero_transitable();
 };
 
 

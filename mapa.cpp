@@ -397,22 +397,22 @@ void Mapa :: lluvia_recursos(){
     <<cant_gen_metales <<" unidades de metal " <<endl
     <<"en las siguientes ubicaciones: "<< endl <<endl;
 
-    Material * material;
+    //Material * material;
     
     for (int i = 0; i < tot_materiales_gen; i++){
         
         consultar_material_a_colocar(cant_gen_piedras, cant_gen_maderas, cant_gen_metales, material_a_colocar);
         
-        material = new Material(material_a_colocar, 1 );
+        // material = new Material(material_a_colocar, 1 );
         //cout <<"pido mem"<<endl;
         
         int fila = generar_numero_random(1,cantidad_filas);
         int columna = generar_numero_random(1, cantidad_columnas);
         
         //DESCOMENTAR LA SIGUIENTE LINEA AL AGEGAR A LA CLASE MAPA
-        bool ocupado = mapa[fila -1][columna - 1]->existe_material();
-        if (ocupado){
-            
+        bool existe = mapa[fila -1][columna - 1]->existe_material();
+        if (!existe){
+            mapa[fila-1][columna-1] -> agregar_material(material_a_colocar, 1);
         }
         // cout <<"pase"<<endl;
         // if ( ocupado ){
@@ -423,10 +423,10 @@ void Mapa :: lluvia_recursos(){
         // }
         //mapa[fila][columna] -> agregar_material(material);
         
-        cout << material -> obtener_cantidad_disponible() << " unidad de " << material -> obtener_nombre() << " en "
-        << "("<< fila <<","<< columna <<")"<<endl;
-
+        // cout << material -> obtener_cantidad_disponible() << " unidad de " << material -> obtener_nombre() << " en "
+        // << "("<< fila <<","<< columna <<")"<<endl;
     }
+    cout <<"dejo de llover"<<endl;
 }
 
 // Destructor
