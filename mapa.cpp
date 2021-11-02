@@ -126,8 +126,16 @@ void Mapa::construir_edificio_nombre(){
             bool alcanzan_materiales = usuario_inventario->alcanzan_materiales(piedra_necesaria, madera_necesaria, metal_necesario);
 
             if ( alcanzan_materiales ){
+                int fila , columna;
+                cout << "\n Construccion del edificio \n" << endl;
+                cout << " fila -> ";
+                cin >> fila;
+                cout << " columna -> ";
+                cin >> columna;
 
-                construir_edificio(nombre_nuevo, piedra_necesaria, madera_necesaria, metal_necesario, maximo);
+                // No me agrega el edificio , error con memoria dinamica 
+
+                mapa[fila -1][columna - 1]->agregar_edificio(nombre_nuevo, piedra_necesaria, madera_necesaria, metal_necesario, maximo);
                 lista_edificios->obtener_edificio(pos_edificio)->sumar_cantidad();
 
             } else {
@@ -141,19 +149,6 @@ void Mapa::construir_edificio_nombre(){
     } else {
         cout << "\n El edificio buscado NO existe . \n" << endl;
     }
-}
-
-void Mapa::construir_edificio(string nombre_nuevo, int piedra, int madera , int metal, int maximo){
-    int fila , columna;
-    cout << "\n Construccion del edificio \n" << endl;
-    cout << " fila -> ";
-    cin >> fila;
-    cout << " columna -> ";
-    cin >> columna;
-
-    // No me agrega el edificio , error con memoria dinamica 
-    mapa[fila - 1][columna - 1]->agregar_edificio(nombre_nuevo, piedra, madera, metal, maximo);
-
 }
 
 // 2)
@@ -348,7 +343,6 @@ void Mapa::recolectar_recursos_producidos(){
 Mapa::~Mapa(){
     for ( int i = 0; i < cantidad_filas; i++){
         for ( int j = 0; j < cantidad_columnas ; j++){
-            mapa[i][j]->~Casillero();
             delete mapa[i][j];
         }
         delete mapa[i];
@@ -357,6 +351,8 @@ Mapa::~Mapa(){
     this->mapa = nullptr;
 
     this->lista_edificios->~Caracteristicas_edificio();
+    lista_edificios = nullptr;
     this->usuario_inventario->~Inventario();
+    usuario_inventario = nullptr;
 
 }

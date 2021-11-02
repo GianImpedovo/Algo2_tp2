@@ -1,18 +1,18 @@
 #include "edificio.h"
 
 Edificio::Edificio(){
-    this->nombre = "nada";
-    this->diminutivo = "";
-    this->cantidad_piedra = 0;
-    this->canitdad_madera = 0;
-    this->cantidad_metal = 0;
-    this->cantidad_edificios = 0;
-    this->maximo_construir = 0;
+    this-> nombre = "nada";
+    this-> diminutivo = "";
+    this-> cantidad_piedra = 0;
+    this-> canitdad_madera = 0;
+    this-> cantidad_metal = 0;
+    this-> cantidad_edificios = 0;
+    this-> maximo_construir = 0;
 }
 
 Edificio::Edificio(std::string nombre , int cantidad_piedra, int cantidad_madera, int cantidad_metal, int maximo_construir){
     this-> nombre = nombre;
-    this->diminutivo = "Ed";
+    this-> diminutivo = "Ed";
     this-> cantidad_piedra = cantidad_piedra;
     this-> canitdad_madera = cantidad_madera;
     this-> cantidad_metal = cantidad_metal;
