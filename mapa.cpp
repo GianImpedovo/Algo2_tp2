@@ -352,8 +352,16 @@ void Mapa::recolectar_recursos_producidos(){
 
 // Destructor
 Mapa::~Mapa(){
+
+    ofstream archivo_ubicaciones(ARCHIVO_UBICACIONES);
+
     for ( int i = 0; i < cantidad_filas; i++){
         for ( int j = 0; j < cantidad_columnas ; j++){
+            if (mapa[i][j] ->existe_edificio() ){
+                archivo_ubicaciones << mapa[i][j] ->obtener_nombre_edificio() << " ("
+                << i+1 << ", " << j+1 << ")" << endl;
+            }
+
             delete mapa[i][j];
         }
         delete [] mapa[i];
