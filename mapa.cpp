@@ -4,9 +4,13 @@ Mapa::Mapa(){
 
     this->cantidad_filas = 0;
     this->cantidad_columnas = 0;
-    this->mapa = nullptr;
-    this->lista_edificios = nullptr;
-    this->usuario_inventario = nullptr;
+    for ( int i = 0; i < cantidad_filas; i++){
+        for (int j = 0; j < cantidad_columnas; j++){
+            mapa[i][j] = 0;
+        }
+    }
+    this->lista_edificios = 0;
+    this->usuario_inventario = 0;
 
 }
 
@@ -23,12 +27,17 @@ void Mapa::ingreso_datos_mapa(){
 }
 
 void Mapa::procesar_archivo_mapa(){
+
     ifstream arch;
     arch.open(ARCHIVO_MAPA);
 
+    string filas, columnas;
     for ( int i = 0 ; i < 1 ; i++){
-        arch >> cantidad_filas; 
-        arch >> cantidad_columnas;
+        arch >> filas; 
+        arch >> columnas;
+
+        cantidad_filas = stoi(filas);
+        cantidad_columnas = stoi(columnas);
     }
     string nombre;
 
@@ -37,27 +46,24 @@ void Mapa::procesar_archivo_mapa(){
     for ( int i = 0; i < cantidad_filas; i++){
         for (int j = 0; j < cantidad_columnas; j++){
             arch >> nombre ;
-
             if ( nombre == "T") {
-                mapa[i][j] = new Casillero_construible(i, j);
+                this->mapa[i][j] = new Casillero_construible(i, j);
             } 
             if (nombre == "C") {
-                mapa[i][j] = new Casillero_transitable(i,j);
+                this->mapa[i][j] = new Casillero_transitable(i,j);
             }
             if (nombre == "L") {
-                mapa[i][j] = new Casillero_inaccesible(i,j);
+                this->mapa[i][j] = new Casillero_inaccesible(i,j);
             }
-
         }
     }
-
     arch.close();
 }
 
 void Mapa::generar_matriz(){
     this->mapa = new Casillero ** [ cantidad_filas ];
     for ( int i = 0; i < cantidad_filas; i++){
-        mapa[i] = new Casillero * [cantidad_columnas];
+        mapa[i] = new Casillero * [ cantidad_columnas ];
     }
 
 }
@@ -103,7 +109,7 @@ void Mapa::procesar_archivo_ubicaciones(){
 
 // 1)
 void Mapa::construir_edificio_nombre(){
-    // tener la cantidad de materiales necesarios []
+
     string nombre_nuevo;
     cout << "\n -> Ingrese el nombre del nuevo edificio que desea construir : ";
     cin >> nombre_nuevo;
@@ -133,10 +139,15 @@ void Mapa::construir_edificio_nombre(){
                 cout << " columna -> ";
                 cin >> columna;
 
-                // No me agrega el edificio , error con memoria dinamica 
-
                 mapa[fila -1][columna - 1]->agregar_edificio(nombre_nuevo, piedra_necesaria, madera_necesaria, metal_necesario, maximo);
-                lista_edificios->obtener_edificio(pos_edificio)->sumar_cantidad();
+                bool creado = mapa[fila -1][columna - 1]->existe_edificio();
+
+                if ( creado ){
+                    lista_edificios->obtener_edificio(pos_edificio)->sumar_cantidad();
+                    usuario_inventario->utilizar_materiales(piedra_necesaria, madera_necesaria, metal_necesario);
+
+                    cout << "\n El edificio " << nombre_nuevo << " fue creado exitosamente . \n" << endl;
+                }
 
             } else {
                 cout << "\n No alcanzan los materiales necesarios para la construccion . " << endl;
@@ -345,14 +356,15 @@ Mapa::~Mapa(){
         for ( int j = 0; j < cantidad_columnas ; j++){
             delete mapa[i][j];
         }
-        delete mapa[i];
+        delete [] mapa[i];
     }
     delete [] mapa;
-    this->mapa = nullptr;
+    this->mapa = 0;
 
-    this->lista_edificios->~Caracteristicas_edificio();
-    lista_edificios = nullptr;
-    this->usuario_inventario->~Inventario();
-    usuario_inventario = nullptr;
+    delete lista_edificios;
+    lista_edificios = 0;
+    delete usuario_inventario;
+    usuario_inventario = 0;
+
 
 }

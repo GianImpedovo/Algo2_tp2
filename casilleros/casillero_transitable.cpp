@@ -1,10 +1,7 @@
 #include "casillero_transitable.h"
 
-
-Casillero_transitable::Casillero_transitable(int fila, int columna): Casillero( fila, columna , nombre){
+Casillero_transitable::Casillero_transitable(int fila, int columna): Casillero(fila, columna){
     this->nombre = "C";
-    this->fila = fila;
-    this->columna = columna;
 }
 
 string Casillero_transitable::obtener_nombre(){
@@ -33,5 +30,9 @@ string Casillero_transitable::obtener_nombre_edificio(){
 
 string Casillero_transitable::obtener_diminutivo_edificio(){
     return "";
+}
+
+bool Casillero_transitable::existe_edificio(){
+    return false;
 }
 

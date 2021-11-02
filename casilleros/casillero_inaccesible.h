@@ -7,7 +7,9 @@ class Casillero_inaccesible : public Casillero {
 
 
 public:
+
     Casillero_inaccesible(int fila, int columna);
+
 
     void mostrar_casillero();
 
@@ -22,6 +24,8 @@ public:
     string obtener_nombre();
 
     void mostrar_coordenadas_edificio(string nombre);
+
+    bool existe_edificio();
 
 };
 

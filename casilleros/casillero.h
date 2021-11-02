@@ -13,7 +13,7 @@ protected:
     string nombre;
 
 public:
-    Casillero(int fila, int columna , string nombre);
+    Casillero(int fila, int columna);
 
     Casillero();
 
@@ -28,6 +28,8 @@ public:
     virtual string obtener_diminutivo_edificio() = 0;
 
     virtual void eliminar_edificio() = 0;
+
+    virtual bool existe_edificio() = 0;
 
     int mostrar_fila();
 

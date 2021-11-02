@@ -8,6 +8,7 @@ class Casillero_transitable : public Casillero {
 private:
     //Material * material;
 public:
+
     Casillero_transitable(int fila, int columna);
 
     void mostrar_casillero();
@@ -19,6 +20,8 @@ public:
     string obtener_diminutivo_edificio();
 
     void eliminar_edificio();
+
+    bool existe_edificio();
 
     string obtener_nombre();
 

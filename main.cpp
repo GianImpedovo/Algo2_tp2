@@ -20,7 +20,7 @@ int main(){
         procesar_opcion(opcion, mapa);
         mostrar_menu();
         opcion = elegir_opcion();
-    }   
+    }
 
     delete mapa;
 

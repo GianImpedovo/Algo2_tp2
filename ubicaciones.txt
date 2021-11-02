@@ -1,5 +1,5 @@
 escuela (1, 5)
 mina (1, 8)
-aserradero (2, 4)
+aserradero (1, 4)
 aserradero (8, 3)
 fabrica (8, 1)
