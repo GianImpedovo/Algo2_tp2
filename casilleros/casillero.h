@@ -31,6 +31,8 @@ public:
 
     virtual bool existe_edificio() = 0;
 
+    virtual bool existe_material() = 0;
+
     int mostrar_fila();
 
     int mostrar_columna();

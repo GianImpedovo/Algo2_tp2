@@ -2,11 +2,12 @@
 #define CASILLERO_TRANSITABLE_H
 
 #include "casillero.h"
+#include "../material.h"
 
 
 class Casillero_transitable : public Casillero {
 private:
-    //Material * material;
+    Material * material;
 public:
 
     Casillero_transitable(int fila, int columna);
@@ -22,6 +23,9 @@ public:
     void eliminar_edificio();
 
     bool existe_edificio();
+
+    bool existe_material();
+
 
     string obtener_nombre();
 

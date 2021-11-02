@@ -36,3 +36,11 @@ bool Casillero_transitable::existe_edificio(){
     return false;
 }
 
+bool Casillero_transitable::existe_material(){
+    bool existe = false;
+    if ( material ){
+        existe = true;
+    }
+    cout<<"transitable"<<endl;
+    return existe;
+}

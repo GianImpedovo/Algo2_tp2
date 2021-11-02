@@ -36,3 +36,8 @@ string Casillero_inaccesible::obtener_diminutivo_edificio(){
 bool Casillero_inaccesible::existe_edificio(){
     return false;
 }
+
+bool Casillero_inaccesible::existe_material(){
+    cout<<"inaccesible"<<endl;
+    return false;
+}

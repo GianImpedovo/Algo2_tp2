@@ -27,6 +27,8 @@ public:
 
     bool existe_edificio();
 
+    bool existe_material();
+
 };
 
 

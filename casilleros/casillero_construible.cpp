@@ -90,6 +90,11 @@ bool Casillero_construible::existe_edificio(){
     return existe;
 }
 
+bool Casillero_construible::existe_material(){
+    cout<<"construible"<<endl;
+    return false;
+}
+
 void Casillero_construible::mostrar_coordenadas_edificio(string nombre){
 
     if ( edificio_construido ){

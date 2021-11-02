@@ -74,7 +74,7 @@ void procesar_opcion(int opcion, Mapa * mapa){
         break;
 
     case LLUVIA_RECURSOS:
-
+            mapa->lluvia_recursos();
         break;
     }
 }

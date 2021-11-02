@@ -93,6 +93,25 @@ public:
     //POS:
     void recolectar_recursos_producidos();
 
+    //PRE: Recibe los eneteros "max_fila" y  "max_col" con los vaores de las maxima columna y la maxima fila que
+    //hay en el mapa
+    //POST: Coloca en el mapa 1 unidad de cada material generado. Si la posicion random en la que se lo colocaria
+    //resulta estar ocupada, no se coloca dicho material.
+    void lluvia_recursos();
+
+    //Consultar material a colocar
+    //PRE: Recibe los enteros "cant_gen_piedras", "cant_gen_maderas" y "cant_gen_metales" y el string
+    //material_a_colocar
+    //POST: Modifica por parametro "material_a_colocar" y las cantidades de piedra y madera restantes
+    //void Mapa ::
+    void consultar_material_a_colocar(int &cant_gen_piedras, int &cant_gen_maderas, int &cant_gen_metales, string &material_a_colocar);
+
+    //Generar numero random
+    //PRE: Recibe los enteros "min" y "max" con los valores limites (inclusives) entre los cuales se desea generar
+    //el numero random 
+    //POST: Devuelve un valor random entre "min" y "max"
+    int generar_numero_random(int min, int max);
+
     // Detructor
     //PRE:
     //POS:
