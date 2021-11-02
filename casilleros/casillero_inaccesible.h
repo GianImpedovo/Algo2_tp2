@@ -25,6 +25,8 @@ public:
 
     void mostrar_coordenadas_edificio(string nombre);
 
+    bool existe_edificio();
+
 };
 
 

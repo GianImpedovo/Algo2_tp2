@@ -29,6 +29,8 @@ public:
 
     virtual void eliminar_edificio() = 0;
 
+    virtual bool existe_edificio() = 0;
+
     int mostrar_fila();
 
     int mostrar_columna();

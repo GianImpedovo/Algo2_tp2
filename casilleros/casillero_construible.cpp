@@ -82,6 +82,14 @@ void Casillero_construible::eliminar_edificio(){
 
 }
 
+bool Casillero_construible::existe_edificio(){
+    bool existe = false;
+    if ( edificio_construido ){
+        existe = true;
+    }
+    return existe;
+}
+
 void Casillero_construible::mostrar_coordenadas_edificio(string nombre){
 
     if ( edificio_construido ){

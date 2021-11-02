@@ -32,3 +32,7 @@ string Casillero_transitable::obtener_diminutivo_edificio(){
     return "";
 }
 
+bool Casillero_transitable::existe_edificio(){
+    return false;
+}
+

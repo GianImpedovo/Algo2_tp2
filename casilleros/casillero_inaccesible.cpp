@@ -33,3 +33,6 @@ string Casillero_inaccesible::obtener_diminutivo_edificio(){
     return "";
 }
 
+bool Casillero_inaccesible::existe_edificio(){
+    return false;
+}

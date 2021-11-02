@@ -139,10 +139,15 @@ void Mapa::construir_edificio_nombre(){
                 cout << " columna -> ";
                 cin >> columna;
 
-                // No me agrega el edificio , error con memoria dinamica 
-
                 mapa[fila -1][columna - 1]->agregar_edificio(nombre_nuevo, piedra_necesaria, madera_necesaria, metal_necesario, maximo);
-                lista_edificios->obtener_edificio(pos_edificio)->sumar_cantidad();
+                bool creado = mapa[fila -1][columna - 1]->existe_edificio();
+
+                if ( creado ){
+                    lista_edificios->obtener_edificio(pos_edificio)->sumar_cantidad();
+                    usuario_inventario->utilizar_materiales(piedra_necesaria, madera_necesaria, metal_necesario);
+
+                    cout << "\n El edificio " << nombre_nuevo << " fue creado exitosamente . \n" << endl;
+                }
 
             } else {
                 cout << "\n No alcanzan los materiales necesarios para la construccion . " << endl;
