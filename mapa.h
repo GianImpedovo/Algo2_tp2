@@ -99,20 +99,26 @@ public:
     //resulta estar ocupada, no se coloca dicho material.
     void lluvia_recursos();
 
-    //Consultar material a colocar
-    //PRE: Recibe los enteros "cant_gen_piedras", "cant_gen_maderas" y "cant_gen_metales" y el string
-    //material_a_colocar
-    //POST: Modifica por parametro "material_a_colocar" y las cantidades de piedra y madera restantes
-    //void Mapa ::
-    void consultar_material_a_colocar(int &cant_gen_piedras, int &cant_gen_maderas, int &cant_gen_metales, string &material_a_colocar);
-
     //Generar numero random
     //PRE: Recibe los enteros "min" y "max" con los valores limites (inclusives) entre los cuales se desea generar
     //el numero random 
     //POST: Devuelve un valor random entre "min" y "max"
     int generar_numero_random(int min, int max);
 
-    // Detructor
+    //Ejecutar lluvia
+    //PRE: Recibe un entero con la cantidad total de materiales y otros 3 enteros con las cantiades de piedra,
+    //madera y metal generadas.
+    //POST: Efectua la lluvia de materiales colocando en el mapa en las posiciones hablitadas y generadas por
+    //la funcion "generar_numero_random".
+    void ejecutar_lluvia(int tot_materiales_gen, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales);
+    
+    //Consultar material a colocar
+    //PRE: Recibe los enteros "cant_gen_piedras", "cant_gen_maderas" y "cant_gen_metales" y el string
+    //material_a_colocar
+    //POST: Modifica por parametro "material_a_colocar" y las cantidades de piedra y madera restantes.
+    void consultar_material_a_colocar(int &cant_gen_piedras, int &cant_gen_maderas, int &cant_gen_metales, string &material_a_colocar);
+
+    //Detructor
     //PRE:
     //POS:
     ~Mapa();

@@ -100,7 +100,6 @@ bool Casillero_construible::existe_edificio(){
 }
 
 bool Casillero_construible::existe_material(){
-    cout<<"construible"<<endl;
     return true;
 }
 

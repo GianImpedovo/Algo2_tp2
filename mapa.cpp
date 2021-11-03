@@ -376,6 +376,32 @@ string &material_a_colocar ){
 }
 
 
+void Mapa::ejecutar_lluvia(int tot_materiales_gen, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales){
+    
+    string material_a_colocar = "";
+    bool llovidos = 0;
+    for (int i = 0; i < tot_materiales_gen; i++){
+        
+        consultar_material_a_colocar(cant_gen_piedras, cant_gen_maderas, cant_gen_metales, material_a_colocar);
+        
+        int fila = generar_numero_random(1,cantidad_filas);
+        int columna = generar_numero_random(1, cantidad_columnas);
+                
+        bool existe = mapa[fila -1][columna - 1]->existe_material();
+        if (!existe){
+            llovidos +=1;
+            mapa[fila-1][columna-1] -> agregar_material(material_a_colocar, 1);
+            cout << "1 unidad de " <<material_a_colocar << " en ("<< fila <<","<< columna <<")"<<endl;
+        }
+    }
+    if (!llovidos){
+            cout <<"Ninguno"<<endl;
+        }
+
+    cout <<endl<<"Dejo de llover"<<endl<<endl;
+}
+
+
 //9)
 void Mapa :: lluvia_recursos(){
 
@@ -385,49 +411,16 @@ void Mapa :: lluvia_recursos(){
     int cant_gen_maderas = generar_numero_random(0,1);
     int cant_gen_metales = generar_numero_random(2,4);
     
-    // int max_fila = 10; // mapa.botener_numero_filas
-    // int max_col = 10; 
-    
     int tot_materiales_gen = cant_gen_piedras + cant_gen_maderas + cant_gen_metales;
     
-    string material_a_colocar = "";
         
     cout << "Han llovido en el mapa " << tot_materiales_gen << " unidades de materiales: " <<endl
     <<cant_gen_piedras <<" unidades de piedra"<<endl
     <<cant_gen_maderas <<" unidades de madera" <<endl
-    <<cant_gen_metales <<" unidades de metal " <<endl
-    <<"en las siguientes ubicaciones: "<< endl <<endl;
+    <<cant_gen_metales <<" unidades de metal " <<endl<<endl
+    <<"Cayendo en casilleros habilitados los siguientes:"<< endl;
 
-    //Material * material;
-    
-    for (int i = 0; i < tot_materiales_gen; i++){
-        
-        consultar_material_a_colocar(cant_gen_piedras, cant_gen_maderas, cant_gen_metales, material_a_colocar);
-        
-        // material = new Material(material_a_colocar, 1 );
-        //cout <<"pido mem"<<endl;
-        
-        int fila = generar_numero_random(1,cantidad_filas);
-        int columna = generar_numero_random(1, cantidad_columnas);
-        
-        //DESCOMENTAR LA SIGUIENTE LINEA AL AGEGAR A LA CLASE MAPA
-        bool existe = mapa[fila -1][columna - 1]->existe_material();
-        if (!existe){
-            mapa[fila-1][columna-1] -> agregar_material(material_a_colocar, 1);
-        }
-        // cout <<"pase"<<endl;
-        // if ( ocupado ){
-        //     cout <<"existe"<<endl;
-        // }
-        // else{
-        //     cout <<"no existe"<<endl;
-        // }
-        //mapa[fila][columna] -> agregar_material(material);
-        
-        // cout << material -> obtener_cantidad_disponible() << " unidad de " << material -> obtener_nombre() << " en "
-        // << "("<< fila <<","<< columna <<")"<<endl;
-    }
-    cout <<"dejo de llover"<<endl;
+    ejecutar_lluvia(tot_materiales_gen,cant_gen_piedras, cant_gen_maderas, cant_gen_metales);
 }
 
 // Destructor
