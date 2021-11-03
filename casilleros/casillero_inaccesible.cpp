@@ -37,6 +37,11 @@ string Casillero_inaccesible::obtener_diminutivo_edificio(){
     return "";
 }
 
+
+string Casillero_inaccesible::obtener_diminutivo_material(){
+    return "";
+}
+
 bool Casillero_inaccesible::existe_edificio(){
     return false;
 }

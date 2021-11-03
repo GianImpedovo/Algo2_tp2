@@ -21,6 +21,8 @@ public:
 
     string obtener_diminutivo_edificio();
 
+    string obtener_diminutivo_material();
+
     void eliminar_edificio();
 
     string obtener_nombre();

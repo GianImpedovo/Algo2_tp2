@@ -286,11 +286,12 @@ void Mapa::mostrar_mapa(){
         for ( int j = 0; j < cantidad_columnas; j++){
            cout << mapa[i][j]->obtener_nombre()
                 << mapa[i][j]->obtener_diminutivo_edificio()
+                << mapa[i][j]->obtener_diminutivo_material()
                 << " ";
         }
         cout << "\n";
     }
-    cout << "\n";
+    cout << "\n\n";
 }
 
 // 6)

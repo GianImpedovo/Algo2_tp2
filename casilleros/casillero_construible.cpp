@@ -81,6 +81,10 @@ string Casillero_construible::obtener_diminutivo_edificio(){
     return diminutivo;
 }
 
+string Casillero_construible::obtener_diminutivo_material(){
+    return "";
+}
+
 void Casillero_construible::eliminar_edificio(){
     delete edificio_construido;
     edificio_construido = 0;

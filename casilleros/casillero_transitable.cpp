@@ -40,6 +40,14 @@ string Casillero_transitable::obtener_diminutivo_edificio(){
     return "";
 }
 
+string Casillero_transitable::obtener_diminutivo_material(){
+    string diminutivo = "";
+    if ( material ){
+        diminutivo = material->obtener_nombre() ;
+    }
+    return diminutivo;
+}
+
 bool Casillero_transitable::existe_edificio(){
     return false;
 }
