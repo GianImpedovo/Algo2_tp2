@@ -314,7 +314,7 @@ void Mapa::consultar_coordenada(){
     cout << "Ingrese la columna -> ";
     cin >> columna;
     cout << "\n";
-    mapa[fila - 1][columna - 1]->mostrar_casillero() ;
+    mapa[fila][columna]->mostrar_casillero() ;
     cout << "\n";
 }
 
