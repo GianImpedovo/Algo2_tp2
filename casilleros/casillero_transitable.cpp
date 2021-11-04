@@ -1,10 +1,8 @@
 #include "casillero_transitable.h"
 
-
-Casillero_transitable::Casillero_transitable(int fila, int columna): Casillero( fila, columna , nombre){
+Casillero_transitable::Casillero_transitable(int fila, int columna): Casillero(fila, columna){
     this->nombre = "C";
-    this->fila = fila;
-    this->columna = columna;
+    this->material = 0;
 }
 
 string Casillero_transitable::obtener_nombre(){
@@ -19,6 +17,11 @@ void Casillero_transitable::agregar_edificio(string nombre, int piedra, int made
     cout << "\nEste es un casillero transitable no se podran construir edificios en el. \n" << endl;
 }
 
+void Casillero_transitable:: agregar_material(string nombre, int cantidad){
+    
+    this->material = new Material(nombre, cantidad);
+}
+
 void Casillero_transitable::mostrar_coordenadas_edificio(string nombre){
     cout << "\nNo existe edificio construido\n" << endl;
 }
@@ -31,3 +34,34 @@ string Casillero_transitable::obtener_nombre_edificio(){
     return "";
 }
 
+string Casillero_transitable::obtener_diminutivo_edificio(){
+    return "";
+}
+
+string Casillero_transitable::obtener_diminutivo_material(){
+    string diminutivo = "";
+    if ( material ){
+        diminutivo = material->obtener_nombre() ;
+    }
+    return diminutivo;
+}
+
+bool Casillero_transitable::existe_edificio(){
+    return false;
+}
+
+bool Casillero_transitable::existe_material(){
+    bool existe = false;
+    if ( material ){
+        existe = true;
+    }
+    return existe;
+}
+
+Casillero_transitable::~Casillero_transitable(){
+    if ( material ){
+        delete material;
+        cout << "corriendo destructor de casillero transitable" << endl;
+    }
+    material = 0;
+}

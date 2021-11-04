@@ -3,9 +3,9 @@
 #include "inventario.h"
 
 //#include "material.h"
-#include "madera.h"
-#include "piedra.h"
-#include "metal.h"
+// #include "madera.h"
+// #include "piedra.h"
+// #include "metal.h"
 
 const int ERROR = -1;
 
@@ -49,18 +49,20 @@ void Inventario :: cargar_materiales(){
         while(archivo_materiales >> nombre){
             archivo_materiales >> cantidad;
 
-            if (nombre == "piedra"){
-                material = new Piedra(nombre, stoi(cantidad) );            
-            } 
-            else if (nombre == "madera"){
-                material = new Madera(nombre, stoi(cantidad));            
-            }
-            else if (nombre == "metal"){
-                material = new Metal(nombre, stoi(cantidad) );
-            }
-            else{
-                material = new Material(nombre, stoi(cantidad) );    
-            }
+            // if (nombre == "piedra"){
+            //     material = new Piedra(nombre, stoi(cantidad) );            
+            // } 
+            // else if (nombre == "madera"){
+            //     material = new Madera(nombre, stoi(cantidad));            
+            // }
+            // else if (nombre == "metal"){
+            //     material = new Metal(nombre, stoi(cantidad) );
+            // }
+            // else{
+            //     material = new Material(nombre, stoi(cantidad) );    
+            // }
+
+            material = new Material(nombre, stoi(cantidad) );
 
             agregar_material(material);
         }
@@ -97,22 +99,24 @@ void Inventario :: agregar_material(Material* material){
 
 //Destructor de inventario
 Inventario:: ~ Inventario(){
-        ofstream archivo_materiales(PATH_MATERIALES);
-
-        int cantidad_total = cantidad_de_materiales;
+    ofstream archivo_materiales(PATH_MATERIALES);
+    int cantidad_total = cantidad_de_materiales;
         
-        for(int i = 0; i < cantidad_total; i++){
+    for(int i = 0; i < cantidad_total; i++){
+        archivo_materiales << lista_materiales[i]->obtener_nombre()<< ' '
+        << lista_materiales[i] -> obtener_cantidad_disponible()<< '\n';
+        
+        delete lista_materiales[i];
+        
+        cantidad_de_materiales--;
+    }
 
-            archivo_materiales << lista_materiales[i]->obtener_nombre()<< ' '
-            << lista_materiales[i] -> obtener_cantidad_disponible()<< '\n';
-            
-            delete lista_materiales[i];
-            
-            cantidad_de_materiales--;
-        }
+    delete [] lista_materiales;
+    lista_materiales = nullptr;
 
-        delete [] lista_materiales;
-        lista_materiales = nullptr;
+    cout << "Ejecuto el destructor del Inventario . " << endl;
+
+
 };
 
 

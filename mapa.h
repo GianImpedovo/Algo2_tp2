@@ -27,30 +27,100 @@ private:
     Caracteristicas_edificio * lista_edificios;
 
 public:
+
+    // Constructor
+    //PRE:
+    //POS:
     Mapa();
 
-    void mostrar_inv();
+    //PRE:
+    //POS:
+    void ingreso_datos_mapa();
 
+    //PRE:
+    //POS:
+    void procesar_archivo_mapa();
+
+    //PRE:
+    //POS:
+    void procesar_archivo_ubicaciones();
+
+    //PRE:
+    //POS:
     void generar_matriz();
 
+    //PRE:
+    //POS:
+    void construir_edificio_nombre();
+
+    //PRE:
+    //POS:
     void listar_edificios_construidos();
 
+    //PRE:
+    //POS:
     void mostrar_coordenadas(string nombre);
 
+    //PRE:
+    //POS:
     void mostrar_todos_edificios();
 
+    //PRE:
+    //POS:
     void demoler_edificio();
 
-    void buscar_coordenada();
+    //PRE:
+    //POS:
+    void obtengo_materiales_elimino_edificio(string nombre_edificio, int fila, int columna);
 
-    void procesar_archivo_ubicaciones();
-    
-    void mostrar_filas();
-    
-    void mostrar_columnas();
+    //PRE:
+    //POS:
+    void devolver_materiales(int piedra, int madera, int metal);
 
+    //PRE:
+    //POS:
     void mostrar_mapa();
+
+    //PRE:
+    //POS:
+    void consultar_coordenada();
+
+    //PRE:
+    //POS:
+    void mostrar_inv();
+
+    //PRE:
+    //POS:
+    void recolectar_recursos_producidos();
+
+    //PRE: Recibe los eneteros "max_fila" y  "max_col" con los vaores de las maxima columna y la maxima fila que
+    //hay en el mapa
+    //POST: Coloca en el mapa 1 unidad de cada material generado. Si la posicion random en la que se lo colocaria
+    //resulta estar ocupada, no se coloca dicho material.
+    void lluvia_recursos();
+
+    //Generar numero random
+    //PRE: Recibe los enteros "min" y "max" con los valores limites (inclusives) entre los cuales se desea generar
+    //el numero random 
+    //POST: Devuelve un valor random entre "min" y "max"
+    int generar_numero_random(int min, int max);
+
+    //Ejecutar lluvia
+    //PRE: Recibe un entero con la cantidad total de materiales y otros 3 enteros con las cantiades de piedra,
+    //madera y metal generadas.
+    //POST: Efectua la lluvia de materiales colocando en el mapa en las posiciones hablitadas y generadas por
+    //la funcion "generar_numero_random".
+    void ejecutar_lluvia(int tot_materiales_gen, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales);
     
+    //Consultar material a colocar
+    //PRE: Recibe los enteros "cant_gen_piedras", "cant_gen_maderas" y "cant_gen_metales" y el string
+    //material_a_colocar
+    //POST: Modifica por parametro "material_a_colocar" y las cantidades de piedra y madera restantes.
+    void consultar_material_a_colocar(int &cant_gen_piedras, int &cant_gen_maderas, int &cant_gen_metales, string &material_a_colocar);
+
+    //Detructor
+    //PRE:
+    //POS:
     ~Mapa();
 };
 

@@ -10,8 +10,7 @@ using namespace std;
 int main(){
 
     Mapa * mapa = new Mapa;
-    mapa->procesar_archivo_ubicaciones();
-
+    mapa->ingreso_datos_mapa();
 
     mostrar_menu();
     int opcion = elegir_opcion();
@@ -21,7 +20,7 @@ int main(){
         procesar_opcion(opcion, mapa);
         mostrar_menu();
         opcion = elegir_opcion();
-    }   
+    }
 
     delete mapa;
 

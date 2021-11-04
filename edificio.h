@@ -15,12 +15,13 @@ protected:
     int canitdad_madera;
     int cantidad_metal;
     int cantidad_edificios;
+    int brinda;
     int maximo_construir;
 
 public:
     Edificio();
 
-    Edificio(std::string nombre , int cantidad_piedra, int cantidad_madera, int cantidad_metal, int maximo_construir);
+    Edificio( int cantidad_piedra, int cantidad_madera, int cantidad_metal, int maximo_construir);
 
     string obtener_nombre();
 
@@ -42,9 +43,18 @@ public:
 
     int obtener_mitad_metal();
 
+    int obtener_cuantos_puedo_construir();
+
     void sumar_cantidad();
 
     void restar_cantidad();
+
+    virtual void mostrar_mensaje() = 0;
+
+    virtual int obtener_cantidad_brindada() = 0;
+
+    virtual ~Edificio();
+
 
 };
 

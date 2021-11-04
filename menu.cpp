@@ -42,6 +42,7 @@ void procesar_opcion(int opcion, Mapa * mapa){
     switch (opcion)
     {
     case CONSTRUIR_EDIFICIO:
+            mapa->construir_edificio_nombre();
         break;
 
     case LISTAR_EDIFICIOS_CONSTRUIDOS:
@@ -61,7 +62,7 @@ void procesar_opcion(int opcion, Mapa * mapa){
         break;
 
     case CONSULTAR_COORDENADA:
-            mapa->buscar_coordenada();
+            mapa->consultar_coordenada();
         break;
 
     case MOSTRAR_INVENTARIO:
@@ -69,11 +70,11 @@ void procesar_opcion(int opcion, Mapa * mapa){
         break;
 
     case RECOLECTAR_RECURSOS:
-
+            mapa->recolectar_recursos_producidos();
         break;
 
     case LLUVIA_RECURSOS:
-
+            mapa->lluvia_recursos();
         break;
     }
 }

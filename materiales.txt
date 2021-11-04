@@ -1,5 +1,5 @@
-piedra 7960
-metal 4960
-madera 160
+piedra 10000
+metal 10000
+madera 10000
 oro 130
 piedrota_gorda 10
