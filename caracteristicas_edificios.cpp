@@ -11,21 +11,29 @@ void Caracteristicas_edificio::cargar_edificios(){
 ifstream nuevo_archivo;
     nuevo_archivo.open(ARCHIVO_EDIFICIO);
 
-    string nombre_edificio;
-    string cantidad_piedra;
-    string cantidad_madera;
-    string cantidad_metal;
-    string maximo;
+    string nombre_edificio, segundo_nombre, cantidad_piedra, cantidad_madera, cantidad_metal, maximo;
 
     int piedra, madera, metal, maximo_construir;
 
     Edificio * nuevo_edificio;
 
     while (nuevo_archivo >> nombre_edificio){
-        nuevo_archivo >> cantidad_piedra;
-        nuevo_archivo >> cantidad_madera;
-        nuevo_archivo >> cantidad_metal;
-        nuevo_archivo >> maximo;
+        if ( nombre_edificio == "planta"){
+            nuevo_archivo >> segundo_nombre;
+            nuevo_archivo >> cantidad_piedra;
+            nuevo_archivo >> cantidad_madera;
+            nuevo_archivo >> cantidad_metal;
+            nuevo_archivo >> maximo;
+
+            nombre_edificio += " " + segundo_nombre;
+
+        } else {
+            nuevo_archivo >> cantidad_piedra;
+            nuevo_archivo >> cantidad_madera;
+            nuevo_archivo >> cantidad_metal;
+            nuevo_archivo >> maximo;
+
+        }
 
         piedra = stoi(cantidad_piedra);
         madera = stoi(cantidad_madera);
@@ -128,6 +136,7 @@ void Caracteristicas_edificio::listar_todos_edificios(){
     cout << "\n";
 }
 
+// Existe edificio 
 bool Caracteristicas_edificio::existe_el_edificio(string nombre){
     bool existe = false;
     for (int i = 0; i < cantidad_edificios; i++){
@@ -140,6 +149,7 @@ bool Caracteristicas_edificio::existe_el_edificio(string nombre){
     return existe;
 }
 
+// Spuera maximo
 bool Caracteristicas_edificio::supera_maximo(string nombre){
     bool supera_max = true;
     int maximo , construidos, restantes;
@@ -176,7 +186,5 @@ Caracteristicas_edificio::~Caracteristicas_edificio(){
     }
     delete [] edificios_posibles;
     edificios_posibles = nullptr;
-
-    cout << "Ejecuto el destructor de caracteristicas_edificio ." << endl;
 
 }

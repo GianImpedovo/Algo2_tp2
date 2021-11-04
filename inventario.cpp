@@ -114,8 +114,6 @@ Inventario:: ~ Inventario(){
     delete [] lista_materiales;
     lista_materiales = nullptr;
 
-    cout << "Ejecuto el destructor del Inventario . " << endl;
-
 
 };
 

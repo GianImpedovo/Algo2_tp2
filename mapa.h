@@ -29,68 +29,74 @@ private:
 public:
 
     // Constructor
-    //PRE:
-    //POS:
+    //PRE: - 
+    //POS: Inicializa el mapa con todos sus valores y punteros en 0.
     Mapa();
 
-    //PRE:
-    //POS:
+    //PRE: Utilizando los arhivos requeridos.
+    //POS: Setea el mapa con sus valores ingresando cada uno de sus casilleros correspondientes y 
+    //     en caso de existir ubicaciones de edificios o materiales.
+    //     Ingresa los valores a los punteros usuarios_inventario y lista_edificio 
+    //     haciendo lectura correspondiente de los arhivos
     void ingreso_datos_mapa();
 
-    //PRE:
-    //POS:
+    //PRE: Utilizando el archivo mapa.txt.
+    //POS: Obtiene la cantidad de filas y columnas. Ingresa los valores de los casilleros.
     void procesar_archivo_mapa();
 
-    //PRE:
-    //POS:
+    //PRE: Utilizando el archivo ubicaciones.txt.
+    //POS: Agrega Edificios/Materiales en sus ubicaciones.
     void procesar_archivo_ubicaciones();
 
-    //PRE:
-    //POS:
+    //PRE: -
+    //POS: Inicializa la matriz del mapa con valor 0.
     void generar_matriz();
 
-    //PRE:
-    //POS:
+    //PRE: Debe crearse un edificio con el nombre de algun edificio que exista ( se encuentre en caracteristicas_edificios)
+    //     solicitando las coordenadas , se chequea si se poseen los materiales necesarios, si no supero el maximo de edificios y si se puede
+    //     construir en tales coordenadas, debe ser un casillero_construible.
+    //POS: Agrega el edificio dentro del casillero solicitado.
     void construir_edificio_nombre();
 
-    //PRE:
-    //POS:
+    //PRE: En caso de que existan edificios construidos en los casilleros.
+    //POS: Muestra cuales edificios estan construidos con su cantidad y en que coordenadas se encuentran.
     void listar_edificios_construidos();
 
-    //PRE:
-    //POS:
+    //PRE: En caso que haya edificios construidos en los casilleros.
+    //POS: Muestra los edificios que estan construidos y donde se encuentran ubicados.
     void mostrar_coordenadas(string nombre);
 
-    //PRE:
-    //POS:
+    //PRE: si lista_edificios != 0.
+    //POS: Muestra las caracteristicas de todos los edificios posibles a construir/demomel.
     void mostrar_todos_edificios();
 
-    //PRE:
-    //POS:
+    //PRE: Solicitando coordenadas, fila <= cantidad_filas, columna <= cantidad_columnas.
+    //POS: Elimina el edificio solicitado del casillero correspondiente y retorna la mitad de los materiales usados al inventario.
     void demoler_edificio();
 
-    //PRE:
-    //POS:
+    //PRE: Con el nombre del edificio que se desea demoler y sus coordenadas (fila y columna).
+    //POS: Obtengo los valores de los materiales a retornar luego de la demolicion y elimino el edificios , 
+    //     restando 1 a la cantidad de edificios y sumando los materiales obtenidos al inventario.
     void obtengo_materiales_elimino_edificio(string nombre_edificio, int fila, int columna);
 
-    //PRE:
-    //POS:
+    //PRE: Una ves demolido el edificio.
+    //POS: Muestro por pantalla los materiales obtenidos, y los guardo en el inventario. 
     void devolver_materiales(int piedra, int madera, int metal);
 
-    //PRE:
-    //POS:
+    //PRE: Teniendo cargada la matriz dinamica.
+    //POS: Recorro la matriz y muestro los nombres de los casilleros. 
     void mostrar_mapa();
 
-    //PRE:
-    //POS:
+    //PRE: Solicitando las coordenadas, fila <= cantidad_filas, columna <= cantidad_columnas.
+    //POS: Muestra por pantalla el mensaje del casillero.
     void consultar_coordenada();
 
-    //PRE:
-    //POS:
+    //PRE: - 
+    //POS: Imprime por pantalla las cantidades de los materiales que se poseen.
     void mostrar_inv();
 
-    //PRE:
-    //POS:
+    //PRE: En caso de tener edificios construidos que brinden materiales.
+    //POS: Obtengo los materiales que brindan los edificios y se guardan en el inventario.
     void recolectar_recursos_producidos();
 
     //PRE: Recibe los eneteros "max_fila" y  "max_col" con los vaores de las maxima columna y la maxima fila que
@@ -119,8 +125,11 @@ public:
     void consultar_material_a_colocar(int &cant_gen_piedras, int &cant_gen_maderas, int &cant_gen_metales, string &material_a_colocar);
 
     //Detructor
-    //PRE:
-    //POS:
+    //PRE: - 
+    //POS: Libero la memoria reservada por el mapa y los casilleros creados , liberando los edificios y materiales 
+    //     que se encuentran en los casilleros y se guarda la informacion en el archivo ubicaciones.txt,
+    //     tambien se libera la memoria reservada por el inventario y las caracteristicas_edificios.
+    //     Se vuelve a setear todos los valores en 0.
     ~Mapa();
 };
 
