@@ -1,5 +1,4 @@
-escuela (1, 5)
+planta electrica (0, 4)
 mina (1, 8)
-aserradero (1, 4)
-aserradero (8, 3)
-fabrica (8, 1)
+mina (4, 7)
+fabrica (7, 2)

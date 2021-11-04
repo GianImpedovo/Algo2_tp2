@@ -73,14 +73,23 @@ void Mapa::procesar_archivo_ubicaciones(){
     ifstream archivo;
     archivo.open(ARCHIVO_UBICACIONES);
 
-    string nombre, barra, fila, columna;
+    string nombre,segundo_nombre, barra, fila, columna;
 
     while( archivo >> nombre ){
-        getline(archivo, barra, ' ');
-        getline(archivo, barra, '(');
-        getline(archivo, fila, ',');
-        getline(archivo, barra, ' ');
-        getline(archivo, columna, ')');
+        if ( nombre == "planta"){
+            archivo >> segundo_nombre;
+            getline(archivo, barra, '(');
+            getline(archivo, fila, ',');
+            getline(archivo, barra, ' ');
+            getline(archivo, columna, ')');
+
+            nombre += " " + segundo_nombre;
+        } else {
+            getline(archivo, barra, '(');
+            getline(archivo, fila, ',');
+            getline(archivo, barra, ' ');
+            getline(archivo, columna, ')');
+        }
 
         int madera, piedra, metal, maximo;
 
@@ -91,7 +100,7 @@ void Mapa::procesar_archivo_ubicaciones(){
                 metal = lista_edificios->obtener_edificio(i)->obtener_cantidad_metal();
                 maximo = lista_edificios->obtener_edificio(i)->obtener_maximo_construir();
 
-                mapa[stoi(fila) - 1][stoi(columna) - 1]->agregar_edificio(nombre, piedra, madera, metal, maximo);
+                mapa[stoi(fila)][stoi(columna)]->agregar_edificio(nombre, piedra, madera, metal, maximo);
 
                 lista_edificios->obtener_edificio(i) ->sumar_cantidad();
 
@@ -105,7 +114,7 @@ void Mapa::procesar_archivo_ubicaciones(){
 
 }
 
-// ---------------------------------------------
+// -------------- DIVISION PUNTO POR PUNTO : MENU -------------------------------
 
 // 1)
 void Mapa::construir_edificio_nombre(){
@@ -113,7 +122,7 @@ void Mapa::construir_edificio_nombre(){
     string nombre_nuevo;
     cout << "\n -> Ingrese el nombre del nuevo edificio que desea construir : ";
     cin >> nombre_nuevo;
-    
+
     bool existe_edificio = lista_edificios->existe_el_edificio(nombre_nuevo);
     bool supera_max = lista_edificios->supera_maximo(nombre_nuevo);
 
@@ -139,8 +148,8 @@ void Mapa::construir_edificio_nombre(){
                 cout << " columna -> ";
                 cin >> columna;
 
-                mapa[fila -1][columna - 1]->agregar_edificio(nombre_nuevo, piedra_necesaria, madera_necesaria, metal_necesario, maximo);
-                bool creado = mapa[fila -1][columna - 1]->existe_edificio();
+                mapa[fila][columna]->agregar_edificio(nombre_nuevo, piedra_necesaria, madera_necesaria, metal_necesario, maximo);
+                bool creado = mapa[fila][columna]->existe_edificio();
 
                 if ( creado ){
                     lista_edificios->obtener_edificio(pos_edificio)->sumar_cantidad();
@@ -303,7 +312,7 @@ void Mapa::consultar_coordenada(){
     cout << "Ingrese la columna -> ";
     cin >> columna;
     cout << "\n";
-    mapa[fila - 1][columna - 1]->mostrar_casillero() ;
+    mapa[fila][columna]->mostrar_casillero() ;
     cout << "\n";
 }
 
@@ -351,57 +360,6 @@ void Mapa::recolectar_recursos_producidos(){
     devolver_materiales(piedra, madera, metal);
 }
 
-
-int Mapa::generar_numero_random(int min, int max){
-    int range = max + 1  - min;   // sumo 1 porque rand() no incluye al ultimo num del range
-    return min + ( rand() % range);
-
-}
-
-
-void Mapa::consultar_material_a_colocar(int &cant_gen_piedras, int &cant_gen_maderas, int &cant_gen_metales, 
-string &material_a_colocar ){
-    if (cant_gen_piedras){
-        material_a_colocar = "S";
-        cant_gen_piedras --;
-
-    } else if (cant_gen_maderas){
-        material_a_colocar = "W";
-        cant_gen_maderas --;
-
-    } else{
-        material_a_colocar = "I";
-        cant_gen_metales --;
-    }
-}
-
-
-void Mapa::ejecutar_lluvia(int tot_materiales_gen, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales){
-    
-    string material_a_colocar = "";
-    bool llovidos = 0;
-    for (int i = 0; i < tot_materiales_gen; i++){
-        
-        consultar_material_a_colocar(cant_gen_piedras, cant_gen_maderas, cant_gen_metales, material_a_colocar);
-        
-        int fila = generar_numero_random(1,cantidad_filas);
-        int columna = generar_numero_random(1, cantidad_columnas);
-                
-        bool existe = mapa[fila -1][columna - 1]->existe_material();
-        if (!existe){
-            llovidos +=1;
-            mapa[fila-1][columna-1] -> agregar_material(material_a_colocar, 1);
-            cout << "1 unidad de " <<material_a_colocar << " en ("<< fila <<","<< columna <<")"<<endl;
-        }
-    }
-    if (!llovidos){
-            cout <<"Ninguno"<<endl;
-        }
-
-    cout <<endl<<"Dejo de llover"<<endl<<endl;
-}
-
-
 //9)
 void Mapa :: lluvia_recursos(){
 
@@ -423,6 +381,56 @@ void Mapa :: lluvia_recursos(){
     ejecutar_lluvia(tot_materiales_gen,cant_gen_piedras, cant_gen_maderas, cant_gen_metales);
 }
 
+int Mapa::generar_numero_random(int min, int max){
+    int range = max + 1  - min;   // sumo 1 porque rand() no incluye al ultimo num del range
+    return min + ( rand() % range);
+
+}
+
+void Mapa::consultar_material_a_colocar(int &cant_gen_piedras, int &cant_gen_maderas, int &cant_gen_metales, 
+string &material_a_colocar ){
+    if (cant_gen_piedras){
+        material_a_colocar = "S";
+        cant_gen_piedras --;
+
+    } else if (cant_gen_maderas){
+        material_a_colocar = "W";
+        cant_gen_maderas --;
+
+    } else{
+        material_a_colocar = "I";
+        cant_gen_metales --;
+    }
+}
+
+void Mapa::ejecutar_lluvia(int tot_materiales_gen, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales){
+    
+    string material_a_colocar = "";
+    bool llovidos = 0;
+    for (int i = 0; i < tot_materiales_gen; i++){
+        
+        consultar_material_a_colocar(cant_gen_piedras, cant_gen_maderas, cant_gen_metales, material_a_colocar);
+        
+        int fila = generar_numero_random(1,cantidad_filas);
+        int columna = generar_numero_random(1, cantidad_columnas);
+                
+        bool existe = mapa[fila][columna]->existe_material();
+        if (!existe){
+            llovidos +=1;
+            mapa[fila-1][columna-1] -> agregar_material(material_a_colocar, 1);
+            cout << "1 unidad de " <<material_a_colocar << " en ("<< fila <<","<< columna <<")"<<endl;
+        }
+    }
+    if (!llovidos){
+            cout <<"Ninguno"<<endl;
+        }
+
+    cout <<endl<<"Dejo de llover"<<endl<<endl;
+}
+
+// -------------- FINALIZA PUNTOS DEL MENU -------------------------------
+
+
 // Destructor
 Mapa::~Mapa(){
 
@@ -432,7 +440,7 @@ Mapa::~Mapa(){
         for ( int j = 0; j < cantidad_columnas ; j++){
             if (mapa[i][j] ->existe_edificio() ){
                 archivo_ubicaciones << mapa[i][j] ->obtener_nombre_edificio() << " ("
-                << i+1 << ", " << j+1 << ")" << endl;
+                << i << ", " << j << ")" << endl;
             }
 
             delete mapa[i][j];

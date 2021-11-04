@@ -1,3 +1,0 @@
-Hola, esta es la rama release.
-Pusheamos aca antes de la master.
-:)
