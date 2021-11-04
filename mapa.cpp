@@ -73,14 +73,25 @@ void Mapa::procesar_archivo_ubicaciones(){
     ifstream archivo;
     archivo.open(ARCHIVO_UBICACIONES);
 
-    string nombre, barra, fila, columna;
+    string nombre,segundo_nombre, barra, fila, columna;
 
     while( archivo >> nombre ){
-        getline(archivo, barra, ' ');
-        getline(archivo, barra, '(');
-        getline(archivo, fila, ',');
-        getline(archivo, barra, ' ');
-        getline(archivo, columna, ')');
+        if ( nombre == "planta"){
+            archivo >> segundo_nombre;
+            getline(archivo, barra, '(');
+            getline(archivo, fila, ',');
+            getline(archivo, barra, ' ');
+            getline(archivo, columna, ')');
+
+            nombre += " " + segundo_nombre;
+        } else {
+            getline(archivo, barra, '(');
+            getline(archivo, fila, ',');
+            getline(archivo, barra, ' ');
+            getline(archivo, columna, ')');
+        }
+
+        cout << nombre << endl;
 
         int madera, piedra, metal, maximo;
 
@@ -91,7 +102,7 @@ void Mapa::procesar_archivo_ubicaciones(){
                 metal = lista_edificios->obtener_edificio(i)->obtener_cantidad_metal();
                 maximo = lista_edificios->obtener_edificio(i)->obtener_maximo_construir();
 
-                mapa[stoi(fila) - 1][stoi(columna) - 1]->agregar_edificio(nombre, piedra, madera, metal, maximo);
+                mapa[stoi(fila)][stoi(columna)]->agregar_edificio(nombre, piedra, madera, metal, maximo);
 
                 lista_edificios->obtener_edificio(i) ->sumar_cantidad();
 
@@ -139,8 +150,8 @@ void Mapa::construir_edificio_nombre(){
                 cout << " columna -> ";
                 cin >> columna;
 
-                mapa[fila -1][columna - 1]->agregar_edificio(nombre_nuevo, piedra_necesaria, madera_necesaria, metal_necesario, maximo);
-                bool creado = mapa[fila -1][columna - 1]->existe_edificio();
+                mapa[fila][columna]->agregar_edificio(nombre_nuevo, piedra_necesaria, madera_necesaria, metal_necesario, maximo);
+                bool creado = mapa[fila][columna]->existe_edificio();
 
                 if ( creado ){
                     lista_edificios->obtener_edificio(pos_edificio)->sumar_cantidad();
@@ -387,7 +398,7 @@ void Mapa::ejecutar_lluvia(int tot_materiales_gen, int cant_gen_piedras, int can
         int fila = generar_numero_random(1,cantidad_filas);
         int columna = generar_numero_random(1, cantidad_columnas);
                 
-        bool existe = mapa[fila -1][columna - 1]->existe_material();
+        bool existe = mapa[fila][columna]->existe_material();
         if (!existe){
             llovidos +=1;
             mapa[fila-1][columna-1] -> agregar_material(material_a_colocar, 1);
@@ -432,7 +443,7 @@ Mapa::~Mapa(){
         for ( int j = 0; j < cantidad_columnas ; j++){
             if (mapa[i][j] ->existe_edificio() ){
                 archivo_ubicaciones << mapa[i][j] ->obtener_nombre_edificio() << " ("
-                << i+1 << ", " << j+1 << ")" << endl;
+                << i << ", " << j << ")" << endl;
             }
 
             delete mapa[i][j];

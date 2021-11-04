@@ -11,21 +11,29 @@ void Caracteristicas_edificio::cargar_edificios(){
 ifstream nuevo_archivo;
     nuevo_archivo.open(ARCHIVO_EDIFICIO);
 
-    string nombre_edificio;
-    string cantidad_piedra;
-    string cantidad_madera;
-    string cantidad_metal;
-    string maximo;
+    string nombre_edificio, segundo_nombre, cantidad_piedra, cantidad_madera, cantidad_metal, maximo;
 
     int piedra, madera, metal, maximo_construir;
 
     Edificio * nuevo_edificio;
 
     while (nuevo_archivo >> nombre_edificio){
-        nuevo_archivo >> cantidad_piedra;
-        nuevo_archivo >> cantidad_madera;
-        nuevo_archivo >> cantidad_metal;
-        nuevo_archivo >> maximo;
+        if ( nombre_edificio == "planta"){
+            nuevo_archivo >> segundo_nombre;
+            nuevo_archivo >> cantidad_piedra;
+            nuevo_archivo >> cantidad_madera;
+            nuevo_archivo >> cantidad_metal;
+            nuevo_archivo >> maximo;
+
+            nombre_edificio += " " + segundo_nombre;
+
+        } else {
+            nuevo_archivo >> cantidad_piedra;
+            nuevo_archivo >> cantidad_madera;
+            nuevo_archivo >> cantidad_metal;
+            nuevo_archivo >> maximo;
+
+        }
 
         piedra = stoi(cantidad_piedra);
         madera = stoi(cantidad_madera);
