@@ -136,6 +136,7 @@ void Caracteristicas_edificio::listar_todos_edificios(){
     cout << "\n";
 }
 
+// Existe edificio 
 bool Caracteristicas_edificio::existe_el_edificio(string nombre){
     bool existe = false;
     for (int i = 0; i < cantidad_edificios; i++){
@@ -148,6 +149,7 @@ bool Caracteristicas_edificio::existe_el_edificio(string nombre){
     return existe;
 }
 
+// Spuera maximo
 bool Caracteristicas_edificio::supera_maximo(string nombre){
     bool supera_max = true;
     int maximo , construidos, restantes;
@@ -184,7 +186,5 @@ Caracteristicas_edificio::~Caracteristicas_edificio(){
     }
     delete [] edificios_posibles;
     edificios_posibles = nullptr;
-
-    cout << "Ejecuto el destructor de caracteristicas_edificio ." << endl;
 
 }

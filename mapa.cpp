@@ -91,8 +91,6 @@ void Mapa::procesar_archivo_ubicaciones(){
             getline(archivo, columna, ')');
         }
 
-        cout << nombre << endl;
-
         int madera, piedra, metal, maximo;
 
         for ( int i = 0; i < lista_edificios->obtener_cantidad_edificios(); i++){
@@ -116,7 +114,7 @@ void Mapa::procesar_archivo_ubicaciones(){
 
 }
 
-// ---------------------------------------------
+// -------------- DIVISION PUNTO POR PUNTO : MENU -------------------------------
 
 // 1)
 void Mapa::construir_edificio_nombre(){
@@ -124,7 +122,7 @@ void Mapa::construir_edificio_nombre(){
     string nombre_nuevo;
     cout << "\n -> Ingrese el nombre del nuevo edificio que desea construir : ";
     cin >> nombre_nuevo;
-    
+
     bool existe_edificio = lista_edificios->existe_el_edificio(nombre_nuevo);
     bool supera_max = lista_edificios->supera_maximo(nombre_nuevo);
 
@@ -362,13 +360,32 @@ void Mapa::recolectar_recursos_producidos(){
     devolver_materiales(piedra, madera, metal);
 }
 
+//9)
+void Mapa :: lluvia_recursos(){
+
+    srand( (unsigned)time(0) );
+
+    int cant_gen_piedras = generar_numero_random(1,3); 
+    int cant_gen_maderas = generar_numero_random(0,1);
+    int cant_gen_metales = generar_numero_random(2,4);
+    
+    int tot_materiales_gen = cant_gen_piedras + cant_gen_maderas + cant_gen_metales;
+    
+        
+    cout << "Han llovido en el mapa " << tot_materiales_gen << " unidades de materiales: " <<endl
+    <<cant_gen_piedras <<" unidades de piedra"<<endl
+    <<cant_gen_maderas <<" unidades de madera" <<endl
+    <<cant_gen_metales <<" unidades de metal " <<endl<<endl
+    <<"Cayendo en casilleros habilitados los siguientes:"<< endl;
+
+    ejecutar_lluvia(tot_materiales_gen,cant_gen_piedras, cant_gen_maderas, cant_gen_metales);
+}
 
 int Mapa::generar_numero_random(int min, int max){
     int range = max + 1  - min;   // sumo 1 porque rand() no incluye al ultimo num del range
     return min + ( rand() % range);
 
 }
-
 
 void Mapa::consultar_material_a_colocar(int &cant_gen_piedras, int &cant_gen_maderas, int &cant_gen_metales, 
 string &material_a_colocar ){
@@ -385,7 +402,6 @@ string &material_a_colocar ){
         cant_gen_metales --;
     }
 }
-
 
 void Mapa::ejecutar_lluvia(int tot_materiales_gen, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales){
     
@@ -412,27 +428,8 @@ void Mapa::ejecutar_lluvia(int tot_materiales_gen, int cant_gen_piedras, int can
     cout <<endl<<"Dejo de llover"<<endl<<endl;
 }
 
+// -------------- FINALIZA PUNTOS DEL MENU -------------------------------
 
-//9)
-void Mapa :: lluvia_recursos(){
-
-    srand( (unsigned)time(0) );
-
-    int cant_gen_piedras = generar_numero_random(1,3); 
-    int cant_gen_maderas = generar_numero_random(0,1);
-    int cant_gen_metales = generar_numero_random(2,4);
-    
-    int tot_materiales_gen = cant_gen_piedras + cant_gen_maderas + cant_gen_metales;
-    
-        
-    cout << "Han llovido en el mapa " << tot_materiales_gen << " unidades de materiales: " <<endl
-    <<cant_gen_piedras <<" unidades de piedra"<<endl
-    <<cant_gen_maderas <<" unidades de madera" <<endl
-    <<cant_gen_metales <<" unidades de metal " <<endl<<endl
-    <<"Cayendo en casilleros habilitados los siguientes:"<< endl;
-
-    ejecutar_lluvia(tot_materiales_gen,cant_gen_piedras, cant_gen_maderas, cant_gen_metales);
-}
 
 // Destructor
 Mapa::~Mapa(){
