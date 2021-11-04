@@ -56,6 +56,8 @@ public:
     //POS: Obtendremos si el edificio se encuentra en el vector o no.
     bool existe_el_edificio(string nombre);
 
+    //PRE: Pasando el nombre de algun edificio que exista en el vector.
+    //POS: Chequeo si supera el maximo a construir , retorna true si se supera el maximo.
     bool supera_maximo(string nombre);
 
     // Destructor
