@@ -40,17 +40,23 @@ public:
     //     haciendo lectura correspondiente de los arhivos
     void ingreso_datos_mapa();
 
-    //PRE: Utilizando el archivo mapa.txt.
-    //POS: Obtiene la cantidad de filas y columnas. Ingresa los valores de los casilleros.
-    void procesar_archivo_mapa();
-
     //PRE: Utilizando el archivo ubicaciones.txt.
     //POS: Agrega Edificios/Materiales en sus ubicaciones.
     void procesar_archivo_ubicaciones();
 
+    //PRE: Utilizando el archivo mapa.txt.
+    //POS: Obtiene la cantidad de filas y columnas. Ingresa los valores de los casilleros.
+    void procesar_archivo_mapa();
+
     //PRE: -
     //POS: Inicializa la matriz del mapa con valor 0.
     void generar_matriz();
+
+    //PRE:
+    //POS:
+    void validar_coordenada(int &fila, int &columna);
+
+    // -------------- DIVISION PUNTO POR PUNTO : MENU -------------------------------
 
     //PRE: Debe crearse un edificio con el nombre de algun edificio que exista ( se encuentre en caracteristicas_edificios)
     //     solicitando las coordenadas , se chequea si se poseen los materiales necesarios, si no supero el maximo de edificios y si se puede

@@ -114,6 +114,21 @@ void Mapa::procesar_archivo_ubicaciones(){
 
 }
 
+void Mapa::validar_coordenada(int &fila, int &columna){
+
+    while ( fila > cantidad_filas || columna > cantidad_columnas ){
+        cout << "\n### Se ingresaron coordenadas fuera del limite : ";
+        cout << "filas <= " << cantidad_filas << " - columnas <= " << cantidad_columnas << "###\n" << endl;
+
+        cout << "\n Ingrese la fila -> ";
+        cin >> fila;
+        cout << " Ingrese la columna -> ";
+        cin >> columna;
+        cout << "\n";
+    }
+}
+
+
 // -------------- DIVISION PUNTO POR PUNTO : MENU -------------------------------
 
 // 1)
@@ -148,6 +163,8 @@ void Mapa::construir_edificio_nombre(){
                 cin >> fila;
                 cout << " columna -> ";
                 cin >> columna;
+
+                validar_coordenada( fila, columna);
 
                 bool existe = mapa[fila][columna]->existe_edificio();
 
@@ -232,13 +249,7 @@ void Mapa::demoler_edificio(){
     cout << " columna -> ";
     cin >> columna;
 
-    while ( fila > cantidad_filas || columna > cantidad_columnas ){
-        cout << "\n Ingrese una vez mas los datos ya que estos superan los limites permitidos : " << endl;
-        cout << "\n fila -> ";
-        cin >> fila;
-        cout << " columna -> ";
-        cin >> columna;
-    }
+    validar_coordenada( fila, columna);
 
     string nombre_edificio = mapa[fila][columna]->obtener_nombre_edificio();
 
@@ -315,6 +326,9 @@ void Mapa::consultar_coordenada(){
     cout << "Ingrese la columna -> ";
     cin >> columna;
     cout << "\n";
+
+    validar_coordenada( fila, columna);
+
     mapa[fila][columna]->mostrar_casillero() ;
     cout << "\n";
 }
