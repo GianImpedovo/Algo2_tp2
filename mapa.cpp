@@ -91,6 +91,10 @@ void Mapa::procesar_archivo_ubicaciones(){
             getline(archivo, columna, ')');
         }
 
+        if (nombre == "piedra" || nombre == "madera" || nombre == "metal"){
+            mapa[stoi(fila)][stoi(columna)]->agregar_material(nombre,1);
+        }
+
         int madera, piedra, metal, maximo;
 
         for ( int i = 0; i < lista_edificios->obtener_cantidad_edificios(); i++){
@@ -99,7 +103,7 @@ void Mapa::procesar_archivo_ubicaciones(){
                 madera = lista_edificios->obtener_edificio(i)->obtener_cantidad_madera();
                 metal = lista_edificios->obtener_edificio(i)->obtener_cantidad_metal();
                 maximo = lista_edificios->obtener_edificio(i)->obtener_maximo_construir();
-
+                cout<<nombre<<endl;
                 mapa[stoi(fila)][stoi(columna)]->agregar_edificio(nombre, piedra, madera, metal, maximo);
 
                 lista_edificios->obtener_edificio(i) ->sumar_cantidad();
@@ -360,7 +364,7 @@ void Mapa::recolectar_recursos_producidos(){
     devolver_materiales(piedra, madera, metal);
 }
 
-//9)
+
 void Mapa :: lluvia_recursos(){
 
     srand( (unsigned)time(0) );
@@ -376,29 +380,31 @@ void Mapa :: lluvia_recursos(){
     <<cant_gen_piedras <<" unidades de piedra"<<endl
     <<cant_gen_maderas <<" unidades de madera" <<endl
     <<cant_gen_metales <<" unidades de metal " <<endl<<endl
-    <<"Cayendo en casilleros habilitados los siguientes:"<< endl;
+    <<"`Presione 5 para ver el mapa y ver cuales cayeron en casilleros habilitados"<< endl<<endl;
 
     ejecutar_lluvia(tot_materiales_gen,cant_gen_piedras, cant_gen_maderas, cant_gen_metales);
 }
 
+
 int Mapa::generar_numero_random(int min, int max){
-    int range = max + 1  - min;   // sumo 1 porque rand() no incluye al ultimo num del range
+    int range = max + 1  - min;  
     return min + ( rand() % range);
 
 }
 
+
 void Mapa::consultar_material_a_colocar(int &cant_gen_piedras, int &cant_gen_maderas, int &cant_gen_metales, 
 string &material_a_colocar ){
     if (cant_gen_piedras){
-        material_a_colocar = "S";
+        material_a_colocar = "piedra";
         cant_gen_piedras --;
 
     } else if (cant_gen_maderas){
-        material_a_colocar = "W";
+        material_a_colocar = "madera";
         cant_gen_maderas --;
 
     } else{
-        material_a_colocar = "I";
+        material_a_colocar = "metal";
         cant_gen_metales --;
     }
 }
@@ -406,26 +412,19 @@ string &material_a_colocar ){
 void Mapa::ejecutar_lluvia(int tot_materiales_gen, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales){
     
     string material_a_colocar = "";
-    bool llovidos = 0;
+    
     for (int i = 0; i < tot_materiales_gen; i++){
         
         consultar_material_a_colocar(cant_gen_piedras, cant_gen_maderas, cant_gen_metales, material_a_colocar);
         
-        int fila = generar_numero_random(1,cantidad_filas);
-        int columna = generar_numero_random(1, cantidad_columnas);
-                
-        bool existe = mapa[fila][columna]->existe_material();
-        if (!existe){
-            llovidos +=1;
-            mapa[fila-1][columna-1] -> agregar_material(material_a_colocar, 1);
-            cout << "1 unidad de " <<material_a_colocar << " en ("<< fila <<","<< columna <<")"<<endl;
-        }
-    }
-    if (!llovidos){
-            cout <<"Ninguno"<<endl;
-        }
+        int fila = generar_numero_random(0,cantidad_filas - 1);
+        int columna = generar_numero_random(0, cantidad_columnas -1 );
+        
+        cout << "1 unidad de " <<material_a_colocar << " en ("<< fila <<","<< columna <<")"<<endl;
+        
+        mapa[fila][columna] -> agregar_material(material_a_colocar, 1);
 
-    cout <<endl<<"Dejo de llover"<<endl<<endl;
+        }
 }
 
 // -------------- FINALIZA PUNTOS DEL MENU -------------------------------
@@ -440,6 +439,10 @@ Mapa::~Mapa(){
         for ( int j = 0; j < cantidad_columnas ; j++){
             if (mapa[i][j] ->existe_edificio() ){
                 archivo_ubicaciones << mapa[i][j] ->obtener_nombre_edificio() << " ("
+                << i << ", " << j << ")" << endl;
+            }
+            if ( mapa[i][j] -> existe_material() ){ 
+                archivo_ubicaciones << mapa[i][j] -> obtener_nombre_material() <<" ("
                 << i << ", " << j << ")" << endl;
             }
 

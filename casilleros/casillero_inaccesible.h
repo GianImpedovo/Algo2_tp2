@@ -19,6 +19,8 @@ public:
 
     string obtener_nombre_edificio();
 
+    string obtener_nombre_material();
+
     string obtener_diminutivo_edificio();
 
     string obtener_diminutivo_material();

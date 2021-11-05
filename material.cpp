@@ -1,11 +1,29 @@
 #include "material.h"
 #include <iostream>
-
+// #include <cctype>
 
 //Constructor de material con 2 parametros
 Material :: Material(string nombre, int cantidad){
   this-> nombre = nombre;
   this-> cantidad = cantidad;
+
+  if (nombre == "piedra"){
+    this -> diminutivo = "S";    
+  }
+  else if (nombre == "madera"){
+    this -> diminutivo = "W";
+  }
+  else if (nombre == "metal"){
+    this -> diminutivo = "I";
+  }
+  else{
+    // int letra  = toupper(nombre[0]);
+    // char ascii_inicial = char(letra);
+    // string letra_inicial = string(1,ascii_inicial);
+    // this ->diminutivo = letra_inicial;
+    this -> diminutivo = "mat";
+  }
+
 }
 
 Material :: ~Material(){
@@ -18,6 +36,10 @@ string Material :: obtener_nombre(){
   return nombre;
 }
 
+string Material :: obtener_diminutivo(){ 
+
+  return diminutivo;
+}
 
 //Obtener cantidad
 int Material :: obtener_cantidad_disponible(){
@@ -60,6 +82,5 @@ void Material :: mostrar_cantidad(){
 }
 
 void Material :: saludar(){
-  cout<<"Hola, me llamaron? ";
-  cout << "Soy un/a "<< nombre << " de clase base material y estoy en un casillero transitable" <<endl;
+  cout << " Soy un/a "<< nombre << " y estoy en un casillero transitable" <<endl;
 }

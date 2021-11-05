@@ -59,7 +59,6 @@ void Casillero_construible::agregar_edificio(string nombre, int piedra, int made
 
 
 void Casillero_construible::agregar_material(string nombre, int cantidad){
-    cout << "\nEste es un casillero construible, si salio esto, se rompio algo\n" << endl;
 }
 
 string Casillero_construible::obtener_nombre_edificio(){
@@ -70,6 +69,11 @@ string Casillero_construible::obtener_nombre_edificio(){
     }
     return nombre_edificio;
 
+}
+
+
+string Casillero_construible::obtener_nombre_material(){
+    return "";
 }
 
 string Casillero_construible::obtener_diminutivo_edificio(){
@@ -100,7 +104,7 @@ bool Casillero_construible::existe_edificio(){
 }
 
 bool Casillero_construible::existe_material(){
-    return true;
+    return false;
 }
 
 void Casillero_construible::mostrar_coordenadas_edificio(string nombre){

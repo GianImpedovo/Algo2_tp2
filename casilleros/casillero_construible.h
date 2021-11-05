@@ -32,15 +32,19 @@ public:
     void agregar_material(string nombre, int cantidad);
 
     //PRE: - 
-    //POS: Getter , que me devuelve el nombre del casillero.
+    //POS: Getter , que me devuelve el nombre del edificio que hay en el casillero.
     string obtener_nombre_edificio();
+
+    //PRE: - 
+    //POS: no devuelve nada pues no hay materiales en casilleros transitables..
+    string obtener_nombre_material();
 
     //PRE: En caso de existir un edificio, que el edificio_construido != NULL. 
     //POS: Voy a obtener el diminutivo del edificio que apunta edificio_construido.
     string obtener_diminutivo_edificio();
 
     //PRE: -  
-    //POS: -
+    //POS: Devuelve un string con la primer letra del material.
     string obtener_diminutivo_material();
 
     //PRE: En caso de existir un edificio , edificio_construido != NULL.
