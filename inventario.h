@@ -10,6 +10,9 @@
 
 using namespace std;
 
+const string PIEDRA = "piedra";
+const string MADERA = "madera";
+const string METAL = "metal";
 
 class Inventario { 
 private:

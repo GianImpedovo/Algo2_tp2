@@ -2,15 +2,9 @@
 #include <fstream>
 #include "inventario.h"
 
-//#include "material.h"
-// #include "madera.h"
-// #include "piedra.h"
-// #include "metal.h"
-
 const int ERROR = -1;
 
 using namespace std;
-
 
 const string PATH_MATERIALES = "materiales.txt";
 
@@ -29,7 +23,6 @@ int Inventario :: obtener_cantidad_de_materiales(){
 
 //Obtener material de lista materiales 
 Material* Inventario :: obtener_material_de_lista_materiales(int posicion){
-    
     return lista_materiales[posicion];
 }
 
@@ -48,19 +41,6 @@ void Inventario :: cargar_materiales(){
         
         while(archivo_materiales >> nombre){
             archivo_materiales >> cantidad;
-
-            // if (nombre == "piedra"){
-            //     material = new Piedra(nombre, stoi(cantidad) );            
-            // } 
-            // else if (nombre == "madera"){
-            //     material = new Madera(nombre, stoi(cantidad));            
-            // }
-            // else if (nombre == "metal"){
-            //     material = new Metal(nombre, stoi(cantidad) );
-            // }
-            // else{
-            //     material = new Material(nombre, stoi(cantidad) );    
-            // }
 
             material = new Material(nombre, stoi(cantidad) );
 
@@ -153,15 +133,15 @@ cantidad_metal_nec){
 
         int cantidad_disponible = lista_materiales[i]->obtener_cantidad_disponible();
         
-        if (material_a_chequear == "piedra"){
+        if (material_a_chequear == PIEDRA){
             chequear_material(cantidad_disponible, cantidad_piedra_nec, alcanza);
-        }
-        if (material_a_chequear == "madera"){
+        } 
+        if (material_a_chequear == MADERA){
             chequear_material(cantidad_disponible, cantidad_madera_nec, alcanza);
         } 
-        if (material_a_chequear == "metal"){
+        if (material_a_chequear == METAL){
             chequear_material(cantidad_disponible, cantidad_metal_nec, alcanza);
-        }
+        } 
         i++;
     }
     return alcanza;
@@ -178,13 +158,13 @@ cantidad_metal_nec){
     
         string material_a_chequear = lista_materiales[i] -> obtener_nombre();
 
-        if (material_a_chequear == "piedra"){
+        if (material_a_chequear == PIEDRA){
             lista_materiales[i] -> restar_material(cantidad_piedra_nec);
         }
-        if (material_a_chequear == "madera"){
+        if (material_a_chequear == MADERA){
             lista_materiales[i] -> restar_material(cantidad_madera_nec);
         } 
-        if (material_a_chequear == "metal"){
+        if (material_a_chequear == METAL){
             lista_materiales[i] -> restar_material(cantidad_metal_nec);
         }
         i++;
@@ -203,13 +183,13 @@ cantidad_metal_nec){
     
         string material_a_chequear = lista_materiales[i] -> obtener_nombre();
         
-        if (material_a_chequear == "piedra"){
+        if (material_a_chequear == PIEDRA){
             lista_materiales[i] -> sumar_material(cantidad_piedra_nec);
         }
-        if (material_a_chequear == "madera"){
+        if (material_a_chequear == MADERA){
             lista_materiales[i] -> sumar_material(cantidad_madera_nec);        
         } 
-        if (material_a_chequear == "metal"){
+        if (material_a_chequear == METAL){
             lista_materiales[i] -> sumar_material(cantidad_metal_nec);
         }
         i++;
@@ -228,13 +208,13 @@ int cantidad_metal_rec){
     
         string material_a_chequear = lista_materiales[i] -> obtener_nombre();
         
-        if (material_a_chequear == "piedra"){
+        if (material_a_chequear == PIEDRA){
             lista_materiales[i] -> sumar_material(cantidad_piedra_rec);
         }
-        if (material_a_chequear == "madera"){
+        if (material_a_chequear == MADERA){
             lista_materiales[i] -> sumar_material(cantidad_madera_rec);        
         } 
-        if (material_a_chequear == "metal"){
+        if (material_a_chequear == METAL){
             lista_materiales[i] -> sumar_material(cantidad_metal_rec);
         }
         i++;

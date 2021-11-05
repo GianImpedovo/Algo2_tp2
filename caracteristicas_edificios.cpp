@@ -40,32 +40,32 @@ ifstream nuevo_archivo;
         metal = stoi(cantidad_metal);
         maximo_construir = stoi(maximo);
 
-        if (nombre_edificio == "aserradero"){
+        if (nombre_edificio == ASERRADERO){
 
             nuevo_edificio = new Aserradero(piedra, madera, metal, maximo_construir);
 
         }
-        else if ( nombre_edificio == "escuela"){
+        else if ( nombre_edificio == ESCUELA){
 
             nuevo_edificio = new Escuela( piedra, madera, metal, maximo_construir);
 
         }
-        else if ( nombre_edificio == "fabrica"){
+        else if ( nombre_edificio == FABRICA){
 
             nuevo_edificio = new Fabrica( piedra, madera, metal, maximo_construir);
 
         }
-        else if ( nombre_edificio == "mina"){
+        else if ( nombre_edificio == MINA){
 
             nuevo_edificio = new Mina( piedra, madera, metal, maximo_construir);
 
         }
-        else if ( nombre_edificio == "obelisco"){
+        else if ( nombre_edificio == OBELISCO){
 
             nuevo_edificio = new Obelisco( piedra, madera, metal, maximo_construir);
 
         }
-        else if ( nombre_edificio == "planta electrica"){
+        else if ( nombre_edificio == PLANTA_ELECTRICA){
 
             nuevo_edificio = new Planta_electrica( piedra, madera, metal, maximo_construir);
 
@@ -97,11 +97,12 @@ void Caracteristicas_edificio::agregar_edificio(Edificio * nuevo_edificio){
     cantidad_edificios++;
 }
 
-// Obtengo la cantidad de edificios;
+// Obtengo la cantidad de edificios
 int Caracteristicas_edificio::obtener_cantidad_edificios(){
     return cantidad_edificios;
 }
 
+// Obtener posicion del edificio en el vector
 int Caracteristicas_edificio::obtener_posicion_edificio(string nombre){
     int pos;
     for ( int i = 0; i < cantidad_edificios ; i++){

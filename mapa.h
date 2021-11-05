@@ -1,11 +1,8 @@
 #ifndef MAPA_H
 #define MAPA_H
 
-#include <iostream>
-#include <fstream>
-
-#include "inventario.h"
 #include "caracteristicas_edificios.h"
+#include "inventario.h"
 #include "casilleros/casillero.h"
 #include "casilleros/casillero_construible.h"
 #include "casilleros/casillero_transitable.h"
@@ -40,23 +37,37 @@ public:
     //     haciendo lectura correspondiente de los arhivos
     void ingreso_datos_mapa();
 
-    //PRE: Utilizando el archivo mapa.txt.
-    //POS: Obtiene la cantidad de filas y columnas. Ingresa los valores de los casilleros.
-    void procesar_archivo_mapa();
-
     //PRE: Utilizando el archivo ubicaciones.txt.
     //POS: Agrega Edificios/Materiales en sus ubicaciones.
     void procesar_archivo_ubicaciones();
 
+    //PRE: Utilizando el archivo mapa.txt.
+    //POS: Obtiene la cantidad de filas y columnas. Ingresa los valores de los casilleros.
+    void procesar_archivo_mapa();
+
     //PRE: -
     //POS: Inicializa la matriz del mapa con valor 0.
     void generar_matriz();
+
+    //PRE: Para los metodos que necesitan usar filas y columnas ingresadas por el usuario.
+    //POS: Hace un chequeo de las fila y columna ingresadas y en caso de estar fuera del rango , vuelve
+    //     a pedir al usuario ingresar las coordenadas.
+    void validar_coordenada(int &fila, int &columna);
+
+    bool aceptar_condiciones();
+
+    // -------------- DIVISION PUNTO POR PUNTO : MENU -------------------------------
 
     //PRE: Debe crearse un edificio con el nombre de algun edificio que exista ( se encuentre en caracteristicas_edificios)
     //     solicitando las coordenadas , se chequea si se poseen los materiales necesarios, si no supero el maximo de edificios y si se puede
     //     construir en tales coordenadas, debe ser un casillero_construible.
     //POS: Agrega el edificio dentro del casillero solicitado.
     void construir_edificio_nombre();
+
+    //PRE: Una vez se solicite construir el edificio y se tenga por validado que existe el nombre del edificio solicitado.
+    //POS: Se realizan las validaciones de que no supere el maximo a construir , que se tengan los materiales y que en ese casillero no 
+    //     exista edificio_construido.Luego se agrega el edificio , se suma la cantidad y se eliminan los materiales.
+    void realizar_construccion(string nombre_nuevo);
 
     //PRE: En caso de que existan edificios construidos en los casilleros.
     //POS: Muestra cuales edificios estan construidos con su cantidad y en que coordenadas se encuentran.
@@ -81,7 +92,7 @@ public:
 
     //PRE: Una ves demolido el edificio.
     //POS: Muestro por pantalla los materiales obtenidos, y los guardo en el inventario. 
-    void devolver_materiales(int piedra, int madera, int metal);
+    void devolver_materiales(int piedra_obtenida, int madera_obtenida, int metal_obtenida);
 
     //PRE: Teniendo cargada la matriz dinamica.
     //POS: Recorro la matriz y muestro los nombres de los casilleros. 

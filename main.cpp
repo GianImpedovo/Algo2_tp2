@@ -12,6 +12,8 @@ int main(){
     Mapa * mapa = new Mapa;
     mapa->ingreso_datos_mapa();
 
+    cout << "\n ¡ BIENVENIDOS A ANDYPOLIS ! \n" << endl;
+
     mostrar_menu();
     int opcion = elegir_opcion();
 
@@ -23,6 +25,8 @@ int main(){
     }
 
     delete mapa;
+
+    cout << "\n Muchas gracias por visitar la ciudad , nos vemos pronto ! \n" << endl; 
 
     return 0;
 }
