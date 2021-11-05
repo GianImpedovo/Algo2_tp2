@@ -1,6 +1,6 @@
 #include "material.h"
 #include <iostream>
-
+// #include <cctype>
 
 //Constructor de material con 2 parametros
 Material :: Material(string nombre, int cantidad){
