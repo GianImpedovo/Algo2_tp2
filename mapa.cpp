@@ -148,14 +148,16 @@ void Mapa::construir_edificio_nombre(){
                 cout << " columna -> ";
                 cin >> columna;
 
-                mapa[fila][columna]->agregar_edificio(nombre_nuevo, piedra_necesaria, madera_necesaria, metal_necesario, maximo);
-                bool creado = mapa[fila][columna]->existe_edificio();
+                bool existe = mapa[fila][columna]->existe_edificio();
 
-                if ( creado ){
+                if ( !existe ){
+                    mapa[fila][columna]->agregar_edificio(nombre_nuevo, piedra_necesaria, madera_necesaria, metal_necesario, maximo);
                     lista_edificios->obtener_edificio(pos_edificio)->sumar_cantidad();
                     usuario_inventario->utilizar_materiales(piedra_necesaria, madera_necesaria, metal_necesario);
 
                     cout << "\n El edificio " << nombre_nuevo << " fue creado exitosamente . \n" << endl;
+                } else {
+                    cout << "\n El casillero ya contiene un edificio .\n" << endl;
                 }
 
             } else {
