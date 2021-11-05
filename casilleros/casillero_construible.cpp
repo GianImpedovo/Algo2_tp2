@@ -26,27 +26,27 @@ void Casillero_construible::agregar_edificio(string nombre, int piedra, int made
             this->edificio_construido = new Aserradero(piedra, madera, metal, maximo);
 
         }
-        else if ( nombre == "escuela"){ 
+        else if ( nombre == ESCUELA){ 
 
             this->edificio_construido = new Escuela( piedra, madera, metal, maximo);
 
         }
-        else if ( nombre == "fabrica"){
+        else if ( nombre == FABRICA){
 
             this->edificio_construido = new Fabrica( piedra, madera, metal, maximo);
 
         }
-        else if ( nombre == "mina"){
+        else if ( nombre == MINA){
 
             this->edificio_construido = new Mina( piedra, madera, metal, maximo);
 
         }
-        else if ( nombre == "obelisco"){
+        else if ( nombre == MINA){
 
             this->edificio_construido = new Obelisco( piedra, madera, metal, maximo);
 
         }
-        else if ( nombre == "planta electrica"){
+        else if ( nombre == PLANTA_ELECTRICA){
 
             this->edificio_construido = new Planta_electrica( piedra, madera, metal, maximo);
 

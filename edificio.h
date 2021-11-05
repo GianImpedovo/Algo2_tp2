@@ -3,14 +3,14 @@
 
 #include <iostream>
 
+using namespace std;
+
 const string MINA = "mina";
 const string ASERRADERO = "aserradero";
 const string FABRICA = "fabrica";
 const string ESCUELA = "escuela";
 const string OBELISCO = "obelisco";
 const string PLANTA_ELECTRICA = "planta electrica";
-
-using namespace std;
 
 class Edificio
 {
