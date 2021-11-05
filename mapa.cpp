@@ -115,9 +115,10 @@ void Mapa::procesar_archivo_ubicaciones(){
 }
 
 void Mapa::validar_coordenada(int &fila, int &columna){
-    cout << "\nIngrese la fila -> ";
+    cout << "\n Ingrese las coordenadas : \n" << endl;
+    cout << "\n - Ingrese la fila -> ";
     cin >> fila;
-    cout << "Ingrese la columna -> ";
+    cout << " - Ingrese la columna -> ";
     cin >> columna;
     cout << "\n";
 
@@ -138,6 +139,7 @@ bool Mapa::aceptar_condiciones(){
     char opcion;
     cout << "\n Desea realizar la operacion ? ( s/n ) : ";
     cin >> opcion;
+    cout << "\n";
 
     if ( opcion == 's'){
         acepto = true;
@@ -184,7 +186,7 @@ void Mapa::realizar_construccion(string nombre_nuevo){
             if ( aceptar_condiciones() ){
 
                 int fila , columna;
-                cout << "\n Construccion del edificio \n" << endl;
+                cout << "\n ### En esta seccion podra CONSTRUIR un EDIFICIO : ###\n" << endl;
                 validar_coordenada( fila, columna);
                 bool existe_edificio_construido = mapa[fila][columna]->existe_edificio();
 
@@ -193,7 +195,7 @@ void Mapa::realizar_construccion(string nombre_nuevo){
                     lista_edificios->obtener_edificio(pos_edificio)->sumar_cantidad();
                     usuario_inventario->utilizar_materiales(piedra_necesaria, madera_necesaria, metal_necesario);
 
-                    cout << "\n El edificio " << nombre_nuevo << " fue creado exitosamente . \n" << endl;
+                    cout << "\n ¡ FELICITACIONES : El edificio " << nombre_nuevo << " fue creado exitosamente ! \n" << endl;
                 } else {
                     cout << "\n El casillero ya contiene un edificio .\n" << endl;
                 }
@@ -252,7 +254,7 @@ void Mapa::mostrar_todos_edificios(){
 // 4)
 void Mapa::demoler_edificio(){
 
-    cout << "\n\t\t ###   En esta seccion podra demoler un EDIFICIO :   ###" << endl;
+    cout << "\n\t\t ###   En esta seccion podra DEMOLER un EDIFICIO :   ###" << endl;
     
     cout << "\n";
     int fila, columna;
@@ -264,7 +266,7 @@ void Mapa::demoler_edificio(){
 
     if ( nombre_edificio != ""){
 
-        if ( aceptar_condiciones ){
+        if ( aceptar_condiciones() ){
 
             obtengo_materiales_elimino_edificio(nombre_edificio, fila, columna);
             cout << "\n\t\t ###   El edificio : " << nombre_edificio << ", ha sido DEMOLIDO exitosamente !   ###\n" << endl;
