@@ -4,8 +4,8 @@
 #include <iostream>
 #include <fstream>
 
-#include "inventario.h"
 #include "caracteristicas_edificios.h"
+#include "inventario.h"
 #include "casilleros/casillero.h"
 #include "casilleros/casillero_construible.h"
 #include "casilleros/casillero_transitable.h"
@@ -95,7 +95,7 @@ public:
 
     //PRE: Una ves demolido el edificio.
     //POS: Muestro por pantalla los materiales obtenidos, y los guardo en el inventario. 
-    void devolver_materiales(int piedra, int madera, int metal);
+    void devolver_materiales(int piedra_obtenida, int madera_obtenida, int metal_obtenida);
 
     //PRE: Teniendo cargada la matriz dinamica.
     //POS: Recorro la matriz y muestro los nombres de los casilleros. 

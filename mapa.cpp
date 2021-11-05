@@ -304,16 +304,16 @@ void Mapa::obtengo_materiales_elimino_edificio(string nombre_edificio, int fila,
     mapa[fila][columna]->eliminar_edificio();
 }
 
-void Mapa::devolver_materiales(int piedra, int madera, int metal){
+void Mapa::devolver_materiales(int piedra_obtenida, int madera_obtenida, int metal_obtenida){
 
     cout << "\n------------------------------\n" << endl;
     cout << "\nMateriales obtenidos \n" << endl;
-    cout << "Piedra : " << piedra << endl;
-    cout << "Madera : " << madera << endl;
-    cout << "Metal : " << metal << endl;
+    cout << PIEDRA << " : " << piedra_obtenida << endl;
+    cout << MADERA <<" : " << madera_obtenida << endl;
+    cout << METAL << " : " << metal_obtenida << endl;
     cout << "\n------------------------------\n" << endl;
 
-    usuario_inventario->devolver_materiales(piedra, madera, metal);
+    usuario_inventario->devolver_materiales(piedra_obtenida, madera_obtenida, metal_obtenida);
 
 }
 
@@ -357,8 +357,6 @@ void Mapa::recolectar_recursos_producidos(){
 
     cantidad_edificios = lista_edificios->obtener_cantidad_edificios();
 
-    cout << "estoy en recolectar recursos" << endl;
-
     for ( int i = 0; i < cantidad_edificios; i++){
 
         Edificio * edificio_solicitado = lista_edificios->obtener_edificio(i); 
@@ -369,15 +367,15 @@ void Mapa::recolectar_recursos_producidos(){
 
         total_brindado = cantidad_construidos * cantidad_a_brindar;
 
-        if ( nombre_edificio == "mina"){
+        if ( nombre_edificio == MINA){
 
             piedra += total_brindado;
 
-        } else if ( nombre_edificio == "aserradero"){
+        } else if ( nombre_edificio == ASERRADERO){
             
             madera += total_brindado;
 
-        } else if ( nombre_edificio == "fabrica"){
+        } else if ( nombre_edificio == FABRICA){
 
             metal += total_brindado;
         }
