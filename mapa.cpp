@@ -411,7 +411,8 @@ int Mapa::generar_numero_random(int min, int max){
 
 }
 
-void Mapa::consultar_material_a_colocar(int &cant_gen_piedras, int &cant_gen_maderas, int &cant_gen_metales, string &material_a_colocar ){
+void Mapa::consultar_material_a_colocar(int &cant_gen_piedras, int &cant_gen_maderas, int &cant_gen_metales, 
+string &material_a_colocar ){
     if (cant_gen_piedras){
         material_a_colocar = "S";
         cant_gen_piedras --;

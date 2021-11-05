@@ -2,15 +2,9 @@
 #include <fstream>
 #include "inventario.h"
 
-//#include "material.h"
-// #include "madera.h"
-// #include "piedra.h"
-// #include "metal.h"
-
 const int ERROR = -1;
 
 using namespace std;
-
 
 const string PATH_MATERIALES = "materiales.txt";
 
@@ -29,7 +23,6 @@ int Inventario :: obtener_cantidad_de_materiales(){
 
 //Obtener material de lista materiales 
 Material* Inventario :: obtener_material_de_lista_materiales(int posicion){
-    
     return lista_materiales[posicion];
 }
 

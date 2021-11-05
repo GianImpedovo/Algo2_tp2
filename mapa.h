@@ -1,9 +1,6 @@
 #ifndef MAPA_H
 #define MAPA_H
 
-#include <iostream>
-#include <fstream>
-
 #include "caracteristicas_edificios.h"
 #include "inventario.h"
 #include "casilleros/casillero.h"
