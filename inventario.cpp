@@ -155,12 +155,18 @@ cantidad_metal_nec){
         
         if (material_a_chequear == "piedra"){
             chequear_material(cantidad_disponible, cantidad_piedra_nec, alcanza);
+            cout << "\n - No alcanza la cantidad de "<< material_a_chequear << " solicitada .\n" << endl;
+
         }
         if (material_a_chequear == "madera"){
             chequear_material(cantidad_disponible, cantidad_madera_nec, alcanza);
+            cout << "\n - No alcanza la cantidad de "<< material_a_chequear << " solicitada .\n" << endl;
+
         } 
         if (material_a_chequear == "metal"){
             chequear_material(cantidad_disponible, cantidad_metal_nec, alcanza);
+            cout << "\n - No alcanza la cantidad de "<< material_a_chequear << " solicitada .\n" << endl;
+
         }
         i++;
     }

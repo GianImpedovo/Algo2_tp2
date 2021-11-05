@@ -52,8 +52,9 @@ public:
     //POS: Inicializa la matriz del mapa con valor 0.
     void generar_matriz();
 
-    //PRE:
-    //POS:
+    //PRE: Para los metodos que necesitan usar filas y columnas ingresadas por el usuario.
+    //POS: Hace un chequeo de las fila y columna ingresadas y en caso de estar fuera del rango , vuelve
+    //     a pedir al usuario ingresar las coordenadas.
     void validar_coordenada(int &fila, int &columna);
 
     // -------------- DIVISION PUNTO POR PUNTO : MENU -------------------------------
@@ -63,6 +64,11 @@ public:
     //     construir en tales coordenadas, debe ser un casillero_construible.
     //POS: Agrega el edificio dentro del casillero solicitado.
     void construir_edificio_nombre();
+
+    //PRE: Una vez se solicite construir el edificio y se tenga por validado que existe el nombre del edificio solicitado.
+    //POS: Se realizan las validaciones de que no supere el maximo a construir , que se tengan los materiales y que en ese casillero no 
+    //     exista edificio_construido.Luego se agrega el edificio , se suma la cantidad y se eliminan los materiales.
+    void realizar_construccion(string nombre_nuevo);
 
     //PRE: En caso de que existan edificios construidos en los casilleros.
     //POS: Muestra cuales edificios estan construidos con su cantidad y en que coordenadas se encuentran.
