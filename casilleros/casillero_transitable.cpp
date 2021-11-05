@@ -10,7 +10,13 @@ string Casillero_transitable::obtener_nombre(){
 }
 
 void Casillero_transitable::mostrar_casillero(){
-    cout << "Soy un casillero transitable y me encuentro vacio" << endl;
+    if (!material){
+        cout << " Soy un casillero transitable y me encuentro vacio" << endl;
+    }
+    else{
+        cout << " Soy un casillero construible y no me encuentro vacio" << endl;
+        material -> saludar();
+    }
 }
 
 void Casillero_transitable::agregar_edificio(string nombre, int piedra, int madera, int metal, int maximo){
@@ -18,8 +24,9 @@ void Casillero_transitable::agregar_edificio(string nombre, int piedra, int made
 }
 
 void Casillero_transitable:: agregar_material(string nombre, int cantidad){
-    
-    this->material = new Material(nombre, cantidad);
+    if (!material){
+        this->material = new Material(nombre, cantidad);
+    }
 }
 
 void Casillero_transitable::mostrar_coordenadas_edificio(string nombre){
@@ -34,6 +41,10 @@ string Casillero_transitable::obtener_nombre_edificio(){
     return "";
 }
 
+string Casillero_transitable::obtener_nombre_material(){
+    return material -> obtener_nombre();
+}
+
 string Casillero_transitable::obtener_diminutivo_edificio(){
     return "";
 }
@@ -41,9 +52,10 @@ string Casillero_transitable::obtener_diminutivo_edificio(){
 string Casillero_transitable::obtener_diminutivo_material(){
     string diminutivo = "";
     if ( material ){
-        diminutivo = material->obtener_nombre() ;
+        diminutivo = material->obtener_diminutivo() ;
     }
     return diminutivo;
+
 }
 
 bool Casillero_transitable::existe_edificio(){

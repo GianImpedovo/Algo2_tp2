@@ -29,7 +29,8 @@ public:
     virtual void agregar_edificio(string nombre, int piedra, int madera, int metal, int maximo) = 0;
 
     // PRE: -
-    // POS: - 
+    // POS: En casillero transitable, en caso de estar vacio, coloca un objeto material. 
+    //En los casilleros inaccesibles y construibles no hace nada.
     virtual void agregar_material(string nombre, int cantidad) = 0;
 
     // PRE: -
@@ -46,12 +47,18 @@ public:
     virtual string obtener_nombre_edificio() = 0;
 
     // PRE: -
+    // POS: En el casillero_transitable, podremos obtener el nombre del
+    //      material ubicado en el, en caso que exista. En construible e inaccesible devuelve un string vacio.
+    virtual string obtener_nombre_material() = 0;
+
+    // PRE: -
     // POS: En el casillero_construible, nos devolvera en caso de existir edificio, su 
     //      su diminutivo, diminutivo = 'La primer palabra del nombre del edificio'.
     virtual string obtener_diminutivo_edificio() = 0;
 
     // PRE: -
-    // POS: - 
+    // POS: En el casillero_transitable, nos devolvera en caso de existir material, su 
+    //su diminutivo, diminutivo = 'La primer palabra del nombre del material'.
     virtual string obtener_diminutivo_material() = 0;
 
     // PRE: -
@@ -63,7 +70,8 @@ public:
     virtual bool existe_edificio() = 0;
 
     // PRE: -
-    // POS: - 
+    // POS: En el casillero_transitable, obtendremos verdadero si hay un material y falso en caso contrario. En casilleros transitables
+    //y inaccesibles devolvera false siempre puesto que no se pueden ubicar materiales en ellos.
     virtual bool existe_material() = 0;
     
     // PRE: -

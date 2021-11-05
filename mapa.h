@@ -106,8 +106,7 @@ public:
     void lluvia_recursos();
 
     //Generar numero random
-    //PRE: Recibe los enteros "min" y "max" con los valores limites (inclusives) entre los cuales se desea generar
-    //el numero random 
+    //PRE: Recibe los enteros "min" y "max" con los valores limite (inclusives) entre los cuales se desea generar el numero random 
     //POST: Devuelve un valor random entre "min" y "max"
     int generar_numero_random(int min, int max);
 

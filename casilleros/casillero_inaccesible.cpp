@@ -18,7 +18,6 @@ void Casillero_inaccesible::agregar_edificio(string nombre, int piedra, int made
 }
 
 void Casillero_inaccesible::agregar_material(string nombre, int cantidad){
-    cout << "\nEste es un casillero inaccesible, si salio esto, se rompio algo\n" << endl;
 }
 
 void Casillero_inaccesible::mostrar_coordenadas_edificio(string nombre){
@@ -30,6 +29,10 @@ void Casillero_inaccesible::eliminar_edificio(){
 }
 
 string Casillero_inaccesible::obtener_nombre_edificio(){
+    return "";
+}
+
+string Casillero_inaccesible::obtener_nombre_material(){
     return "";
 }
 
@@ -47,5 +50,5 @@ bool Casillero_inaccesible::existe_edificio(){
 }
 
 bool Casillero_inaccesible::existe_material(){
-    return true;
+    return false;
 }

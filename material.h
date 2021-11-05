@@ -14,6 +14,7 @@ private:
 
     string nombre;
     int cantidad;
+    string diminutivo;
 
 public:
 
@@ -29,6 +30,11 @@ public:
     //POST: Devuelve un string con el nombre del material
     string obtener_nombre();
     
+    //Obtener diminutivo
+    //PRE: -
+    //POST: Devuelve un string con el diminutivo del material (diminutivo = primer letra del material)
+    string obtener_diminutivo();
+
     //Obtener cantidad
     //PRE: -
     //POST: Devuelve un enetro con la cantidad disponible del material 
