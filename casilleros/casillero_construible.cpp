@@ -119,7 +119,6 @@ void Casillero_construible::mostrar_coordenadas_edificio(string nombre){
 Casillero_construible::~Casillero_construible(){
     if ( edificio_construido ){
         delete edificio_construido;
-        cout << "corriendo destructor de casillero construible" << endl;
     }
     edificio_construido = 0;
 }

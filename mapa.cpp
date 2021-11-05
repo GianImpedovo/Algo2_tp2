@@ -121,7 +121,8 @@ void Mapa::construir_edificio_nombre(){
 
     string nombre_nuevo;
     cout << "\n -> Ingrese el nombre del nuevo edificio que desea construir : ";
-    cin >> nombre_nuevo;
+    cin.ignore();
+    getline(cin , nombre_nuevo);
 
     bool existe_edificio = lista_edificios->existe_el_edificio(nombre_nuevo);
     bool supera_max = lista_edificios->supera_maximo(nombre_nuevo);
