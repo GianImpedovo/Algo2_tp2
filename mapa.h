@@ -57,6 +57,8 @@ public:
     //     a pedir al usuario ingresar las coordenadas.
     void validar_coordenada(int &fila, int &columna);
 
+    bool aceptar_condiciones();
+
     // -------------- DIVISION PUNTO POR PUNTO : MENU -------------------------------
 
     //PRE: Debe crearse un edificio con el nombre de algun edificio que exista ( se encuentre en caracteristicas_edificios)

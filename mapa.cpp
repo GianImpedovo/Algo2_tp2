@@ -133,6 +133,18 @@ void Mapa::validar_coordenada(int &fila, int &columna){
     }
 }
 
+bool Mapa::aceptar_condiciones(){
+    bool acepto = false;
+    char opcion;
+    cout << "\n Desea realizar la operacion ? ( s/n ) : ";
+    cin >> opcion;
+
+    if ( opcion == 's'){
+        acepto = true;
+    }
+
+    return acepto;
+}
 
 // -------------- DIVISION PUNTO POR PUNTO : MENU -------------------------------
 
@@ -169,27 +181,28 @@ void Mapa::realizar_construccion(string nombre_nuevo){
 
         if ( ! supera_max && alcanzan_materiales ){
 
-            int fila , columna;
-            cout << "\n Construccion del edificio \n" << endl;
-            validar_coordenada( fila, columna);
-            bool existe_edificio_construido = mapa[fila][columna]->existe_edificio();
+            if ( aceptar_condiciones() ){
 
-            if ( ! existe_edificio_construido ){
-                mapa[fila][columna]->agregar_edificio(nombre_nuevo, piedra_necesaria, madera_necesaria, metal_necesario, maximo);
-                lista_edificios->obtener_edificio(pos_edificio)->sumar_cantidad();
-                usuario_inventario->utilizar_materiales(piedra_necesaria, madera_necesaria, metal_necesario);
+                int fila , columna;
+                cout << "\n Construccion del edificio \n" << endl;
+                validar_coordenada( fila, columna);
+                bool existe_edificio_construido = mapa[fila][columna]->existe_edificio();
 
-                cout << "\n El edificio " << nombre_nuevo << " fue creado exitosamente . \n" << endl;
-            } else {
-                cout << "\n El casillero ya contiene un edificio .\n" << endl;
+                if ( ! existe_edificio_construido ){
+                    mapa[fila][columna]->agregar_edificio(nombre_nuevo, piedra_necesaria, madera_necesaria, metal_necesario, maximo);
+                    lista_edificios->obtener_edificio(pos_edificio)->sumar_cantidad();
+                    usuario_inventario->utilizar_materiales(piedra_necesaria, madera_necesaria, metal_necesario);
+
+                    cout << "\n El edificio " << nombre_nuevo << " fue creado exitosamente . \n" << endl;
+                } else {
+                    cout << "\n El casillero ya contiene un edificio .\n" << endl;
+                }
             }
-
         } else {
             cout << "\n No se pueden construir mas " << nombre_nuevo << " ya que supera el maximo permitido. \n" << endl; 
         }
 
 }
-
 
 // 2)
 void Mapa::listar_edificios_construidos(){
@@ -251,8 +264,12 @@ void Mapa::demoler_edificio(){
 
     if ( nombre_edificio != ""){
 
-        obtengo_materiales_elimino_edificio(nombre_edificio, fila, columna);
-        cout << "\n\t\t ###   El edificio : " << nombre_edificio << ", ha sido DEMOLIDO exitosamente !   ###\n" << endl;
+        if ( aceptar_condiciones ){
+
+            obtengo_materiales_elimino_edificio(nombre_edificio, fila, columna);
+            cout << "\n\t\t ###   El edificio : " << nombre_edificio << ", ha sido DEMOLIDO exitosamente !   ###\n" << endl;
+
+        }
 
     } else {
         cout << "\n En la coordenada ingresada no existe ningun edificio ...\n" << endl;
@@ -394,8 +411,7 @@ int Mapa::generar_numero_random(int min, int max){
 
 }
 
-void Mapa::consultar_material_a_colocar(int &cant_gen_piedras, int &cant_gen_maderas, int &cant_gen_metales, 
-string &material_a_colocar ){
+void Mapa::consultar_material_a_colocar(int &cant_gen_piedras, int &cant_gen_maderas, int &cant_gen_metales, string &material_a_colocar ){
     if (cant_gen_piedras){
         material_a_colocar = "S";
         cant_gen_piedras --;
