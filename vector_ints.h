@@ -24,6 +24,10 @@ class Vector_ints {
 	// POS: redimensiona el vector, si tam es mayor que la longitud inicial, deja los datos anteriores y completa con vacios, si es menor, corta los datos que exceden
 	void agregar_numero ( int num, int tam, int pos );
 
+	void sacar_numero(int pos);
+
+	void swap_num(int posicion_1, int posicion_2);
+
     ~Vector_ints( );
 
 

@@ -7,6 +7,7 @@
 #include "casilleros/casillero_construible.h"
 #include "casilleros/casillero_transitable.h"
 #include "casilleros/casillero_inaccesible.h"
+#include "vector_ints.h"
 
 using namespace std;
 
@@ -120,6 +121,29 @@ public:
     //PRE: Recibe los enteros "min" y "max" con los valores limite (inclusives) entre los cuales se desea generar el numero random 
     //POST: Devuelve un valor random entre "min" y "max"
     int generar_numero_random(int min, int max);
+    
+    //Cargar vectores filas y columnas habilitadas
+    //PRE: Recibe los objetos vectores de enteros con las filas y las columnas habilitadas para que lluevan materiales
+    //POST: Carga en ellos las colulmnas y filas habilitadas paraque lluevan materiales.
+    void cargar_vectores_de_posisiones_permitidas(Vector_ints *vector_filas, Vector_ints *vector_columnas);
+    
+    //Colocar materiales llovidos en mapa
+    //PRE: Recibe enteros con las cantidades totales y pariciales de materiales generados y los vectores con las filas
+    //y columnas habilitadas para que lluevan materiales
+    //POST: Coloca en el mapa en las posicione aleatorias generadas por generar_numeros_random() los materiales generados.
+    void colocar_materiales_llovidos(int tot_materiales_gen, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales,
+    Vector_ints *vector_filas, Vector_ints *vector_columnas);
+
+    //Consultar material a colocar
+    //PRE: Recibe los enteros "cant_gen_piedras", "cant_gen_maderas" y "cant_gen_metales" y el string
+    //material_a_colocar
+    //POST: Modifica por parametro "material_a_colocar" y las cantidades de piedra y madera restantes.
+    void consultar_material_a_colocar(int &cant_gen_piedras, int &cant_gen_maderas, int &cant_gen_metales, string &material_a_colocar);
+
+    //mostrar alerta materiales no colocados
+    //PRE: Recibe 4 enteros con las cantidades de madera piedra y metal que han quedado sin colocar
+    //Muestra una alerta por pantalla indicando que materiales no se pudieron colocar
+    void mostrar_alerta_materiales_no_colocados(int materiales_restantes, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales);
 
     //Ejecutar lluvia
     //PRE: Recibe un entero con la cantidad total de materiales y otros 3 enteros con las cantiades de piedra,
@@ -127,12 +151,6 @@ public:
     //POST: Efectua la lluvia de materiales colocando en el mapa en las posiciones hablitadas y generadas por
     //la funcion "generar_numero_random".
     void ejecutar_lluvia(int tot_materiales_gen, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales);
-    
-    //Consultar material a colocar
-    //PRE: Recibe los enteros "cant_gen_piedras", "cant_gen_maderas" y "cant_gen_metales" y el string
-    //material_a_colocar
-    //POST: Modifica por parametro "material_a_colocar" y las cantidades de piedra y madera restantes.
-    void consultar_material_a_colocar(int &cant_gen_piedras, int &cant_gen_maderas, int &cant_gen_metales, string &material_a_colocar);
 
     //Detructor
     //PRE: - 
