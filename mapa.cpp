@@ -1,4 +1,5 @@
 #include "mapa.h"
+#include "vector_ints.h"
 
 Mapa::Mapa(){
 
@@ -403,8 +404,8 @@ void Mapa :: lluvia_recursos(){
     cout << "Han llovido en el mapa " << tot_materiales_gen << " unidades de materiales: " <<endl
     <<cant_gen_piedras <<" unidades de piedra"<<endl
     <<cant_gen_maderas <<" unidades de madera" <<endl
-    <<cant_gen_metales <<" unidades de metal " <<endl<<endl
-    <<"`Presione 5 para ver el mapa y ver cuales cayeron en casilleros habilitados"<< endl<<endl;
+    <<cant_gen_metales <<" unidades de metal " <<endl<<endl;
+    // <<"`Presione 5 para ver el mapa y ver cuales cayeron en casilleros habilitados"<< endl<<endl;
 
     ejecutar_lluvia(tot_materiales_gen,cant_gen_piedras, cant_gen_maderas, cant_gen_metales);
 }
@@ -433,22 +434,72 @@ string &material_a_colocar ){
     }
 }
 
+
 void Mapa::ejecutar_lluvia(int tot_materiales_gen, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales){
     
-    string material_a_colocar = "";
+    Vector_ints *vector_filas = new Vector_ints;
     
+    Vector_ints *vector_columnas = new Vector_ints;
+
+    int pos = 0;
+    for ( int i = 0; i < cantidad_filas; i++){
+        for ( int j = 0; j < cantidad_columnas ; j++){
+            if (mapa[i][j] -> obtener_nombre() =="C" && !( mapa[i][j] -> existe_material() ) ){    
+
+                vector_filas->agregar_numero(i,pos+1, pos);
+                vector_columnas->agregar_numero(j,pos+1, pos);
+                
+                pos+=1;
+            }
+        }
+    }
+    for( int i = 0; i < vector_filas->obtener_longitud(); i++){
+        cout <<"(" <<vector_filas->obtener_numero(i) <<", ";
+        cout << vector_columnas->obtener_numero(i) <<" )";
+    }
+    cout <<endl;
+    cout << vector_filas ->obtener_longitud() <<" "<< vector_columnas->obtener_longitud() <<" ";
+    
+    
+    string material_a_colocar = "";
+
     for (int i = 0; i < tot_materiales_gen; i++){
         
         consultar_material_a_colocar(cant_gen_piedras, cant_gen_maderas, cant_gen_metales, material_a_colocar);
+        if ( vector_filas->obtener_longitud() < 0 ){
+            int pos_coordenada =  generar_numero_random( 0, vector_filas->obtener_longitud() - 1);
+            //Es la misma para ambos vectores pues hay tantas filas como columnaas ya q pos iguales corresponden
+            //a la misma coordenada
         
-        int fila = generar_numero_random(0,cantidad_filas - 1);
-        int columna = generar_numero_random(0, cantidad_columnas -1 );
-        
-        cout << "1 unidad de " <<material_a_colocar << " en ("<< fila <<","<< columna <<")"<<endl;
-        
-        mapa[fila][columna] -> agregar_material(material_a_colocar, 1);
+            int fila = vector_filas -> obtener_numero(pos_coordenada);
+            int columna = vector_columnas -> obtener_numero(pos_coordenada);
+            
+            mapa[fila][columna] -> agregar_material(material_a_colocar, 1);
 
+            //CODIGO CON METODOS PARA ACHICAR Y QUITAR ELEMENTOS DE LOS VECTORES FILAS Y COLUMNAS
+
+            // vector_filas -> o
         }
+
+        else{
+            //MODULARIZAR EN OTRA FUNC MOSTRAR_ALERTA
+            cout <<"No se pudieron colocar los siguientes materiales porque los casilleros transitables ya estan todos ocupados";
+            if (cant_gen_piedras > 0){
+                cout<<cant_gen_piedras <<" unidades de piedra"<<endl;
+            }
+            if (cant_gen_piedras > 0){
+                cout<<cant_gen_maderas <<" unidades de madera" <<endl;
+            }
+            if (cant_gen_piedras > 0){
+                cout<<cant_gen_metales <<" unidades de metal " <<endl;
+            }
+        }
+        
+    }
+
+    delete vector_filas;
+    delete vector_columnas;
+
 }
 
 // -------------- FINALIZA PUNTOS DEL MENU -------------------------------
