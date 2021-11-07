@@ -159,6 +159,8 @@ public:
     //     tambien se libera la memoria reservada por el inventario y las caracteristicas_edificios.
     //     Se vuelve a setear todos los valores en 0.
     ~Mapa();
+
+    bool carga_incorrecta_archivos();
 };
 
 

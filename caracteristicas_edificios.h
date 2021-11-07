@@ -13,6 +13,8 @@
 using namespace std;
 
 const string ARCHIVO_EDIFICIO = "edificios.txt";
+const int ERROR = -1;
+
 
 class Caracteristicas_edificio
 {
