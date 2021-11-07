@@ -14,7 +14,7 @@ void Casillero_transitable::mostrar_casillero(){
         cout << " Soy un casillero transitable y me encuentro vacio" << endl;
     }
     else{
-        cout << " Soy un casillero construible y no me encuentro vacio" << endl;
+        cout << " Soy un casillero transitable y no me encuentro vacio" << endl;
         material -> saludar();
     }
 }
@@ -73,7 +73,6 @@ bool Casillero_transitable::existe_material(){
 Casillero_transitable::~Casillero_transitable(){
     if ( material ){
         delete material;
-        cout << "corriendo destructor de casillero transitable" << endl;
     }
     material = 0;
 }

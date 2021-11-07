@@ -113,7 +113,7 @@ void Casillero_construible::mostrar_coordenadas_edificio(string nombre){
 
         if ( nombre == edificio_construido->obtener_nombre()){
 
-            cout << " - (" << fila + 1 << "," << columna + 1 << ") " << endl;
+            cout << " - (" << fila << "," << columna << ") " << endl;
 
         }
 

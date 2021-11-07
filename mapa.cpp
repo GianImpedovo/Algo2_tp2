@@ -111,7 +111,7 @@ void Mapa::procesar_archivo_ubicaciones(){
                     madera = obtener_edificio(i)->obtener_cantidad_madera();
                     metal = obtener_edificio(i)->obtener_cantidad_metal();
                     maximo = obtener_edificio(i)->obtener_maximo_construir();
-                    cout<<nombre<<endl;
+
                     mapa[stoi(fila)][stoi(columna)]->agregar_edificio(nombre, piedra, madera, metal, maximo);
 
                     obtener_edificio(i) ->sumar_cantidad();
@@ -562,7 +562,6 @@ void Mapa::recolectar_recursos_producidos(){
 
     devolver_materiales(piedra, madera, metal);
 }
-
 
 int Mapa::generar_numero_random(int min, int max){
     int range = max + 1  - min;  
