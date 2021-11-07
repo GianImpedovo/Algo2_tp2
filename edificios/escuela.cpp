@@ -11,5 +11,5 @@ int Escuela::obtener_cantidad_brindada(){
 }
 
 void Escuela::mostrar_mensaje(){
-    cout << " Soy una " << nombre << "no brindo materiales y me encuentro en el casillero consultado . " << endl;
+    cout << " Soy una " << nombre << " no brindo materiales y me encuentro en el casillero consultado . " << endl;
 }

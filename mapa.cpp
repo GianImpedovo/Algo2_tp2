@@ -241,7 +241,6 @@ ifstream nuevo_archivo;
     }
 }
 
-// Agrego el edificio nuevo a la lista de edificios
 void Mapa::agregar_edificio(Edificio * nuevo_edificio){
     int cantidad_vieja = cantidad_edificios;
 
@@ -261,12 +260,10 @@ void Mapa::agregar_edificio(Edificio * nuevo_edificio){
     cantidad_edificios++;
 }
 
-// Obtengo la cantidad de edificios
 int Mapa::obtener_cantidad_edificios(){
     return cantidad_edificios;
 }
 
-// Obtener posicion del edificio en el vector
 int Mapa::obtener_posicion_edificio(string nombre){
     int pos;
     for ( int i = 0; i < cantidad_edificios ; i++){
@@ -276,12 +273,10 @@ int Mapa::obtener_posicion_edificio(string nombre){
     }return pos;
 }
 
-// Obtengo el edificio requerido  
 Edificio * Mapa::obtener_edificio(int posicion){
     return edificios_posibles[posicion];
 }
 
-// Existe edificio 
 bool Mapa::existe_el_edificio(string nombre){
     bool existe = false;
     for (int i = 0; i < cantidad_edificios; i++){
@@ -294,7 +289,6 @@ bool Mapa::existe_el_edificio(string nombre){
     return existe;
 }
 
-// Spuera maximo
 bool Mapa::supera_maximo(string nombre){
     bool supera_max = true;
     int maximo , construidos, restantes;
@@ -380,7 +374,7 @@ void Mapa::realizar_construccion(string nombre_nuevo){
 void Mapa::listar_edificios_construidos(){
     cout << "\n";
     cout << "\t\t###   Listado de los edificio construidos :   ### " << endl;
-    cout << "\nOrden de los elemenots : " << endl;
+    cout << "\nOrden de los elementos : " << endl;
     cout << " -> nombre : cantidad construidos " << endl;
     cout << " - coordenede \n - coordenada\n ..." << endl;
     cout << "\n" ;
@@ -501,17 +495,22 @@ void Mapa::devolver_materiales(int piedra_obtenida, int madera_obtenida, int met
 }
 
 void Mapa::mostrar_mapa(){
+    cout << " -------------------------------------------------------------------------- " << endl;
     cout << "\n";
     for (int i = 0; i < cantidad_filas ; i++){
         for ( int j = 0; j < cantidad_columnas; j++){
+        cout << "  ";
            cout << mapa[i][j]->obtener_nombre()
                 << mapa[i][j]->obtener_diminutivo_edificio()
                 << mapa[i][j]->obtener_diminutivo_material()
-                << " ";
+                << "\t";
         }
-        cout << "\n";
+        cout << "\n" << endl;
     }
-    cout << "\n\n";
+    cout << "\n";
+    cout << " -------------------------------------------------------------------------- " << endl;
+    cout << "\n";
+
 }
 
 void Mapa::consultar_coordenada(){

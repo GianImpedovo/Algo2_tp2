@@ -11,5 +11,5 @@ int Planta_electrica::obtener_cantidad_brindada(){
 }
 
 void Planta_electrica::mostrar_mensaje(){
-    cout << " Soy una " << nombre << "no brindo materiales, me encuentro en el casillero consultado . " << endl;
+    cout << " Soy una " << nombre << " no brindo materiales, me encuentro en el casillero consultado . " << endl;
 }
