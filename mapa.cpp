@@ -4,11 +4,7 @@ Mapa::Mapa(){
 
     this->cantidad_filas = 0;
     this->cantidad_columnas = 0;
-    for ( int i = 0; i < cantidad_filas; i++){
-        for (int j = 0; j < cantidad_columnas; j++){
-            mapa[i][j] = 0;
-        }
-    }
+    this->mapa = 0;
     this->lista_edificios = 0;
     this->usuario_inventario = 0;
 
