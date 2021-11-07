@@ -5,14 +5,15 @@ Mapa::Mapa(){
     this->cantidad_filas = 0;
     this->cantidad_columnas = 0;
     this->mapa = 0;
-    this->lista_edificios = 0;
+    this->cantidad_edificios = 0;
+    this->edificios_posibles = 0;
     this->usuario_inventario = 0;
 
 }
 
 
 bool Mapa::carga_incorrecta_archivos(){
-    bool carga_incorrecta = ( (cantidad_filas == -1) || (cantidad_columnas == -1) || (lista_edificios->obtener_cantidad_edificios() == -1) 
+    bool carga_incorrecta = ( (cantidad_filas == -1) || (cantidad_columnas == -1) || (obtener_cantidad_edificios() == -1) 
     || (usuario_inventario->obtener_cantidad_de_materiales() == -1) );
 
     return carga_incorrecta;
@@ -24,9 +25,7 @@ void Mapa::ingreso_datos_mapa(){
     this->usuario_inventario = new Inventario;
     usuario_inventario->cargar_materiales();
 
-    this->lista_edificios = new Caracteristicas_edificio;
-    lista_edificios->cargar_edificios();
-
+    cargar_edificios();
     procesar_archivo_mapa();
     procesar_archivo_ubicaciones();
 }
@@ -107,16 +106,16 @@ void Mapa::procesar_archivo_ubicaciones(){
 
             int madera, piedra, metal, maximo;
 
-            for ( int i = 0; i < lista_edificios->obtener_cantidad_edificios(); i++){
-                if ( lista_edificios->obtener_edificio(i)->obtener_nombre() == nombre){
-                    piedra = lista_edificios->obtener_edificio(i)-> obtener_cantidad_piedra();
-                    madera = lista_edificios->obtener_edificio(i)->obtener_cantidad_madera();
-                    metal = lista_edificios->obtener_edificio(i)->obtener_cantidad_metal();
-                    maximo = lista_edificios->obtener_edificio(i)->obtener_maximo_construir();
+            for ( int i = 0; i < obtener_cantidad_edificios(); i++){
+                if ( obtener_edificio(i)->obtener_nombre() == nombre){
+                    piedra = obtener_edificio(i)-> obtener_cantidad_piedra();
+                    madera = obtener_edificio(i)->obtener_cantidad_madera();
+                    metal = obtener_edificio(i)->obtener_cantidad_metal();
+                    maximo = obtener_edificio(i)->obtener_maximo_construir();
                     cout<<nombre<<endl;
                     mapa[stoi(fila)][stoi(columna)]->agregar_edificio(nombre, piedra, madera, metal, maximo);
 
-                    lista_edificios->obtener_edificio(i) ->sumar_cantidad();
+                    obtener_edificio(i) ->sumar_cantidad();
 
                 }
             }
@@ -165,6 +164,183 @@ bool Mapa::aceptar_condiciones(){
     return acepto;
 }
 
+// --------------- EDIFICIOS POSIBLES --------------------------------------------------
+void Mapa::cargar_edificios(){
+ifstream nuevo_archivo;
+    nuevo_archivo.open(ARCHIVO_EDIFICIO);
+
+    if(nuevo_archivo.is_open()){
+
+
+        string nombre_edificio, segundo_nombre, cantidad_piedra, cantidad_madera, cantidad_metal, maximo;
+
+        int piedra, madera, metal, maximo_construir;
+
+        Edificio * nuevo_edificio;
+
+        while (nuevo_archivo >> nombre_edificio){
+            if ( nombre_edificio == "planta"){
+                nuevo_archivo >> segundo_nombre;
+                nuevo_archivo >> cantidad_piedra;
+                nuevo_archivo >> cantidad_madera;
+                nuevo_archivo >> cantidad_metal;
+                nuevo_archivo >> maximo;
+
+                nombre_edificio += " " + segundo_nombre;
+
+            } else {
+                nuevo_archivo >> cantidad_piedra;
+                nuevo_archivo >> cantidad_madera;
+                nuevo_archivo >> cantidad_metal;
+                nuevo_archivo >> maximo;
+
+            }
+
+            piedra = stoi(cantidad_piedra);
+            madera = stoi(cantidad_madera);
+            metal = stoi(cantidad_metal);
+            maximo_construir = stoi(maximo);
+
+            if (nombre_edificio == ASERRADERO){
+
+                nuevo_edificio = new Aserradero(piedra, madera, metal, maximo_construir);
+
+            }
+            else if ( nombre_edificio == ESCUELA){
+
+                nuevo_edificio = new Escuela( piedra, madera, metal, maximo_construir);
+
+            }
+            else if ( nombre_edificio == FABRICA){
+
+                nuevo_edificio = new Fabrica( piedra, madera, metal, maximo_construir);
+
+            }
+            else if ( nombre_edificio == MINA){
+
+                nuevo_edificio = new Mina( piedra, madera, metal, maximo_construir);
+
+            }
+            else if ( nombre_edificio == OBELISCO){
+
+                nuevo_edificio = new Obelisco( piedra, madera, metal, maximo_construir);
+
+            }
+            else if ( nombre_edificio == PLANTA_ELECTRICA){
+
+                nuevo_edificio = new Planta_electrica( piedra, madera, metal, maximo_construir);
+
+            }
+            agregar_edificio(nuevo_edificio);
+
+        }
+
+        nuevo_archivo.close();
+    
+    }else{
+        cantidad_edificios= ERROR;
+    }
+}
+
+// Agrego el edificio nuevo a la lista de edificios
+void Mapa::agregar_edificio(Edificio * nuevo_edificio){
+    int cantidad_vieja = cantidad_edificios;
+
+    Edificio ** vector_edificio = new Edificio * [ cantidad_vieja + 1];     
+
+    for ( int i = 0; i < cantidad_edificios; i++){
+        vector_edificio[i] = edificios_posibles[i];
+    }
+
+    vector_edificio[ cantidad_vieja ] = nuevo_edificio;
+
+    if ( cantidad_edificios != 0){
+        delete [] edificios_posibles; 
+    }
+
+    edificios_posibles = vector_edificio;
+    cantidad_edificios++;
+}
+
+// Obtengo la cantidad de edificios
+int Mapa::obtener_cantidad_edificios(){
+    return cantidad_edificios;
+}
+
+// Obtener posicion del edificio en el vector
+int Mapa::obtener_posicion_edificio(string nombre){
+    int pos;
+    for ( int i = 0; i < cantidad_edificios ; i++){
+        if ( nombre == edificios_posibles[i]->obtener_nombre()){
+            pos = i;
+        }
+    }return pos;
+}
+
+// Obtengo el edificio requerido  
+Edificio * Mapa::obtener_edificio(int posicion){
+    return edificios_posibles[posicion];
+}
+
+// Lista todos los edificios
+void Mapa::listar_todos_edificios(){
+    cout << "\n";
+    cout << "\t\t###   Listado de todos los edificios :   ###" << endl;
+    cout << "\nOrden de los elementos :  " << endl;
+    cout << "\n -> nombre / piedra / madera / metal / cuantos puedo construir " << endl;
+    cout << "_________________________________________________________________" << endl;
+    for ( int i = 0; i < cantidad_edificios; i++){
+        cout << "\n";
+        cout << " -> " << edificios_posibles[i]->obtener_nombre() << " "
+        << edificios_posibles[i]->obtener_cantidad_piedra() << " "
+        << edificios_posibles[i]->obtener_cantidad_madera() << " "
+        << edificios_posibles[i]->obtener_cantidad_metal() << " "
+        << edificios_posibles[i]->obtener_cuantos_puedo_construir() << endl;
+        cout << "\n";
+        cout << "_________________________________________________________________" << endl;
+    }
+    cout << "\n";
+}
+
+// Existe edificio 
+bool Mapa::existe_el_edificio(string nombre){
+    bool existe = false;
+    for (int i = 0; i < cantidad_edificios; i++){
+        string nombre_buscado = edificios_posibles[i]->obtener_nombre();
+        if ( nombre_buscado == nombre ){
+            existe = true;
+        }
+    }
+
+    return existe;
+}
+
+// Spuera maximo
+bool Mapa::supera_maximo(string nombre){
+    bool supera_max = true;
+    int maximo , construidos, restantes;
+    for ( int i = 0; i < cantidad_edificios ; i++){
+
+        Edificio * edificio_buscado = obtener_edificio(i);
+        string nombre_edificio = edificio_buscado->obtener_nombre();
+
+        if ( nombre_edificio == nombre ){
+
+            maximo = edificio_buscado->obtener_maximo_construir();
+            construidos = edificio_buscado->obtener_cantidad_construidos();
+
+            restantes = maximo - construidos;
+
+            if ( restantes > 0 ){
+                supera_max = false;
+            } 
+        }
+        
+    }
+
+    return supera_max;
+}
+
 // -------------- DIVISION PUNTO POR PUNTO : MENU -------------------------------
 
 // 1)
@@ -175,7 +351,7 @@ void Mapa::construir_edificio_nombre(){
     cin.ignore();
     getline(cin , nombre_nuevo);
 
-    bool existe_edificio = lista_edificios->existe_el_edificio(nombre_nuevo);
+    bool existe_edificio = existe_el_edificio(nombre_nuevo);
 
     if ( existe_edificio ){
 
@@ -188,14 +364,14 @@ void Mapa::construir_edificio_nombre(){
 
 void Mapa::realizar_construccion(string nombre_nuevo){
 
-        int pos_edificio = lista_edificios->obtener_posicion_edificio(nombre_nuevo);
+        int pos_edificio = obtener_posicion_edificio(nombre_nuevo);
 
-        int piedra_necesaria = lista_edificios->obtener_edificio(pos_edificio)->obtener_cantidad_piedra();
-        int madera_necesaria = lista_edificios->obtener_edificio(pos_edificio)->obtener_cantidad_madera();
-        int metal_necesario = lista_edificios->obtener_edificio(pos_edificio)->obtener_cantidad_metal();
-        int maximo = lista_edificios->obtener_edificio(pos_edificio)->obtener_maximo_construir();
+        int piedra_necesaria = obtener_edificio(pos_edificio)->obtener_cantidad_piedra();
+        int madera_necesaria = obtener_edificio(pos_edificio)->obtener_cantidad_madera();
+        int metal_necesario = obtener_edificio(pos_edificio)->obtener_cantidad_metal();
+        int maximo = obtener_edificio(pos_edificio)->obtener_maximo_construir();
 
-        bool supera_max = lista_edificios->supera_maximo(nombre_nuevo);
+        bool supera_max = supera_maximo(nombre_nuevo);
         bool alcanzan_materiales = usuario_inventario->alcanzan_materiales(piedra_necesaria, madera_necesaria, metal_necesario);
 
         if ( ! supera_max && alcanzan_materiales ){
@@ -209,7 +385,7 @@ void Mapa::realizar_construccion(string nombre_nuevo){
 
                 if ( ! existe_edificio_construido ){
                     mapa[fila][columna]->agregar_edificio(nombre_nuevo, piedra_necesaria, madera_necesaria, metal_necesario, maximo);
-                    lista_edificios->obtener_edificio(pos_edificio)->sumar_cantidad();
+                    obtener_edificio(pos_edificio)->sumar_cantidad();
                     usuario_inventario->utilizar_materiales(piedra_necesaria, madera_necesaria, metal_necesario);
 
                     cout << "\n ¡ FELICITACIONES : El edificio " << nombre_nuevo << " fue creado exitosamente ! \n" << endl;
@@ -233,10 +409,10 @@ void Mapa::listar_edificios_construidos(){
     cout << "\n" ;
     cout << "___________________________________________________" << endl;
     cout << "\n" ;
-    for (int i = 0; i < lista_edificios->obtener_cantidad_edificios(); i++){
+    for (int i = 0; i < obtener_cantidad_edificios(); i++){
 
-        int cantidad_constuidos = lista_edificios->obtener_edificio(i)->obtener_cantidad_construidos();
-        string nombre_edificio = lista_edificios->obtener_edificio(i)->obtener_nombre();
+        int cantidad_constuidos = obtener_edificio(i)->obtener_cantidad_construidos();
+        string nombre_edificio = obtener_edificio(i)->obtener_nombre();
 
         if ( cantidad_constuidos > 0 ){
 
@@ -265,7 +441,7 @@ void Mapa::mostrar_coordenadas(string nombre){
 
 // 3)
 void Mapa::mostrar_todos_edificios(){
-    lista_edificios->listar_todos_edificios();
+    listar_todos_edificios();
 }
 
 // 4)
@@ -301,16 +477,16 @@ void Mapa::obtengo_materiales_elimino_edificio(string nombre_edificio, int fila,
 
     int mitad_piedra, mitad_madera, mitad_metal;
 
-    for (int i = 0; i < lista_edificios->obtener_cantidad_edificios(); i++){
+    for (int i = 0; i < obtener_cantidad_edificios(); i++){
 
-        string edificio_en_lista = lista_edificios->obtener_edificio(i)->obtener_nombre();
+        string edificio_en_lista = obtener_edificio(i)->obtener_nombre();
 
         if (edificio_en_lista == nombre_edificio){
-            lista_edificios->obtener_edificio(i)->restar_cantidad();
+            obtener_edificio(i)->restar_cantidad();
 
-            mitad_piedra = lista_edificios->obtener_edificio(i)->obtener_mitad_piedra();
-            mitad_madera = lista_edificios->obtener_edificio(i)->obtener_mitad_madera();
-            mitad_metal = lista_edificios->obtener_edificio(i)->obtener_mitad_metal();
+            mitad_piedra = obtener_edificio(i)->obtener_mitad_piedra();
+            mitad_madera = obtener_edificio(i)->obtener_mitad_madera();
+            mitad_metal = obtener_edificio(i)->obtener_mitad_metal();
 
         }
 
@@ -372,11 +548,11 @@ void Mapa::recolectar_recursos_producidos(){
     int cantidad_edificios, total_brindado , cantidad_construidos, cantidad_a_brindar;
     string nombre_edificio;
 
-    cantidad_edificios = lista_edificios->obtener_cantidad_edificios();
+    cantidad_edificios = obtener_cantidad_edificios();
 
     for ( int i = 0; i < cantidad_edificios; i++){
 
-        Edificio * edificio_solicitado = lista_edificios->obtener_edificio(i); 
+        Edificio * edificio_solicitado = obtener_edificio(i); 
 
         nombre_edificio = edificio_solicitado->obtener_nombre();
         cantidad_construidos = edificio_solicitado->obtener_cantidad_construidos();
@@ -550,8 +726,15 @@ Mapa::~Mapa(){
     delete [] mapa;
     this->mapa = 0;
 
-    delete lista_edificios;
-    lista_edificios = 0;
+    int total = cantidad_edificios;
+    for ( int i = 0; i < total; i++){
+
+        delete edificios_posibles[i];
+        cantidad_edificios--;
+    }
+    delete [] edificios_posibles;
+    edificios_posibles = nullptr;
+
     delete usuario_inventario;
     usuario_inventario = 0;
 

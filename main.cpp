@@ -1,6 +1,5 @@
 #include <iostream>
 #include "menu.h"
-#include "caracteristicas_edificios.h"
 #include "mapa.h"
 #include "edificio.h"
 
