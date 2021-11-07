@@ -10,6 +10,15 @@ Mapa::Mapa(){
 
 }
 
+
+bool Mapa::carga_incorrecta_archivos(){
+    bool carga_incorrecta = ( (cantidad_filas == -1) || (cantidad_columnas == -1) || (lista_edificios->obtener_cantidad_edificios() == -1) 
+    || (usuario_inventario->obtener_cantidad_de_materiales() == -1) );
+
+    return carga_incorrecta;
+
+}
+
 void Mapa::ingreso_datos_mapa(){
 
     this->usuario_inventario = new Inventario;
@@ -26,34 +35,39 @@ void Mapa::procesar_archivo_mapa(){
 
     ifstream arch;
     arch.open(ARCHIVO_MAPA);
+    if(arch.is_open()){
+    
+        string filas, columnas;
+        for ( int i = 0 ; i < 1 ; i++){
+            arch >> filas; 
+            arch >> columnas;
 
-    string filas, columnas;
-    for ( int i = 0 ; i < 1 ; i++){
-        arch >> filas; 
-        arch >> columnas;
+            cantidad_filas = stoi(filas);
+            cantidad_columnas = stoi(columnas);
+        }
+        string nombre;
 
-        cantidad_filas = stoi(filas);
-        cantidad_columnas = stoi(columnas);
-    }
-    string nombre;
+        generar_matriz();
 
-    generar_matriz();
-
-    for ( int i = 0; i < cantidad_filas; i++){
-        for (int j = 0; j < cantidad_columnas; j++){
-            arch >> nombre ;
-            if ( nombre == "T") {
-                this->mapa[i][j] = new Casillero_construible(i, j);
-            } 
-            if (nombre == "C") {
-                this->mapa[i][j] = new Casillero_transitable(i,j);
-            }
-            if (nombre == "L") {
-                this->mapa[i][j] = new Casillero_inaccesible(i,j);
+        for ( int i = 0; i < cantidad_filas; i++){
+            for (int j = 0; j < cantidad_columnas; j++){
+                arch >> nombre ;
+                if ( nombre == "T") {
+                    this->mapa[i][j] = new Casillero_construible(i, j);
+                } 
+                if (nombre == "C") {
+                    this->mapa[i][j] = new Casillero_transitable(i,j);
+                }
+                if (nombre == "L") {
+                    this->mapa[i][j] = new Casillero_inaccesible(i,j);
+                }
             }
         }
+        arch.close();
+        
+    }else{
+        cantidad_filas = ERROR;
     }
-    arch.close();
 }
 
 void Mapa::generar_matriz(){
@@ -68,49 +82,52 @@ void Mapa::procesar_archivo_ubicaciones(){
 
     ifstream archivo;
     archivo.open(ARCHIVO_UBICACIONES);
+    if(archivo.is_open()){
+        string nombre,segundo_nombre, barra, fila, columna;
 
-    string nombre,segundo_nombre, barra, fila, columna;
+        while( archivo >> nombre ){
+            if ( nombre == "planta"){
+                archivo >> segundo_nombre;
+                getline(archivo, barra, '(');
+                getline(archivo, fila, ',');
+                getline(archivo, barra, ' ');
+                getline(archivo, columna, ')');
 
-    while( archivo >> nombre ){
-        if ( nombre == "planta"){
-            archivo >> segundo_nombre;
-            getline(archivo, barra, '(');
-            getline(archivo, fila, ',');
-            getline(archivo, barra, ' ');
-            getline(archivo, columna, ')');
-
-            nombre += " " + segundo_nombre;
-        } else {
-            getline(archivo, barra, '(');
-            getline(archivo, fila, ',');
-            getline(archivo, barra, ' ');
-            getline(archivo, columna, ')');
-        }
-
-        if (nombre == "piedra" || nombre == "madera" || nombre == "metal"){
-            mapa[stoi(fila)][stoi(columna)]->agregar_material(nombre,1);
-        }
-
-        int madera, piedra, metal, maximo;
-
-        for ( int i = 0; i < lista_edificios->obtener_cantidad_edificios(); i++){
-            if ( lista_edificios->obtener_edificio(i)->obtener_nombre() == nombre){
-                piedra = lista_edificios->obtener_edificio(i)-> obtener_cantidad_piedra();
-                madera = lista_edificios->obtener_edificio(i)->obtener_cantidad_madera();
-                metal = lista_edificios->obtener_edificio(i)->obtener_cantidad_metal();
-                maximo = lista_edificios->obtener_edificio(i)->obtener_maximo_construir();
-                cout<<nombre<<endl;
-                mapa[stoi(fila)][stoi(columna)]->agregar_edificio(nombre, piedra, madera, metal, maximo);
-
-                lista_edificios->obtener_edificio(i) ->sumar_cantidad();
-
+                nombre += " " + segundo_nombre;
+            } else {
+                getline(archivo, barra, '(');
+                getline(archivo, fila, ',');
+                getline(archivo, barra, ' ');
+                getline(archivo, columna, ')');
             }
+
+            if (nombre == "piedra" || nombre == "madera" || nombre == "metal"){
+                mapa[stoi(fila)][stoi(columna)]->agregar_material(nombre,1);
+            }
+
+            int madera, piedra, metal, maximo;
+
+            for ( int i = 0; i < lista_edificios->obtener_cantidad_edificios(); i++){
+                if ( lista_edificios->obtener_edificio(i)->obtener_nombre() == nombre){
+                    piedra = lista_edificios->obtener_edificio(i)-> obtener_cantidad_piedra();
+                    madera = lista_edificios->obtener_edificio(i)->obtener_cantidad_madera();
+                    metal = lista_edificios->obtener_edificio(i)->obtener_cantidad_metal();
+                    maximo = lista_edificios->obtener_edificio(i)->obtener_maximo_construir();
+                    cout<<nombre<<endl;
+                    mapa[stoi(fila)][stoi(columna)]->agregar_edificio(nombre, piedra, madera, metal, maximo);
+
+                    lista_edificios->obtener_edificio(i) ->sumar_cantidad();
+
+                }
+            }
+
+
         }
 
-
+        archivo.close();
+    }else{
+        cantidad_columnas = ERROR;
     }
-
-    archivo.close();
 
 }
 

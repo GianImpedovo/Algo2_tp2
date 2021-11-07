@@ -14,14 +14,19 @@ int main(){
 
     cout << "\n ¡ BIENVENIDOS A ANDYPOLIS ! \n" << endl;
 
-    mostrar_menu();
-    int opcion = elegir_opcion();
+    if ( ! (mapa->carga_incorrecta_archivos()) ){
 
-    while ( opcion != GUARDAR_SALIR ){
-
-        procesar_opcion(opcion, mapa);
         mostrar_menu();
-        opcion = elegir_opcion();
+        int opcion = elegir_opcion();
+
+        while ( opcion != GUARDAR_SALIR ){
+
+            procesar_opcion(opcion, mapa);
+            mostrar_menu();
+            opcion = elegir_opcion();
+        }
+    }else{
+        cout <<"Uno de los archivos no se pudo abrir";
     }
 
     delete mapa;
