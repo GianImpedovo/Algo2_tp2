@@ -569,9 +569,7 @@ int Mapa::generar_numero_random(int min, int max){
 
 }
 
-
-void Mapa::consultar_material_a_colocar(int &cant_gen_piedras, int &cant_gen_maderas, int &cant_gen_metales, 
-string &material_a_colocar ){
+void Mapa::consultar_material_a_colocar(int &cant_gen_piedras, int &cant_gen_maderas, int &cant_gen_metales, string &material_a_colocar ){
     if (cant_gen_piedras){
         material_a_colocar = "piedra";
         cant_gen_piedras --;
@@ -586,7 +584,6 @@ string &material_a_colocar ){
     }
 }
 
-
 void Mapa::mostrar_alerta_materiales_no_colocados(int materiales_restantes, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales){
     cout <<endl<<"No se pudieron colocar los siguientes " <<materiales_restantes 
     << " materiales porque los casilleros transitables ya estan todos ocupados: "<<endl;
@@ -600,7 +597,6 @@ void Mapa::mostrar_alerta_materiales_no_colocados(int materiales_restantes, int 
         cout<<cant_gen_metales <<" unidades de metal " <<endl;
     }
 }
-
 
 void Mapa::colocar_materiales_llovidos(int tot_materiales_gen, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales,
 Vector_ints *vector_filas, Vector_ints *vector_columnas ){
@@ -661,7 +657,6 @@ void Mapa::ejecutar_lluvia(int tot_materiales_gen, int cant_gen_piedras, int can
     delete vector_filas;
     delete vector_columnas;
 }
-
 
 void Mapa :: lluvia_recursos(){
 
