@@ -11,7 +11,6 @@ Mapa::Mapa(){
 
 }
 
-
 bool Mapa::carga_incorrecta_archivos(){
     bool carga_incorrecta = ( (cantidad_filas == -1) || (cantidad_columnas == -1) || (obtener_cantidad_edificios() == -1) 
     || (usuario_inventario->obtener_cantidad_de_materiales() == -1) );
@@ -282,26 +281,6 @@ Edificio * Mapa::obtener_edificio(int posicion){
     return edificios_posibles[posicion];
 }
 
-// Lista todos los edificios
-void Mapa::listar_todos_edificios(){
-    cout << "\n";
-    cout << "\t\t###   Listado de todos los edificios :   ###" << endl;
-    cout << "\nOrden de los elementos :  " << endl;
-    cout << "\n -> nombre / piedra / madera / metal / cuantos puedo construir " << endl;
-    cout << "_________________________________________________________________" << endl;
-    for ( int i = 0; i < cantidad_edificios; i++){
-        cout << "\n";
-        cout << " -> " << edificios_posibles[i]->obtener_nombre() << " "
-        << edificios_posibles[i]->obtener_cantidad_piedra() << " "
-        << edificios_posibles[i]->obtener_cantidad_madera() << " "
-        << edificios_posibles[i]->obtener_cantidad_metal() << " "
-        << edificios_posibles[i]->obtener_cuantos_puedo_construir() << endl;
-        cout << "\n";
-        cout << "_________________________________________________________________" << endl;
-    }
-    cout << "\n";
-}
-
 // Existe edificio 
 bool Mapa::existe_el_edificio(string nombre){
     bool existe = false;
@@ -343,7 +322,6 @@ bool Mapa::supera_maximo(string nombre){
 
 // -------------- DIVISION PUNTO POR PUNTO : MENU -------------------------------
 
-// 1)
 void Mapa::construir_edificio_nombre(){
 
     string nombre_nuevo;
@@ -399,7 +377,6 @@ void Mapa::realizar_construccion(string nombre_nuevo){
 
 }
 
-// 2)
 void Mapa::listar_edificios_construidos(){
     cout << "\n";
     cout << "\t\t###   Listado de los edificio construidos :   ### " << endl;
@@ -427,6 +404,25 @@ void Mapa::listar_edificios_construidos(){
     cout << "\n" ;
 }
 
+void Mapa::listar_todos_edificios(){
+    cout << "\n";
+    cout << "\t\t###   Listado de todos los edificios :   ###" << endl;
+    cout << "\nOrden de los elementos :  " << endl;
+    cout << "\n -> nombre / piedra / madera / metal / cuantos puedo construir " << endl;
+    cout << "_________________________________________________________________" << endl;
+    for ( int i = 0; i < cantidad_edificios; i++){
+        cout << "\n";
+        cout << " -> " << edificios_posibles[i]->obtener_nombre() << " "
+        << edificios_posibles[i]->obtener_cantidad_piedra() << " "
+        << edificios_posibles[i]->obtener_cantidad_madera() << " "
+        << edificios_posibles[i]->obtener_cantidad_metal() << " "
+        << edificios_posibles[i]->obtener_cuantos_puedo_construir() << endl;
+        cout << "\n";
+        cout << "_________________________________________________________________" << endl;
+    }
+    cout << "\n";
+}
+
 void Mapa::mostrar_coordenadas(string nombre){
     for ( int i = 0; i < cantidad_filas; i++){
         for ( int j = 0 ; j < cantidad_columnas; j++){
@@ -439,12 +435,6 @@ void Mapa::mostrar_coordenadas(string nombre){
     }
 }
 
-// 3)
-void Mapa::mostrar_todos_edificios(){
-    listar_todos_edificios();
-}
-
-// 4)
 void Mapa::demoler_edificio(){
 
     cout << "\n\t\t ###   En esta seccion podra DEMOLER un EDIFICIO :   ###" << endl;
@@ -510,7 +500,6 @@ void Mapa::devolver_materiales(int piedra_obtenida, int madera_obtenida, int met
 
 }
 
-// 5)
 void Mapa::mostrar_mapa(){
     cout << "\n";
     for (int i = 0; i < cantidad_filas ; i++){
@@ -525,7 +514,6 @@ void Mapa::mostrar_mapa(){
     cout << "\n\n";
 }
 
-// 6)
 void Mapa::consultar_coordenada(){
     int fila , columna;
 
@@ -535,12 +523,10 @@ void Mapa::consultar_coordenada(){
     cout << "\n";
 }
 
-// 7)
 void Mapa::mostrar_inv(){
     usuario_inventario->mostrar_inventario();
 }
 
-// 8) 
 void Mapa::recolectar_recursos_producidos(){
     int piedra = 0;
     int madera = 0;
@@ -702,8 +688,6 @@ void Mapa :: lluvia_recursos(){
 
 // -------------- FINALIZA PUNTOS DEL MENU -------------------------------
 
-
-// Destructor
 Mapa::~Mapa(){
 
     ofstream archivo_ubicaciones(ARCHIVO_UBICACIONES);

@@ -83,10 +83,6 @@ public:
     //POS: Devuelve un puntero con la direccion de memoria donde se encuentra el edificio.
     Edificio * obtener_edificio(int posicion);
 
-    //PRE: - 
-    //POS: Recorre el vector mostrandonos las caracteristicas de los edificios que vienen en el archivo.
-    void listar_todos_edificios();
-
     //PRE: Nombre tiene que ser un nombre que se encuentre en el archivo edificios.txt
     //POS: Obtendremos si el edificio se encuentra en el vector o no.
     bool existe_el_edificio(string nombre);
@@ -112,13 +108,13 @@ public:
     //POS: Muestra cuales edificios estan construidos con su cantidad y en que coordenadas se encuentran.
     void listar_edificios_construidos();
 
+    //PRE: - 
+    //POS: Recorre el vector mostrandonos las caracteristicas de los edificios que vienen en el archivo.
+    void listar_todos_edificios();
+
     //PRE: En caso que haya edificios construidos en los casilleros.
     //POS: Muestra los edificios que estan construidos y donde se encuentran ubicados.
     void mostrar_coordenadas(string nombre);
-
-    //PRE: si lista_edificios != 0.
-    //POS: Muestra las caracteristicas de todos los edificios posibles a construir/demomel.
-    void mostrar_todos_edificios();
 
     //PRE: Solicitando coordenadas, fila <= cantidad_filas, columna <= cantidad_columnas.
     //POS: Elimina el edificio solicitado del casillero correspondiente y retorna la mitad de los materiales usados al inventario.

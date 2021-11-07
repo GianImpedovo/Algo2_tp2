@@ -50,7 +50,7 @@ void procesar_opcion(int opcion, Mapa * mapa){
         break;
 
     case LISTAR_TODOS_EDIFICIOS:
-            mapa->mostrar_todos_edificios();
+            mapa->listar_todos_edificios();
         break;
 
     case DEMOLER_EDIFICIO:
