@@ -11,70 +11,77 @@ void Caracteristicas_edificio::cargar_edificios(){
 ifstream nuevo_archivo;
     nuevo_archivo.open(ARCHIVO_EDIFICIO);
 
-    string nombre_edificio, segundo_nombre, cantidad_piedra, cantidad_madera, cantidad_metal, maximo;
+    if(nuevo_archivo.is_open()){
 
-    int piedra, madera, metal, maximo_construir;
 
-    Edificio * nuevo_edificio;
+        string nombre_edificio, segundo_nombre, cantidad_piedra, cantidad_madera, cantidad_metal, maximo;
 
-    while (nuevo_archivo >> nombre_edificio){
-        if ( nombre_edificio == "planta"){
-            nuevo_archivo >> segundo_nombre;
-            nuevo_archivo >> cantidad_piedra;
-            nuevo_archivo >> cantidad_madera;
-            nuevo_archivo >> cantidad_metal;
-            nuevo_archivo >> maximo;
+        int piedra, madera, metal, maximo_construir;
 
-            nombre_edificio += " " + segundo_nombre;
+        Edificio * nuevo_edificio;
 
-        } else {
-            nuevo_archivo >> cantidad_piedra;
-            nuevo_archivo >> cantidad_madera;
-            nuevo_archivo >> cantidad_metal;
-            nuevo_archivo >> maximo;
+        while (nuevo_archivo >> nombre_edificio){
+            if ( nombre_edificio == "planta"){
+                nuevo_archivo >> segundo_nombre;
+                nuevo_archivo >> cantidad_piedra;
+                nuevo_archivo >> cantidad_madera;
+                nuevo_archivo >> cantidad_metal;
+                nuevo_archivo >> maximo;
+
+                nombre_edificio += " " + segundo_nombre;
+
+            } else {
+                nuevo_archivo >> cantidad_piedra;
+                nuevo_archivo >> cantidad_madera;
+                nuevo_archivo >> cantidad_metal;
+                nuevo_archivo >> maximo;
+
+            }
+
+            piedra = stoi(cantidad_piedra);
+            madera = stoi(cantidad_madera);
+            metal = stoi(cantidad_metal);
+            maximo_construir = stoi(maximo);
+
+            if (nombre_edificio == ASERRADERO){
+
+                nuevo_edificio = new Aserradero(piedra, madera, metal, maximo_construir);
+
+            }
+            else if ( nombre_edificio == ESCUELA){
+
+                nuevo_edificio = new Escuela( piedra, madera, metal, maximo_construir);
+
+            }
+            else if ( nombre_edificio == FABRICA){
+
+                nuevo_edificio = new Fabrica( piedra, madera, metal, maximo_construir);
+
+            }
+            else if ( nombre_edificio == MINA){
+
+                nuevo_edificio = new Mina( piedra, madera, metal, maximo_construir);
+
+            }
+            else if ( nombre_edificio == OBELISCO){
+
+                nuevo_edificio = new Obelisco( piedra, madera, metal, maximo_construir);
+
+            }
+            else if ( nombre_edificio == PLANTA_ELECTRICA){
+
+                nuevo_edificio = new Planta_electrica( piedra, madera, metal, maximo_construir);
+
+            }
+            agregar_edificio(nuevo_edificio);
 
         }
 
-        piedra = stoi(cantidad_piedra);
-        madera = stoi(cantidad_madera);
-        metal = stoi(cantidad_metal);
-        maximo_construir = stoi(maximo);
-
-        if (nombre_edificio == ASERRADERO){
-
-            nuevo_edificio = new Aserradero(piedra, madera, metal, maximo_construir);
-
-        }
-        else if ( nombre_edificio == ESCUELA){
-
-            nuevo_edificio = new Escuela( piedra, madera, metal, maximo_construir);
-
-        }
-        else if ( nombre_edificio == FABRICA){
-
-            nuevo_edificio = new Fabrica( piedra, madera, metal, maximo_construir);
-
-        }
-        else if ( nombre_edificio == MINA){
-
-            nuevo_edificio = new Mina( piedra, madera, metal, maximo_construir);
-
-        }
-        else if ( nombre_edificio == OBELISCO){
-
-            nuevo_edificio = new Obelisco( piedra, madera, metal, maximo_construir);
-
-        }
-        else if ( nombre_edificio == PLANTA_ELECTRICA){
-
-            nuevo_edificio = new Planta_electrica( piedra, madera, metal, maximo_construir);
-
-        }
-        agregar_edificio(nuevo_edificio);
-
+        nuevo_archivo.close();
+    
+    }else{
+        cantidad_edificios= ERROR;
     }
-
-    nuevo_archivo.close();
 }
 
 // Agrego el edificio nuevo a la lista de edificios
