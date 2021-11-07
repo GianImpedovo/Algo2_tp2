@@ -63,20 +63,12 @@ void Vector_ints::sacar_numero(int posicion_numero_a_sacar){
             vector_aux_numeros[i] = numeros[i];
             //Como esta en la ult pos nunca lo copio!
         }
-        
-        //borro el numero de la ult pos
-        
-        // delete agenda -> contactos[agenda -> cantidad_de_contactos - 1];
-        // delete numeros[longitud-1];
-        //delete[] agenda -> contactos;         
-        
+
         delete[] numeros;
 
         numeros = vector_aux_numeros;
 
     }else{
-        //delete agenda -> contactos[agenda -> cantidad_de_contactos - 1];
-        //delete[] agenda -> contactos;
         delete[] numeros;
     }
 
