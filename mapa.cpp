@@ -389,27 +389,6 @@ void Mapa::recolectar_recursos_producidos(){
 }
 
 
-void Mapa :: lluvia_recursos(){
-
-    srand( (unsigned)time(0) );
-
-    int cant_gen_piedras = generar_numero_random(1,3); 
-    int cant_gen_maderas = generar_numero_random(0,1);
-    int cant_gen_metales = generar_numero_random(2,4);
-    
-    int tot_materiales_gen = cant_gen_piedras + cant_gen_maderas + cant_gen_metales;
-    
-        
-    cout << "Han llovido en el mapa " << tot_materiales_gen << " unidades de materiales: " <<endl
-    <<cant_gen_piedras <<" unidades de piedra"<<endl
-    <<cant_gen_maderas <<" unidades de madera" <<endl
-    <<cant_gen_metales <<" unidades de metal " <<endl<<endl
-    <<"`Presione 5 para ver el mapa y ver cuales cayeron en casilleros habilitados"<< endl<<endl;
-
-    ejecutar_lluvia(tot_materiales_gen,cant_gen_piedras, cant_gen_maderas, cant_gen_metales);
-}
-
-
 int Mapa::generar_numero_random(int min, int max){
     int range = max + 1  - min;  
     return min + ( rand() % range);
@@ -433,22 +412,103 @@ string &material_a_colocar ){
     }
 }
 
-void Mapa::ejecutar_lluvia(int tot_materiales_gen, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales){
+
+void Mapa::mostrar_alerta_materiales_no_colocados(int materiales_restantes, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales){
+    cout <<endl<<"No se pudieron colocar los siguientes " <<materiales_restantes 
+    << " materiales porque los casilleros transitables ya estan todos ocupados: "<<endl;
+    if (cant_gen_piedras > 0){
+        cout<<cant_gen_piedras <<" unidades de piedra"<<endl;
+    }
+    if (cant_gen_maderas > 0){
+        cout<<cant_gen_maderas <<" unidades de madera" <<endl;
+    }
+    if (cant_gen_metales > 0){
+        cout<<cant_gen_metales <<" unidades de metal " <<endl;
+    }
+}
+
+
+void Mapa::colocar_materiales_llovidos(int tot_materiales_gen, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales,
+Vector_ints *vector_filas, Vector_ints *vector_columnas ){
     
     string material_a_colocar = "";
-    
-    for (int i = 0; i < tot_materiales_gen; i++){
-        
+    int materiales_restantes = tot_materiales_gen;
+
+    while (materiales_restantes >0 && vector_columnas->obtener_longitud() >0){
+
         consultar_material_a_colocar(cant_gen_piedras, cant_gen_maderas, cant_gen_metales, material_a_colocar);
+
+        int pos_coordenada =  generar_numero_random( 0, vector_filas->obtener_longitud() - 1);
         
-        int fila = generar_numero_random(0,cantidad_filas - 1);
-        int columna = generar_numero_random(0, cantidad_columnas -1 );
-        
-        cout << "1 unidad de " <<material_a_colocar << " en ("<< fila <<","<< columna <<")"<<endl;
+        int fila = vector_filas -> obtener_numero(pos_coordenada);
+        int columna = vector_columnas -> obtener_numero(pos_coordenada);
         
         mapa[fila][columna] -> agregar_material(material_a_colocar, 1);
 
+        cout <<"1 unidad de " << material_a_colocar << " en " <<"("<< fila << ","  << columna <<")" << endl;
+
+        vector_filas -> sacar_numero(pos_coordenada);
+        vector_columnas -> sacar_numero(pos_coordenada);
+        
+        materiales_restantes --;
+    }
+
+    if ( materiales_restantes != 0 ){
+        mostrar_alerta_materiales_no_colocados(materiales_restantes, cant_gen_piedras, cant_gen_maderas, cant_gen_metales);
+    }
+
+}
+
+void Mapa::cargar_vectores_de_posisiones_permitidas(Vector_ints *vector_filas, Vector_ints *vector_columnas){
+    
+    int pos = 0;
+    for ( int i = 0; i < cantidad_filas; i++){
+        for ( int j = 0; j < cantidad_columnas ; j++){
+            if (mapa[i][j] -> obtener_nombre() =="C" && !( mapa[i][j] -> existe_material() ) ){    
+
+                vector_filas->agregar_numero(i,pos+1, pos);
+                vector_columnas->agregar_numero(j,pos+1, pos);
+                
+                pos+=1;
+            }
         }
+    }
+}
+
+void Mapa::ejecutar_lluvia(int tot_materiales_gen, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales){
+
+    Vector_ints *vector_filas = new Vector_ints;
+    Vector_ints *vector_columnas = new Vector_ints;
+
+    cargar_vectores_de_posisiones_permitidas(vector_filas, vector_columnas);
+    
+    colocar_materiales_llovidos(tot_materiales_gen, cant_gen_piedras, cant_gen_maderas, cant_gen_metales, vector_filas, vector_columnas);
+    
+    delete vector_filas;
+    delete vector_columnas;
+}
+
+
+void Mapa :: lluvia_recursos(){
+
+    srand( (unsigned)time(0) );
+
+    int cant_gen_piedras = generar_numero_random(1,2); 
+    int cant_gen_maderas = generar_numero_random(0,1);
+    int cant_gen_metales = generar_numero_random(2,4);
+    
+    int tot_materiales_gen = cant_gen_piedras + cant_gen_maderas + cant_gen_metales;
+    
+        
+    cout << "Han llovido en el mapa " << tot_materiales_gen << " unidades de materiales: " <<endl
+    <<cant_gen_piedras <<" unidades de piedra"<<endl
+    <<cant_gen_maderas <<" unidades de madera" <<endl
+    <<cant_gen_metales <<" unidades de metal " <<endl<<endl
+    <<"en las siguientes posiciones: "<< endl;
+
+    ejecutar_lluvia(tot_materiales_gen,cant_gen_piedras, cant_gen_maderas, cant_gen_metales);
+
+    cout <<endl;
 }
 
 // -------------- FINALIZA PUNTOS DEL MENU -------------------------------
