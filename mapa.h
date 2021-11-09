@@ -27,7 +27,7 @@ private:
     int cantidad_edificios;
     Edificio ** edificios_posibles;
 
-    Casillero_transitable ** vector_casilleros;
+    Casillero_transitable ** vector_casilleros_lluvia;
     int total_casilleros;
 
 public:
