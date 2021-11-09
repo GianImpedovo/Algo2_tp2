@@ -10,6 +10,9 @@ private:
     Material * material;
 public:
 
+    //Constructor de casillero transitable
+    //PRE: Recibe un entero con la fila y otro con la columna
+    //POST: Construye un casillero transitable con nombre = "c" e inicializa el puntero material en null.
     Casillero_transitable(int fila, int columna);
 
     void mostrar_casillero();

@@ -77,8 +77,14 @@ public:
     //POS: Libero la memoria y edificio_construido = 0.
     ~Casillero_construible();
 
+    //Obtener fila
+    //PRE:-
+    //POST: Devuelve un entero con la fila del casillero
     int obtener_fila();
 
+    //Obtener columna
+    //PRE:-
+    //POST: Devuelve un entero con la columna del casillero
     int obtener_columna();
 };
 
