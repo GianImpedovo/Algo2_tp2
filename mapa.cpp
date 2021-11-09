@@ -687,7 +687,7 @@ void Mapa :: agregar_casillero_a_vector_casilleros_lluvia (Casillero_transitable
     vector_casilleros_lluvia = vector_aux;
 }
 
-void Mapa::cargar_vector_casilleros_con_posiciones_permitidas(){
+void Mapa::cargar_vector_casilleros_lluvia_con_casileros_permitidos(){
     
     int pos = 0;
     Casillero_transitable *casillero_aux;
@@ -708,7 +708,7 @@ void Mapa::cargar_vector_casilleros_con_posiciones_permitidas(){
 
 void Mapa::ejecutar_lluvia(int tot_materiales_gen, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales){
 
-    cargar_vector_casilleros_con_posiciones_permitidas();
+    cargar_vector_casilleros_lluvia_con_casileros_permitidos();
 
     colocar_materiales_llovidos(tot_materiales_gen, cant_gen_piedras, cant_gen_maderas, cant_gen_metales);
     

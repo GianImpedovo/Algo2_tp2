@@ -153,6 +153,14 @@ public:
     //resulta estar ocupada, no se coloca dicho material.
     void lluvia_recursos();
 
+    //Carga incorrecta archivos
+    //PRE: Todos los archivos se deben haber intentado abrir y cargar
+    //POST: Chequea si todos los archivos fueron cargados correctamente. Devuelve true si la carga fue INCORRECTA, y flase 
+    //en caso contrario
+    bool carga_incorrecta_archivos();
+
+    // -------------- LLUVIA DE RECURSOS -------------------------------
+    
     //Generar numero random
     //PRE: Recibe los enteros "min" y "max" con los valores limite (inclusives) entre los cuales se desea generar el numero random 
     //POST: Devuelve un valor random entre "min" y "max"
@@ -162,13 +170,12 @@ public:
     //PRE: -
     //POST: Carga en vector_casilleros_lluvia los casilleros habilitados para que puedan llover materiales(son transitables
     //y no tienen ningun material ya ubicado en ellos).
-    void cargar_vector_casilleros_con_posiciones_permitidas();  
+    void cargar_vector_casilleros_lluvia_con_casileros_permitidos();  
 
     //Colocar materiales llovidos en mapa
     //PRE: Recibe enteros con las cantidades totales y pariciales de materiales generados.
     //POST: Coloca en el mapa en las posicione aleatorias generadas por generar_numeros_random() los materiales generados.
     void colocar_materiales_llovidos(int tot_materiales_gen, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales);
-
 
     //Consultar material a colocar
     //PRE: Recibe los enteros "cant_gen_piedras", "cant_gen_maderas" y "cant_gen_metales" y el string material_a_colocar
@@ -187,26 +194,10 @@ public:
     //la funcion "generar_numero_random".
     void ejecutar_lluvia(int tot_materiales_gen, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales);
 
-    //Detructor
-    //PRE: - 
-    //POS: Libero la memoria reservada por el mapa y los casilleros creados , liberando los edificios y materiales 
-    //     que se encuentran en los casilleros y se guarda la informacion en el archivo ubicaciones.txt,
-    //     tambien se libera la memoria reservada por el inventario y las caracteristicas_edificios.
-    //     Se vuelve a setear todos los valores en 0.
-    ~Mapa();
-
-
-    //Carga incorrecta archivos
-    //PRE: Todos los archivos se deben haber intentado abrir y cargar
-    //POST: Chequea si todos los archivos fueron cargados correctamente. Devuelve true si la carga fue INCORRECTA, y flase 
-    //en caso contrario
-    bool carga_incorrecta_archivos();
-
     //Agregar casillero a vector casilleros lluvia
     //PRE: Recibe un puntero a casillero transitable, un entero con el nuevo tamanio del vector y el entero posicion con la posicion
     //en la que se desea agregar el casillero en el vector (sera siempre al final)
     void agregar_casillero_a_vector_casilleros_lluvia (Casillero_transitable* casillero, int tam_nuevo, int pos );
-
 
     //Swap casiillero
     //PRE: Recibe 2 posiciones
@@ -224,6 +215,14 @@ public:
     //vector casilleros lluvia
     Casillero_transitable* obtener_casillero_vector_casilleros_lluvia( int pos);
 
+    
+    //Detructor
+    //PRE: - 
+    //POS: Libero la memoria reservada por el mapa y los casilleros creados , liberando los edificios y materiales 
+    //     que se encuentran en los casilleros y se guarda la informacion en el archivo ubicaciones.txt,
+    //     tambien se libera la memoria reservada por el inventario y las caracteristicas_edificios.
+    //     Se vuelve a setear todos los valores en 0.
+    ~Mapa();
 };
 
 
