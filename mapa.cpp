@@ -630,13 +630,10 @@ void Mapa::colocar_materiales_llovidos(int tot_materiales_gen, int cant_gen_pied
 
 
 
-Casillero_transitable* Mapa :: obtener_casillero ( int pos) {
+Casillero_transitable* Mapa :: obtener_casillero_vector_casilleros_llluvia ( int pos) {
 	return vector_casilleros[pos];
 }
 
-int Mapa :: obtener_longitud(){
-    return total_casilleros;
-}
 
 void Mapa::sacar_casillero(int posicion_numero_a_sacar){
     
@@ -672,9 +669,9 @@ void Mapa::swap_casillero(int posicion_1, int posicion_2){
     vector_casilleros[posicion_2] = aux; //el ultimo lo pongo en donde estaba el que quiero eliminar
 }
 
-void Mapa :: agregar_casillero (Casillero_transitable *casillero, int tam, int pos ) {
+void Mapa :: agregar_casillero_a_vector_casilleros_lluvia (Casillero_transitable *casillero, int tam_nuevo, int pos ) {
     
-    Casillero_transitable** vector_aux = new Casillero_transitable*[tam];
+    Casillero_transitable** vector_aux = new Casillero_transitable*[tam_nuevo];
 
     for (int i = 0; i<pos; i++){
         vector_aux[i] = vector_casilleros[i];
@@ -686,7 +683,7 @@ void Mapa :: agregar_casillero (Casillero_transitable *casillero, int tam, int p
         delete [] vector_casilleros;
         }
 
-    total_casilleros = tam;
+    total_casilleros = tam_nuevo;
     vector_casilleros = vector_aux;
 }
 
@@ -701,7 +698,7 @@ void Mapa::cargar_vector_casilleros_con_posiciones_permitidas(){
                 
                 casillero_aux  = new Casillero_transitable(i, j);
 
-                agregar_casillero(casillero_aux,pos+1, pos);
+                agregar_casillero_a_vector_casilleros_lluvia(casillero_aux,pos+1, pos);
                 
                 pos+=1;
             }
