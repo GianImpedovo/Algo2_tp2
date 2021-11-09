@@ -598,23 +598,17 @@ void Mapa::mostrar_alerta_materiales_no_colocados(int materiales_restantes, int 
     }
 }
 
-// void Mapa::colocar_materiales_llovidos(int tot_materiales_gen, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales,
-// Vector_ints *vector_filas, Vector_ints *vector_columnas ){
+
 void Mapa::colocar_materiales_llovidos(int tot_materiales_gen, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales){
 
     string material_a_colocar = "";
     int materiales_restantes = tot_materiales_gen;
 
-    //while (materiales_restantes >0 && vector_columnas->obtener_longitud() >0){
     while (materiales_restantes >0 && total_casilleros >0){
 
         consultar_material_a_colocar(cant_gen_piedras, cant_gen_maderas, cant_gen_metales, material_a_colocar);
 
-        //int pos_coordenada =  generar_numero_random( 0, vector_filas->obtener_longitud() - 1);
         int pos_coordenada =  generar_numero_random( 0, total_casilleros - 1);
-
-        //int fila = vector_filas -> obtener_numero(pos_coordenada);
-        //int columna = vector_columnas -> obtener_numero(pos_coordenada);
         
         int fila =  obtener_casillero(pos_coordenada) ->obtener_fila() ;
         int columna =  obtener_casillero(pos_coordenada) ->obtener_columna() ;
@@ -622,9 +616,6 @@ void Mapa::colocar_materiales_llovidos(int tot_materiales_gen, int cant_gen_pied
         mapa[fila][columna] -> agregar_material(material_a_colocar, 1);
 
         cout <<"1 unidad de " << material_a_colocar << " en " <<"("<< fila << ","  << columna <<")" << endl;
-
-        // vector_filas -> sacar_numero(pos_coordenada);
-        // vector_columnas -> sacar_numero(pos_coordenada);
 
         sacar_casillero(pos_coordenada);
 
@@ -663,7 +654,6 @@ void Mapa::sacar_casillero(int posicion_numero_a_sacar){
         
         delete vector_casilleros[total_casilleros - 1];
         delete[] vector_casilleros;
-        //vector_casilleros = nullptr;
 
 
         vector_casilleros = vector_aux_casilleros;
@@ -671,10 +661,8 @@ void Mapa::sacar_casillero(int posicion_numero_a_sacar){
     }else{
         delete vector_casilleros[total_casilleros - 1];
         delete[] vector_casilleros;
-        //vector_casilleros = nullptr;
     }
 
-    //agenda -> cantidad_de_contactos--;
     total_casilleros --;
 }
 
@@ -702,7 +690,6 @@ void Mapa :: agregar_casillero (Casillero_transitable *casillero, int tam, int p
     vector_casilleros = vector_aux;
 }
 
-//void Mapa::cargar_vectores_de_posisiones_permitidas(Vector_ints *vector_filas, Vector_ints *vector_columnas, int &total_permitidas_iniciales){
 void Mapa::cargar_vectores_de_posisiones_permitidas(){
     
     int pos = 0;
@@ -713,11 +700,8 @@ void Mapa::cargar_vectores_de_posisiones_permitidas(){
             if (mapa[i][j] -> obtener_nombre() =="C" && !( mapa[i][j] -> existe_material() ) ){    
                 
                 casillero_aux  = new Casillero_transitable(i, j);
-                cout<<"pido"<<endl;
-                agregar_casillero(casillero_aux,pos+1, pos);
 
-                // vector_filas->agregar_numero(i,pos+1, pos);
-                // vector_columnas->agregar_numero(j,pos+1, pos);
+                agregar_casillero(casillero_aux,pos+1, pos);
                 
                 pos+=1;
             }
@@ -726,27 +710,20 @@ void Mapa::cargar_vectores_de_posisiones_permitidas(){
 }
 
 void Mapa::ejecutar_lluvia(int tot_materiales_gen, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales){
-
-    // Vector_ints *vector_filas = new Vector_ints;
-    // Vector_ints *vector_columnas = new Vector_ints;
     
-    //int total_permitidas_iniciales = 0;
-    //cargar_vectores_de_posisiones_permitidas(vector_filas, vector_columnas, total_permitidas_iniciales);
     cargar_vectores_de_posisiones_permitidas();    
     
-    //colocar_materiales_llovidos(tot_materiales_gen, cant_gen_piedras, cant_gen_maderas, cant_gen_metales, vector_filas, vector_columnas);
     colocar_materiales_llovidos(tot_materiales_gen, cant_gen_piedras, cant_gen_maderas, cant_gen_metales);
+    
     int total_cas = total_casilleros;
+
     for ( int i = 0; i < total_cas; i++){
         delete vector_casilleros[i];
-        cout<<"libero"<<endl;        
         total_casilleros--;
     }
     if (total_cas !=0){
-        //cout<<"libero"<<endl;        
         delete [] vector_casilleros;
         vector_casilleros = nullptr;
-        //total_casilleros = 0;
     }
 }
 
@@ -808,18 +785,4 @@ Mapa::~Mapa(){
     delete usuario_inventario;
     usuario_inventario = 0;
     
-    
-    // int total_cas = total_casilleros;
-    // for ( int i = 0; i < total_cas; i++){
-    //     delete vector_casilleros[i];
-    //     cout<<"libero"<<endl;        
-    //     total_casilleros--;
-    // }
-    // if (total_cas !=0){
-    //     //cout<<"libero"<<endl;        
-    //     delete [] vector_casilleros;
-    //     vector_casilleros = nullptr;
-    //     //total_casilleros = 0;
-    // }
-
 }
