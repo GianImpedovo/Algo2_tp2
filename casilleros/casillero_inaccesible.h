@@ -35,6 +35,10 @@ public:
 
     bool existe_material();
 
+    int obtener_fila();
+
+    int obtener_columna();
+
 };
 
 

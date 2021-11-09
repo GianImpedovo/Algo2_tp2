@@ -28,6 +28,9 @@ private:
     int cantidad_edificios;
     Edificio ** edificios_posibles;
 
+    Casillero_transitable ** vector_casilleros;
+    int total_casilleros;
+
 public:
 
     // Constructor
@@ -159,14 +162,19 @@ public:
     //Cargar vectores filas y columnas habilitadas
     //PRE: Recibe los objetos vectores de enteros con las filas y las columnas habilitadas para que lluevan materiales
     //POST: Carga en ellos las colulmnas y filas habilitadas paraque lluevan materiales.
-    void cargar_vectores_de_posisiones_permitidas(Vector_ints *vector_filas, Vector_ints *vector_columnas);
-    
+    // void cargar_vectores_de_posisiones_permitidas(Vector_ints *vector_filas, Vector_ints *vector_columnas, 
+    // int &total_permitidas_iniciales);    
+    void cargar_vectores_de_posisiones_permitidas();  
+
     //Colocar materiales llovidos en mapa
     //PRE: Recibe enteros con las cantidades totales y pariciales de materiales generados y los vectores con las filas
     //y columnas habilitadas para que lluevan materiales
     //POST: Coloca en el mapa en las posicione aleatorias generadas por generar_numeros_random() los materiales generados.
-    void colocar_materiales_llovidos(int tot_materiales_gen, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales,
-    Vector_ints *vector_filas, Vector_ints *vector_columnas);
+    // void colocar_materiales_llovidos(int tot_materiales_gen, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales,
+    // Vector_ints *vector_filas, Vector_ints *vector_columnas);
+    void colocar_materiales_llovidos(int tot_materiales_gen, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales);
+
+
 
     //Consultar material a colocar
     //PRE: Recibe los enteros "cant_gen_piedras", "cant_gen_maderas" y "cant_gen_metales" y el string
@@ -195,6 +203,18 @@ public:
     ~Mapa();
 
     bool carga_incorrecta_archivos();
+
+    
+    void agregar_casillero (Casillero_transitable* casillero, int tam, int pos );
+
+    void swap_casillero(int posicion_1, int posicion_2);
+
+    void sacar_casillero(int posicion_numero_a_sacar);
+
+    Casillero_transitable* obtener_casillero ( int pos);
+
+    int obtener_longitud();
+
 };
 
 

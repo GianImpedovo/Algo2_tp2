@@ -77,6 +77,9 @@ public:
     //POS: Libero la memoria y edificio_construido = 0.
     ~Casillero_construible();
 
+    int obtener_fila();
+
+    int obtener_columna();
 };
 
 

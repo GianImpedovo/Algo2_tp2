@@ -37,6 +37,10 @@ public:
     void mostrar_coordenadas_edificio(string nombre);
 
     ~Casillero_transitable();
+
+    int obtener_fila();
+
+    int obtener_columna();
 };
 
 

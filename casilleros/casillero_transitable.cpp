@@ -76,3 +76,11 @@ Casillero_transitable::~Casillero_transitable(){
     }
     material = 0;
 }
+
+int Casillero_transitable::obtener_fila(){
+    return fila;
+}
+
+int Casillero_transitable::obtener_columna(){
+    return columna;
+}

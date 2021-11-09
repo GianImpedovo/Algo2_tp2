@@ -84,7 +84,7 @@ public:
     // POS: - 
     virtual ~Casillero();
     
-
+    int obtener_fila();
 
 };
 
