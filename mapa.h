@@ -7,7 +7,6 @@
 #include "casilleros/casillero_construible.h"
 #include "casilleros/casillero_transitable.h"
 #include "casilleros/casillero_inaccesible.h"
-#include "vector_ints.h"
 
 using namespace std;
 
@@ -159,26 +158,20 @@ public:
     //POST: Devuelve un valor random entre "min" y "max"
     int generar_numero_random(int min, int max);
     
-    //Cargar vectores filas y columnas habilitadas
-    //PRE: Recibe los objetos vectores de enteros con las filas y las columnas habilitadas para que lluevan materiales
-    //POST: Carga en ellos las colulmnas y filas habilitadas paraque lluevan materiales.
-    // void cargar_vectores_de_posisiones_permitidas(Vector_ints *vector_filas, Vector_ints *vector_columnas, 
-    // int &total_permitidas_iniciales);    
-    void cargar_vectores_de_posisiones_permitidas();  
+    //Cargar vector_casilleros
+    //PRE: -
+    //POST: Carga en vector_casilleros_lluvia los casilleros habilitados para que puedan llover materiales(son transitables
+    //y no tienen ningun material ya ubicado en ellos).
+    void cargar_vector_casilleros_con_posiciones_permitidas();  
 
     //Colocar materiales llovidos en mapa
-    //PRE: Recibe enteros con las cantidades totales y pariciales de materiales generados y los vectores con las filas
-    //y columnas habilitadas para que lluevan materiales
+    //PRE: Recibe enteros con las cantidades totales y pariciales de materiales generados.
     //POST: Coloca en el mapa en las posicione aleatorias generadas por generar_numeros_random() los materiales generados.
-    // void colocar_materiales_llovidos(int tot_materiales_gen, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales,
-    // Vector_ints *vector_filas, Vector_ints *vector_columnas);
     void colocar_materiales_llovidos(int tot_materiales_gen, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales);
 
 
-
     //Consultar material a colocar
-    //PRE: Recibe los enteros "cant_gen_piedras", "cant_gen_maderas" y "cant_gen_metales" y el string
-    //material_a_colocar
+    //PRE: Recibe los enteros "cant_gen_piedras", "cant_gen_maderas" y "cant_gen_metales" y el string material_a_colocar
     //POST: Modifica por parametro "material_a_colocar" y las cantidades de piedra y madera restantes.
     void consultar_material_a_colocar(int &cant_gen_piedras, int &cant_gen_maderas, int &cant_gen_metales, string &material_a_colocar);
 
@@ -202,18 +195,34 @@ public:
     //     Se vuelve a setear todos los valores en 0.
     ~Mapa();
 
+
+    //Carga incorrecta archivos
+    //PRE: Todos los archivos se deben haber intentado abrir y cargar
+    //POST: Chequea si todos los archivos fueron cargados correctamente. Devuelve true si la carga fue INCORRECTA, y flase 
+    //en caso contrario
     bool carga_incorrecta_archivos();
 
-    
-    void agregar_casillero (Casillero_transitable* casillero, int tam, int pos );
+    //Agregar casillero a vector casilleros lluvia
+    //PRE: Recibe un puntero a casillero transitable, un entero con el nuevo tamanio del vector y el entero posicion con la posicion
+    //en la que se desea agregar el casillero en el vector (sera siempre al final)
+    void agregar_casillero_a_vector_casilleros_lluvia (Casillero_transitable* casillero, int tam_nuevo, int pos );
 
+
+    //Swap casiillero
+    //PRE: Recibe 2 posiciones
+    //POST: Intercambia los elementos de dichas posiciones en el vectorcasilleros_lluvia
     void swap_casillero(int posicion_1, int posicion_2);
 
+    //Sacar_casillero
+    //PRE: Recibe un entero con las posicion dentro del vector_casilleros_lluvia que se deasea eliminar (sacar)
+    //POST: Quita el casillero que se encuentre en dicha posicion del vector
     void sacar_casillero(int posicion_numero_a_sacar);
 
-    Casillero_transitable* obtener_casillero ( int pos);
-
-    int obtener_longitud();
+    //Obtener_casillero del vector casilleros lluvia
+    //PRE: Recibe un entero con la posicion del casillero que se desea obtener
+    //POST: Devuelve un puntero casillero transitable con el casillero que se encontraba en la posicion pos del 
+    //vector casilleros lluvia
+    Casillero_transitable* obtener_casillero_vector_casilleros_lluvia( int pos);
 
 };
 
