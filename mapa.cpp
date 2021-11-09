@@ -610,8 +610,8 @@ void Mapa::colocar_materiales_llovidos(int tot_materiales_gen, int cant_gen_pied
 
         int pos_coordenada =  generar_numero_random( 0, total_casilleros - 1);
         
-        int fila =  obtener_casillero(pos_coordenada) ->obtener_fila() ;
-        int columna =  obtener_casillero(pos_coordenada) ->obtener_columna() ;
+        int fila =  obtener_casillero_vector_casilleros_lluvia(pos_coordenada) ->obtener_fila() ;
+        int columna =  obtener_casillero_vector_casilleros_lluvia(pos_coordenada) ->obtener_columna() ;
 
         mapa[fila][columna] -> agregar_material(material_a_colocar, 1);
 
@@ -630,7 +630,7 @@ void Mapa::colocar_materiales_llovidos(int tot_materiales_gen, int cant_gen_pied
 
 
 
-Casillero_transitable* Mapa :: obtener_casillero_vector_casilleros_llluvia ( int pos) {
+Casillero_transitable* Mapa :: obtener_casillero_vector_casilleros_lluvia ( int pos) {
 	return vector_casilleros[pos];
 }
 
