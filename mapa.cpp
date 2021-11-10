@@ -347,26 +347,33 @@ void Mapa::realizar_construccion(string nombre_nuevo){
         bool supera_max = supera_maximo(nombre_nuevo);
         bool alcanzan_materiales = usuario_inventario->alcanzan_materiales(piedra_necesaria, madera_necesaria, metal_necesario);
 
-        if ( ! supera_max && alcanzan_materiales ){
+        if ( ! supera_max){
+            if (alcanzan_materiales){
+                if ( aceptar_condiciones() ){
 
-            if ( aceptar_condiciones() ){
+                    int fila , columna;
+                    cout << "\n ### En esta seccion podra CONSTRUIR un EDIFICIO : ###\n" << endl;
+                    validar_coordenada( fila, columna);
+                    bool existe_edificio_construido = mapa[fila][columna]->existe_edificio();
 
-                int fila , columna;
-                cout << "\n ### En esta seccion podra CONSTRUIR un EDIFICIO : ###\n" << endl;
-                validar_coordenada( fila, columna);
-                bool existe_edificio_construido = mapa[fila][columna]->existe_edificio();
+                    if ( ! existe_edificio_construido ){
+                        mapa[fila][columna]->agregar_edificio(nombre_nuevo, piedra_necesaria, madera_necesaria, metal_necesario, maximo);
+                        obtener_edificio(pos_edificio)->sumar_cantidad();
+                        usuario_inventario->utilizar_materiales(piedra_necesaria, madera_necesaria, metal_necesario);
 
-                if ( ! existe_edificio_construido ){
-                    mapa[fila][columna]->agregar_edificio(nombre_nuevo, piedra_necesaria, madera_necesaria, metal_necesario, maximo);
-                    obtener_edificio(pos_edificio)->sumar_cantidad();
-                    usuario_inventario->utilizar_materiales(piedra_necesaria, madera_necesaria, metal_necesario);
+                        if ( mapa[fila][columna]->obtener_nombre() == "T"){
+                            cout << "\n ¡ FELICITACIONES : El edificio " << nombre_nuevo << " fue creado exitosamente ! \n" << endl;
+                        }
 
-                    cout << "\n ¡ FELICITACIONES : El edificio " << nombre_nuevo << " fue creado exitosamente ! \n" << endl;
-                } else {
-                    cout << "\n El casillero ya contiene un edificio .\n" << endl;
+                    } else {
+                        cout << "\n El casillero ya contiene un edificio .\n" << endl;
+                    }
                 }
             }
-        } else {
+            else{
+                cout<<"\n No se puede construir el edificio de tipo " << nombre_nuevo << " ya que no alcanzan los materiales para construirlo.\n"<<endl;
+            }
+        }else {
             cout << "\n No se pueden construir mas " << nombre_nuevo << " ya que supera el maximo permitido. \n" << endl; 
         }
 
