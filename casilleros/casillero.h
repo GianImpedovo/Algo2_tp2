@@ -34,7 +34,7 @@ public:
     virtual void agregar_material(string nombre, int cantidad) = 0;
 
     // PRE: -
-    // POS: Muestra el nombre del casillero siendo estos = T,C,L.
+    // POST: Muestra informacion sobre el casillero.
     virtual void mostrar_casillero() = 0;
 
     // PRE: -
