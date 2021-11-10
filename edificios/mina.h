@@ -6,7 +6,7 @@
 class Mina: public Edificio {
 
 private:
-    int brinda;
+
 
 public:
 

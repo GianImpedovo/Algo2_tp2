@@ -6,7 +6,6 @@
 class Planta_electrica: public Edificio {
 
 private:
-    int brinda;
 
 public:
 

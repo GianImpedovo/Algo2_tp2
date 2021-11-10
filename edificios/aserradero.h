@@ -6,7 +6,6 @@
 class Aserradero: public Edificio {
 
 private:
-    int brinda;
 
 public:
 

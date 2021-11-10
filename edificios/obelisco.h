@@ -6,7 +6,6 @@
 class Obelisco: public Edificio {
 
 private:
-    int brinda;
 
 public:
 

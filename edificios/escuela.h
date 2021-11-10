@@ -6,7 +6,6 @@
 class Escuela: public Edificio {
 
 private:
-    int brinda;
 
 public:
 

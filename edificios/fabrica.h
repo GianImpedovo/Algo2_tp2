@@ -6,7 +6,6 @@
 class Fabrica: public Edificio {
 
 private:
-    int brinda;
 
 public:
 
