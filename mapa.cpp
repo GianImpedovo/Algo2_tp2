@@ -377,7 +377,7 @@ void Mapa::listar_edificios_construidos(){
     cout << "\t\t###   Listado de los edificio construidos :   ### " << endl;
     cout << "\nOrden de los elementos : " << endl;
     cout << " -> nombre : cantidad construidos " << endl;
-    cout << " - coordenede \n - coordenada\n ..." << endl;
+    cout << " - coordenada \n - coordenada\n ..." << endl;
     cout << "\n" ;
     cout << "___________________________________________________" << endl;
     cout << "\n" ;
