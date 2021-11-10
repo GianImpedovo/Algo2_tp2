@@ -27,8 +27,9 @@ public:
     //POS: El puntero edificio_construido apuntara al nuevo espacio en memoria donde se guarda el edificio.
     void agregar_edificio(string nombre, int piedra, int madera, int metal, int maximo);
 
-    //PRE: -
-    //POS: -
+    //PRE:-
+    //POS: En casilleros transitables hace apuntar el puntero material
+    //a un objeto material
     void agregar_material(string nombre, int cantidad);
 
     //PRE: - 
@@ -36,7 +37,7 @@ public:
     string obtener_nombre_edificio();
 
     //PRE: - 
-    //POS: no devuelve nada pues no hay materiales en casilleros transitables..
+    //POS: Devuelve un string vacio pues no se pueden ubicar materiales en casilleros construibles
     string obtener_nombre_material();
 
     //PRE: En caso de existir un edificio, que el edificio_construido != NULL. 
@@ -44,7 +45,8 @@ public:
     string obtener_diminutivo_edificio();
 
     //PRE: -  
-    //POS: Devuelve un string con la primer letra del material.
+    //PRE:
+    //POST: Al ser un casillero construible devueve un string vacio pus
     string obtener_diminutivo_material();
 
     //PRE: En caso de existir un edificio , edificio_construido != NULL.
@@ -69,7 +71,7 @@ public:
     bool existe_edificio();
 
     //PRE: -
-    //POS: -
+    //POS:  Devuelve false puesto que no se pueden colocar materiales en casilleros construibles
     bool existe_material();
 
     // Destructor
