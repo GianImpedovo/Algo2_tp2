@@ -8,7 +8,8 @@ Mapa::Mapa(){
     this->cantidad_edificios = 0;
     this->edificios_posibles = 0;
     this->usuario_inventario = 0;
-
+    this -> vector_casilleros_lluvia = 0;
+    this -> total_casilleros = 0;
 }
 
 bool Mapa::carga_incorrecta_archivos(){
@@ -376,7 +377,7 @@ void Mapa::listar_edificios_construidos(){
     cout << "\t\t###   Listado de los edificio construidos :   ### " << endl;
     cout << "\nOrden de los elementos : " << endl;
     cout << " -> nombre : cantidad construidos " << endl;
-    cout << " - coordenede \n - coordenada\n ..." << endl;
+    cout << " - coordenada \n - coordenada\n ..." << endl;
     cout << "\n" ;
     cout << "___________________________________________________" << endl;
     cout << "\n" ;
@@ -597,28 +598,27 @@ void Mapa::mostrar_alerta_materiales_no_colocados(int materiales_restantes, int 
     }
 }
 
-void Mapa::colocar_materiales_llovidos(int tot_materiales_gen, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales,
-Vector_ints *vector_filas, Vector_ints *vector_columnas ){
-    
+
+void Mapa::colocar_materiales_llovidos(int tot_materiales_gen, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales){
+
     string material_a_colocar = "";
     int materiales_restantes = tot_materiales_gen;
 
-    while (materiales_restantes >0 && vector_columnas->obtener_longitud() >0){
+    while (materiales_restantes >0 && total_casilleros >0){
 
         consultar_material_a_colocar(cant_gen_piedras, cant_gen_maderas, cant_gen_metales, material_a_colocar);
 
-        int pos_coordenada =  generar_numero_random( 0, vector_filas->obtener_longitud() - 1);
+        int pos_coordenada =  generar_numero_random( 0, total_casilleros - 1);
         
-        int fila = vector_filas -> obtener_numero(pos_coordenada);
-        int columna = vector_columnas -> obtener_numero(pos_coordenada);
-        
+        int fila =  obtener_casillero_vector_casilleros_lluvia(pos_coordenada) ->obtener_fila() ;
+        int columna =  obtener_casillero_vector_casilleros_lluvia(pos_coordenada) ->obtener_columna() ;
+
         mapa[fila][columna] -> agregar_material(material_a_colocar, 1);
 
         cout <<"1 unidad de " << material_a_colocar << " en " <<"("<< fila << ","  << columna <<")" << endl;
 
-        vector_filas -> sacar_numero(pos_coordenada);
-        vector_columnas -> sacar_numero(pos_coordenada);
-        
+        sacar_casillero(pos_coordenada);
+
         materiales_restantes --;
     }
 
@@ -628,15 +628,77 @@ Vector_ints *vector_filas, Vector_ints *vector_columnas ){
 
 }
 
-void Mapa::cargar_vectores_de_posisiones_permitidas(Vector_ints *vector_filas, Vector_ints *vector_columnas){
+
+
+Casillero_transitable* Mapa :: obtener_casillero_vector_casilleros_lluvia ( int pos) {
+	return vector_casilleros_lluvia[pos];
+}
+
+
+void Mapa::sacar_casillero(int posicion_numero_a_sacar){
+    
+    if (total_casilleros > 1) {
+
+        //mando el q quiero elimnar a la ult pos y lo intercambio con ese
+        swap_casillero(total_casilleros - 1, posicion_numero_a_sacar);
+        
+        Casillero_transitable **vector_aux_casilleros_lluvia = new Casillero_transitable*[total_casilleros - 1];
+
+        for(int i = 0; i < total_casilleros - 1; i++){
+            vector_aux_casilleros_lluvia[i] = vector_casilleros_lluvia[i];
+            //Como esta en la ult pos nunca lo copio!
+        }
+        
+        delete vector_casilleros_lluvia[total_casilleros - 1];
+        delete[] vector_casilleros_lluvia;
+
+
+        vector_casilleros_lluvia = vector_aux_casilleros_lluvia;
+
+    }else{
+        delete vector_casilleros_lluvia[total_casilleros - 1];
+        delete[] vector_casilleros_lluvia;
+    }
+
+    total_casilleros --;
+}
+
+void Mapa::swap_casillero(int posicion_1, int posicion_2){
+    Casillero_transitable *aux = vector_casilleros_lluvia[posicion_1];
+    vector_casilleros_lluvia[posicion_1] = vector_casilleros_lluvia[posicion_2]; //mando al final (pos_1) el quiero eliminar(pos_2)
+    vector_casilleros_lluvia[posicion_2] = aux; //el ultimo lo pongo en donde estaba el que quiero eliminar
+}
+
+void Mapa :: agregar_casillero_a_vector_casilleros_lluvia (Casillero_transitable *casillero, int tam_nuevo, int pos ) {
+    
+    Casillero_transitable** vector_aux = new Casillero_transitable*[tam_nuevo];
+
+    for (int i = 0; i<pos; i++){
+        vector_aux[i] = vector_casilleros_lluvia[i];
+    }
+
+    vector_aux[pos] = casillero;
+
+    if (total_casilleros != 0){
+        delete [] vector_casilleros_lluvia;
+        }
+
+    total_casilleros = tam_nuevo;
+    vector_casilleros_lluvia = vector_aux;
+}
+
+void Mapa::cargar_vector_casilleros_lluvia_con_casileros_permitidos(){
     
     int pos = 0;
+    Casillero_transitable *casillero_aux;
+
     for ( int i = 0; i < cantidad_filas; i++){
         for ( int j = 0; j < cantidad_columnas ; j++){
             if (mapa[i][j] -> obtener_nombre() =="C" && !( mapa[i][j] -> existe_material() ) ){    
+                
+                casillero_aux  = new Casillero_transitable(i, j);
 
-                vector_filas->agregar_numero(i,pos+1, pos);
-                vector_columnas->agregar_numero(j,pos+1, pos);
+                agregar_casillero_a_vector_casilleros_lluvia(casillero_aux,pos+1, pos);
                 
                 pos+=1;
             }
@@ -646,15 +708,20 @@ void Mapa::cargar_vectores_de_posisiones_permitidas(Vector_ints *vector_filas, V
 
 void Mapa::ejecutar_lluvia(int tot_materiales_gen, int cant_gen_piedras, int cant_gen_maderas, int cant_gen_metales){
 
-    Vector_ints *vector_filas = new Vector_ints;
-    Vector_ints *vector_columnas = new Vector_ints;
+    cargar_vector_casilleros_lluvia_con_casileros_permitidos();
 
-    cargar_vectores_de_posisiones_permitidas(vector_filas, vector_columnas);
+    colocar_materiales_llovidos(tot_materiales_gen, cant_gen_piedras, cant_gen_maderas, cant_gen_metales);
     
-    colocar_materiales_llovidos(tot_materiales_gen, cant_gen_piedras, cant_gen_maderas, cant_gen_metales, vector_filas, vector_columnas);
-    
-    delete vector_filas;
-    delete vector_columnas;
+    int total_cas = total_casilleros;
+
+    for ( int i = 0; i < total_cas; i++){
+        delete vector_casilleros_lluvia[i];
+        total_casilleros--;
+    }
+    if (total_cas !=0){
+        delete [] vector_casilleros_lluvia;
+        vector_casilleros_lluvia = nullptr;
+    }
 }
 
 void Mapa :: lluvia_recursos(){
@@ -714,6 +781,5 @@ Mapa::~Mapa(){
 
     delete usuario_inventario;
     usuario_inventario = 0;
-
-
+    
 }

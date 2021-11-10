@@ -84,7 +84,15 @@ public:
     // POS: - 
     virtual ~Casillero();
     
+    //Obtener fila
+    //PRE:-
+    //POST: Devuelve un entero con la fila del casillero
+    virtual int obtener_fila() = 0;
 
+    //Obtener columna
+    //PRE:-
+    //POST: Devuelve un entero con la columna del casillero
+    virtual int obtener_columna() = 0;
 
 };
 

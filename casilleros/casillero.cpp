@@ -16,4 +16,12 @@ string Casillero::obtener_nombre(){
     return nombre;
 }
 
+int Casillero::obtener_fila(){
+    return fila;
+}
+
+int Casillero::obtener_columna(){
+    return fila;
+}
+
 Casillero::~Casillero(){}

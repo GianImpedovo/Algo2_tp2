@@ -126,3 +126,12 @@ Casillero_construible::~Casillero_construible(){
     }
     edificio_construido = 0;
 }
+
+int Casillero_construible::obtener_fila(){
+    return fila;
+}
+
+int Casillero_construible::obtener_columna(){
+    return columna;
+}
+

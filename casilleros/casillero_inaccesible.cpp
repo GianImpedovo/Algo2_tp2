@@ -52,3 +52,11 @@ bool Casillero_inaccesible::existe_edificio(){
 bool Casillero_inaccesible::existe_material(){
     return false;
 }
+
+int Casillero_inaccesible::obtener_fila(){
+    return fila;
+}
+
+int Casillero_inaccesible::obtener_columna(){
+    return columna;
+}
