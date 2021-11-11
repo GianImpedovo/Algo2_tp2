@@ -25,7 +25,7 @@ int main(){
             opcion = elegir_opcion();
         }
     }else{
-        cout <<"Uno de los archivos no se pudo abrir";
+        cout <<"Uno o varios archivos no se pudieron abrir correctamente";
     }
 
     delete mapa;
