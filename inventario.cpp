@@ -79,13 +79,20 @@ void Inventario :: agregar_material(Material* material){
 
 //Destructor de inventario
 Inventario:: ~ Inventario(){
-    ofstream archivo_materiales(PATH_MATERIALES);
+    
     int cantidad_total = cantidad_de_materiales;
+    
+    if (cantidad_total != ERROR){
+        ofstream archivo_materiales(PATH_MATERIALES);
+        for(int i = 0; i < cantidad_total; i++){
+            archivo_materiales << lista_materiales[i]->obtener_nombre()<< ' '
+            << lista_materiales[i] -> obtener_cantidad_disponible()<< '\n';
+        }
+    }
+
         
     for(int i = 0; i < cantidad_total; i++){
-        archivo_materiales << lista_materiales[i]->obtener_nombre()<< ' '
-        << lista_materiales[i] -> obtener_cantidad_disponible()<< '\n';
-        
+
         delete lista_materiales[i];
         
         cantidad_de_materiales--;
@@ -93,7 +100,6 @@ Inventario:: ~ Inventario(){
 
     delete [] lista_materiales;
     lista_materiales = nullptr;
-
 
 };
 

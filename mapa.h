@@ -30,6 +30,9 @@ private:
     Casillero_transitable ** vector_casilleros_lluvia;
     int total_casilleros;
 
+    bool ubicaciones_bien_cargadas;
+    bool mapa_bien_cargado;
+
 public:
 
     // Constructor

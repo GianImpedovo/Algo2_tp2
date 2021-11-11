@@ -10,10 +10,12 @@ Mapa::Mapa(){
     this->usuario_inventario = 0;
     this -> vector_casilleros_lluvia = 0;
     this -> total_casilleros = 0;
+    this -> mapa_bien_cargado = true;
+    this -> ubicaciones_bien_cargadas = true;
 }
 
 bool Mapa::carga_incorrecta_archivos(){
-    bool carga_incorrecta = ( (cantidad_filas == -1) || (cantidad_columnas == -1) || (obtener_cantidad_edificios() == -1) 
+    bool carga_incorrecta = ( ( ! mapa_bien_cargado ) || ( ! ubicaciones_bien_cargadas ) || (obtener_cantidad_edificios() == -1) 
     || (usuario_inventario->obtener_cantidad_de_materiales() == -1) );
 
     return carga_incorrecta;
@@ -65,7 +67,7 @@ void Mapa::procesar_archivo_mapa(){
         arch.close();
         
     }else{
-        cantidad_filas = ERROR;
+        mapa_bien_cargado = false;
     }
 }
 
@@ -81,7 +83,8 @@ void Mapa::procesar_archivo_ubicaciones(){
 
     ifstream archivo;
     archivo.open(ARCHIVO_UBICACIONES);
-    if(archivo.is_open()){
+
+    if(archivo.is_open() && mapa_bien_cargado){
         string nombre,segundo_nombre, barra, fila, columna;
 
         while( archivo >> nombre ){
@@ -125,7 +128,7 @@ void Mapa::procesar_archivo_ubicaciones(){
 
         archivo.close();
     }else{
-        cantidad_columnas = ERROR;
+        ubicaciones_bien_cargadas = false;
     }
 
 }
@@ -760,25 +763,33 @@ void Mapa :: lluvia_recursos(){
 
 Mapa::~Mapa(){
 
-    ofstream archivo_ubicaciones(ARCHIVO_UBICACIONES);
-
-    for ( int i = 0; i < cantidad_filas; i++){
-        for ( int j = 0; j < cantidad_columnas ; j++){
-            if (mapa[i][j] ->existe_edificio() ){
-                archivo_ubicaciones << mapa[i][j] ->obtener_nombre_edificio() << " ("
-                << i << ", " << j << ")" << endl;
+    if (mapa_bien_cargado && ubicaciones_bien_cargadas){
+        ofstream archivo_ubicaciones(ARCHIVO_UBICACIONES);
+        for ( int i = 0; i < cantidad_filas; i++){
+            for ( int j = 0; j < cantidad_columnas ; j++){
+                if (mapa[i][j] ->existe_edificio() ){
+                    archivo_ubicaciones << mapa[i][j] ->obtener_nombre_edificio() << " ("
+                    << i << ", " << j << ")" << endl;
+                }
+                if ( mapa[i][j] -> existe_material() ){ 
+                    archivo_ubicaciones << mapa[i][j] -> obtener_nombre_material() <<" ("
+                    << i << ", " << j << ")" << endl;
+                }
             }
-            if ( mapa[i][j] -> existe_material() ){ 
-                archivo_ubicaciones << mapa[i][j] -> obtener_nombre_material() <<" ("
-                << i << ", " << j << ")" << endl;
-            }
-
-            delete mapa[i][j];
         }
-        delete [] mapa[i];
     }
-    delete [] mapa;
-    this->mapa = 0;
+
+    if (mapa_bien_cargado){
+        for ( int i = 0; i < cantidad_filas; i++){
+            for ( int j = 0; j < cantidad_columnas ; j++){
+                
+                delete mapa[i][j];
+            }
+            delete [] mapa[i];
+        }
+        delete [] mapa;
+        this->mapa = 0;
+    }
 
     int total = cantidad_edificios;
     for ( int i = 0; i < total; i++){
